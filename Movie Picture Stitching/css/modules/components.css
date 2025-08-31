@@ -1,0 +1,115 @@
+/* ==========================================================================
+   组件样式 - 列表和预览区域美化
+   ========================================================================== */
+
+/* 图片列表美化 */
+.list {
+  position: relative;
+}
+
+.list::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    transparent, 
+    var(--color-border-subtle) 20%, 
+    var(--color-border-subtle) 80%, 
+    transparent);
+}
+
+/* 预览区域美化 */
+.preview {
+  position: relative;
+  background: radial-gradient(circle at center, 
+    rgba(255, 255, 255, 0.02) 0%, 
+    rgba(255, 255, 255, 0.01) 50%, 
+    transparent 100%);
+}
+
+.preview::before {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border);
+}
+
+/* 图片容器样式 */
+.preview canvas,
+.preview img {
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-normal);
+}
+
+.preview canvas:hover,
+.preview img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* 加载状态美化 */
+.preview .loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  color: var(--color-text-tertiary);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.preview .loading-state::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top: 3px solid var(--color-accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 信息文本美化 */
+.preview .info-text {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  backdrop-filter: var(--backdrop-blur);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* 错误状态美化 */
+.preview .error-state {
+  color: var(--color-accent-danger);
+  background: rgba(218, 54, 51, 0.1);
+  border: 1px solid var(--color-accent-danger);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* 空状态美化 */
+.preview .empty-state {
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.preview .empty-state::before {
+  content: '🖼️';
+  display: block;
+  font-size: 48px;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.5;
+}

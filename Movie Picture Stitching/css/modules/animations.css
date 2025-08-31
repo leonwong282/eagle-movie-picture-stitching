@@ -1,0 +1,194 @@
+/* ==========================================================================
+   动画和过渡效果
+   ========================================================================== */
+
+/* 页面加载动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 应用动画 */
+.container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.list {
+  animation: slideInLeft 0.6s ease-out 0.1s both;
+}
+
+.preview {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.property {
+  animation: slideInRight 0.6s ease-out 0.3s both;
+}
+
+/* 按钮点击动画 */
+@keyframes buttonPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.button:active {
+  animation: buttonPulse 0.15s ease-out;
+}
+
+/* 加载动画 */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, 
+    var(--color-bg-tertiary) 25%, 
+    var(--color-bg-quaternary) 37%, 
+    var(--color-bg-tertiary) 63%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* 成功状态动画 */
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 50;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes successPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(35, 134, 54, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(35, 134, 54, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(35, 134, 54, 0);
+  }
+}
+
+.success-state {
+  animation: successPulse 1.5s ease-out;
+}
+
+/* 错误状态动画 */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.error-state {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* 悬浮效果 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 渐变背景动画 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* 禁用动画的用户偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  .list,
+  .preview,
+  .property {
+    animation: none;
+  }
+  
+  .loading-shimmer {
+    animation: none;
+    background: var(--color-bg-tertiary);
+  }
+  
+  .float-animation,
+  .animated-gradient {
+    animation: none;
+  }
+}

@@ -1,0 +1,38 @@
+/* ==========================================================================
+   滚动条美化
+   ========================================================================== */
+
+.list::-webkit-scrollbar,
+.preview::-webkit-scrollbar,
+.property-controls::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-track,
+.preview::-webkit-scrollbar-track,
+.property-controls::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-xs);
+}
+
+.list::-webkit-scrollbar-thumb,
+.preview::-webkit-scrollbar-thumb,
+.property-controls::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius-xs);
+  transition: background var(--transition-normal);
+}
+
+.list::-webkit-scrollbar-thumb:hover,
+.preview::-webkit-scrollbar-thumb:hover,
+.property-controls::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* 为Firefox提供滚动条样式 */
+.list,
+.preview,
+.property-controls {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}

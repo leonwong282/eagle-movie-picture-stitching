@@ -1,0 +1,176 @@
+/* ==========================================================================
+   响应式设计
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .top {
+    height: 56px;
+    padding: 0 var(--spacing-lg);
+  }
+
+  .title {
+    font-size: 16px;
+    letter-spacing: 0.3px;
+  }
+
+  .logo {
+    width: 32px;
+    height: 32px;
+    margin-right: var(--spacing-md);
+  }
+
+  .middle {
+    flex-direction: column;
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .list, .preview, .property {
+    flex: none;
+    height: auto;
+    max-height: none;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .list {
+    order: 1;
+    min-height: 140px;
+  }
+
+  .property {
+    order: 2;
+    min-height: 280px;
+  }
+
+  .preview {
+    order: 3;
+    min-height: 320px;
+  }
+
+  .property-bottom {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .button {
+    width: 100%;
+    padding: var(--spacing-lg);
+    height: 48px;
+  }
+
+  .pin-button,
+  .close-button {
+    min-width: 40px;
+    height: 40px;
+    padding: var(--spacing-sm);
+  }
+
+  .input-group {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 16px; /* 防止iOS缩放 */
+  }
+}
+
+/* 平板设备适配 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .middle {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .list, .preview, .property {
+    padding: var(--spacing-lg);
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .button {
+    min-width: 90px;
+    height: 42px;
+  }
+}
+
+/* 大屏设备优化 */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .middle {
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-xl);
+  }
+
+  .list, .preview, .property {
+    padding: var(--spacing-2xl);
+  }
+
+  .top {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .logo {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* 超大屏幕 */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1800px;
+  }
+
+  .middle {
+    padding: calc(var(--spacing-2xl) * 1.5);
+    gap: calc(var(--spacing-xl) * 1.5);
+  }
+}
+
+/* 高度较小的屏幕优化 */
+@media (max-height: 600px) {
+  .top {
+    height: 48px;
+  }
+
+  .middle {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .list, .preview, .property {
+    padding: var(--spacing-md);
+  }
+
+  .input-group {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f6f8fa;
+    --color-bg-tertiary: #ffffff;
+    --color-bg-quaternary: #f6f8fa;
+    --color-text-primary: #24292f;
+    --color-text-secondary: #656d76;
+  }
+}

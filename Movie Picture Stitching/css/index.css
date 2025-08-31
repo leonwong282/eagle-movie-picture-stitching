@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Movie Picture Stitching - Eagle Plugin
+   主样式文件 - 模块化导入
+   ========================================================================== */
+
+/* 导入各个模块 */
+@import './modules/variables.css';
+@import './modules/base.css';
+@import './modules/layout.css';
+@import './modules/header.css';
+@import './modules/forms.css';
+@import './modules/buttons.css';
+@import './modules/components.css';
+@import './modules/scrollbar.css';
+@import './modules/animations.css';
+@import './modules/responsive.css';

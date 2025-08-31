@@ -1,0 +1,71 @@
+/* ==========================================================================
+   CSS 变量定义
+   ========================================================================== */
+
+:root {
+  /* 现代化颜色变量 */
+  --color-bg-primary: #0d1117;
+  --color-bg-secondary: #161b22;
+  --color-bg-tertiary: #21262d;
+  --color-bg-quaternary: #30363d;
+  --color-bg-property: #282e33;
+  --color-bg-card: #1c2128;
+  --color-bg-hover: #262c36;
+  
+  --color-text-primary: #f0f6fc;
+  --color-text-secondary: #c9d1d9;
+  --color-text-tertiary: #8b949e;
+  --color-text-bright: #f0f6fc;
+  --color-text-muted: #7c8590;
+  
+  --color-border: #30363d;
+  --color-border-subtle: #21262d;
+  --color-border-error: #f85149;
+  --color-border-success: #3fb950;
+  
+  --color-accent-primary: #238636;
+  --color-accent-primary-hover: #2ea043;
+  --color-accent-secondary: #1f6feb;
+  --color-accent-secondary-hover: #388bfd;
+  --color-accent-warning: #d29922;
+  --color-accent-danger: #da3633;
+  
+  /* 渐变色 */
+  --gradient-primary: linear-gradient(135deg, #238636, #2ea043);
+  --gradient-secondary: linear-gradient(135deg, #1f6feb, #388bfd);
+  --gradient-surface: linear-gradient(135deg, #21262d, #30363d);
+  --gradient-header: linear-gradient(135deg, #161b22, #21262d);
+  
+  /* 尺寸变量 */
+  --header-height: 64px;
+  --border-radius-xs: 4px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  
+  /* 阴影变量 - 更现代的阴影 */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(35, 134, 54, 0.3);
+  --shadow-glow-blue: 0 0 20px rgba(31, 111, 235, 0.3);
+  
+  /* 过渡变量 */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 新增特效变量 */
+  --backdrop-blur: blur(10px);
+  --glass-bg: rgba(48, 54, 61, 0.9);
+  --glass-border: rgba(240, 246, 252, 0.15);
+}

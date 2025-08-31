@@ -1,0 +1,142 @@
+/* ==========================================================================
+   顶部导航栏
+   ========================================================================== */
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--header-height);
+  box-shadow: var(--shadow-md);
+  background: var(--gradient-header);
+  color: var(--color-text-primary);
+  padding: 0 var(--spacing-2xl);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 100;
+  backdrop-filter: var(--backdrop-blur);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    rgba(35, 134, 54, 0.05) 0%, 
+    transparent 20%, 
+    transparent 80%, 
+    rgba(31, 111, 235, 0.05) 100%);
+  pointer-events: none;
+}
+
+.top-left {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  margin-right: var(--spacing-lg);
+  width: 40px;
+  height: 40px;
+  background-image: url(../../logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: linear-gradient(135deg, #ffffff, #e6edf3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.pin-button,
+.close-button {
+  font-size: 18px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-normal);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  backdrop-filter: var(--backdrop-blur);
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.pin-button::before,
+.close-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left var(--transition-normal);
+}
+
+.pin-button:hover::before,
+.close-button:hover::before {
+  left: 100%;
+}
+
+.pin-button:hover {
+  color: #ffffff;
+  background: rgba(210, 153, 34, 0.2);
+  border-color: var(--color-accent-warning);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md), 0 0 15px rgba(210, 153, 34, 0.3);
+}
+
+.close-button:hover {
+  color: #ffffff;
+  background: rgba(218, 54, 51, 0.2);
+  border-color: var(--color-accent-danger);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md), 0 0 15px rgba(218, 54, 51, 0.3);
+}

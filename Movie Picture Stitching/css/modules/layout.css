@@ -1,0 +1,122 @@
+/* ==========================================================================
+   布局容器
+   ========================================================================== */
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--gradient-surface);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(35, 134, 54, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(31, 111, 235, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   主体布局
+   ========================================================================== */
+
+.main {
+  display: flex;
+  flex: 1 1 auto;
+  background-color: transparent;
+  padding: 0;
+  min-height: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.middle {
+  display: flex;
+  flex: 1 1 auto;
+  gap: var(--spacing-lg);
+  height: 100%;
+  padding: var(--spacing-lg);
+  min-height: 0;
+}
+
+.list, .preview, .property {
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-xl);
+  overflow-y: auto;
+  height: 100%;
+  min-height: 0;
+  max-height: calc(100vh - calc(var(--header-height) + var(--spacing-lg) * 2));
+  backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.list::before,
+.preview::before,
+.property::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--glass-bg);
+  border-radius: var(--border-radius-xl);
+  z-index: -1;
+}
+
+.list {
+  flex: 1 1 0;
+  color: #ffffff;
+}
+
+.preview {
+  flex: 2.5 1 0;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.property {
+  flex: 1.2 1 0;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: visible;
+}
+
+.property-controls {
+  flex: 1;
+  margin: 0;
+  padding: var(--spacing-xs);
+  border: none;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.property-bottom {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-border-subtle);
+  margin-top: var(--spacing-xl);
+  flex-shrink: 0;
+}

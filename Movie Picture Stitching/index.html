@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="Eagle 图片拼接插件 - 将多张图片垂直拼接成长图">
+  <title>Movie Picture Stitching - Eagle Plugin</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <header class="top" style="-webkit-app-region: drag" role="banner">
+      <div class="top-left">
+        <div class="logo" aria-hidden="true"></div>
+        <h1 class="title">电影台词长图拼接</h1>
+      </div>
+      <div class="top-right">
+        <button class="pin-button" id="pinButton" type="button" aria-label="窗口置顶" title="窗口置顶">📌</button>
+        <button class="close-button" id="closeButton" type="button" aria-label="关闭窗口" title="关闭窗口">X</button>
+      </div>
+    </header>
+    
+    <main class="main" role="main">
+      <div class="middle">
+        <aside class="list" role="complementary" aria-label="选中的图片列表"></aside>
+        
+        <section class="preview" role="main" aria-label="图片预览区域"></section>
+        
+        <aside class="property" role="complementary" aria-label="设置面板">
+          <form class="property-controls" aria-label="图片处理参数">
+            <div class="input-group">
+              <label for="cropTopPercent">顶部裁剪高度(%)：</label>
+              <input type="number" id="cropTopPercent" value="85" min="0" max="99" 
+                     title="顶部裁剪百分比，与底部总和不能超过99%" 
+                     aria-describedby="crop-top-help">
+              <small id="crop-top-help" class="help-text">最大可设置: <span id="remaining-top">14</span>%</small>
+            </div>
+            
+            <div class="input-group">
+              <label for="cropBottomPercent">底部裁剪高度(%)：</label>
+              <input type="number" id="cropBottomPercent" value="5" min="0" max="99" 
+                     title="底部裁剪百分比，与顶部总和不能超过99%" 
+                     aria-describedby="crop-bottom-help">
+              <small id="crop-bottom-help" class="help-text">最大可设置: <span id="remaining-bottom">94</span>%</small>
+            </div>
+            
+            <div class="input-group">
+              <label for="exportFormat">导出格式：</label>
+              <select id="exportFormat" aria-describedby="format-help">
+                <option value="jpg">JPG</option>
+                <option value="webp">WEBP</option>
+                <option value="png">PNG</option>
+              </select>
+              <!-- <small id="format-help" class="help-text">选择输出图片格式</small> -->
+            </div>
+            
+            <div class="input-group">
+              <label for="exportQuality">导出质量(0.1-1.0)：</label>
+              <input type="number" id="exportQuality" value="0.92" min="0.1" max="1.0" step="0.01" 
+                     title="输入范围: 0.1 到 1.0" aria-describedby="quality-help">
+              <small id="quality-help" class="help-text">值越高质量越好，文件越大</small>
+            </div>
+          </form>
+          
+          <div class="property-bottom">
+            <button class="button" id="previewButton" type="button" aria-label="生成预览">预览</button>
+            <button class="button" id="saveButton" type="button" aria-label="保存图片">保存</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+  
+  <script type="text/javascript" src="js/plugin.js"></script>
+</body>
+
+</html>

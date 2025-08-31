@@ -1,0 +1,89 @@
+/* ==========================================================================
+   按钮样式
+   ========================================================================== */
+
+.button {
+  background: var(--gradient-primary);
+  border: none;
+  color: var(--color-text-primary);
+  padding: var(--spacing-md) var(--spacing-xl);
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--border-radius-lg);
+  transition: all var(--transition-normal);
+  min-width: 100px;
+  height: 44px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-normal);
+}
+
+.button:hover::before {
+  left: 100%;
+}
+
+.button:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-accent-primary-hover), var(--color-accent-primary));
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow), var(--shadow-lg);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.button:disabled {
+  background: linear-gradient(135deg, var(--color-border), var(--color-text-tertiary));
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+  box-shadow: none;
+}
+
+#saveButton {
+  background: var(--gradient-secondary);
+}
+
+#saveButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-accent-secondary-hover), var(--color-accent-secondary));
+  box-shadow: var(--shadow-glow-blue), var(--shadow-lg);
+}
+
+/* 按钮组美化 */
+.property-bottom {
+  position: relative;
+}
+
+.property-bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -var(--spacing-xl);
+  right: -var(--spacing-xl);
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-border-subtle) 20%, 
+    var(--color-border-subtle) 80%, 
+    transparent);
+}
