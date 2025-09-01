@@ -1,12 +1,12 @@
 /**
- * Eagle Plugin 多语言初始化和工具函数
- * 提供便捷的多语言功能接口
+ * Eagle Plugin Multilingual Initialization and Utility Functions
+ * Provides convenient multilingual function interfaces
  */
 
-// 创建全局多语言管理器实例
+// Create global multilingual manager instance
 const i18nManager = new I18nManager();
 
-// 兼容性函数（保持向后兼容）
+// Compatibility functions (maintain backward compatibility)
 function initializeI18n() {
 	return i18nManager.initialize().catch(error => {
 		console.error('I18n initialization failed:', error);
@@ -17,14 +17,14 @@ function showMessage(key, variables = {}) {
 	i18nManager.showMessage(key, variables);
 }
 
-// 快速翻译函数
+// Quick translation function
 function t(key, variables = {}) {
 	return i18nManager.t(key, variables);
 }
 
-// Eagle 插件生命周期事件处理
+// Eagle plugin lifecycle event handling
 function setupEagleI18nEvents() {
-	// 插件创建事件
+	// Plugin create event
 	eagle.onPluginCreate(async () => {
 		console.log('🚀 Eagle plugin create event triggered');
 		console.log('Eagle object availability check:', {
@@ -39,7 +39,7 @@ function setupEagleI18nEvents() {
 			console.log('✅ I18n initialization successful');
 		} catch (error) {
 			console.error('❌ I18n initialization failed during plugin create:', error);
-			// 尝试降级处理
+			// Try fallback handling
 			console.log('Attempting fallback initialization...');
 			setTimeout(() => {
 				i18nManager.reinitialize().catch(e => {
@@ -49,7 +49,7 @@ function setupEagleI18nEvents() {
 		}
 	});
 
-	// 插件显示事件
+	// Plugin show event
 	eagle.onPluginShow(async () => {
 		console.log('👁️ Eagle plugin show event triggered');
 		console.log('Current initialization state:', {
@@ -58,20 +58,20 @@ function setupEagleI18nEvents() {
 			eagleLocale: eagle?.app?.locale
 		});
 		
-		// 确保多语言正确应用，支持语言切换
+		// Ensure multilingual is correctly applied, support language switching
 		try {
 			if (!i18nManager.isInitialized) {
 				console.log('I18n not initialized, starting initialization...');
 				await i18nManager.initialize();
 			} else {
-				// 重新检测语言（用户可能在 Eagle 中切换了语言）
+				// Re-detect language (user may have switched language in Eagle)
 				const newLanguage = i18nManager.detectLanguage();
 				if (newLanguage !== i18nManager.currentLanguage) {
 					console.log('🔄 Language change detected, reinitializing:', i18nManager.currentLanguage, '->', newLanguage);
 					await i18nManager.reinitialize();
 				} else {
 					console.log('Language unchanged, reapplying translations...');
-					// 重新应用翻译（确保动态内容正确）
+					// Reapply translations (ensure dynamic content is correct)
 					i18nManager.applyTranslations();
 				}
 			}
@@ -82,12 +82,12 @@ function setupEagleI18nEvents() {
 	});
 }
 
-// 设置高级多语言功能
+// Setup advanced multilingual features
 function setupAdvancedI18nFeatures() {
 	i18nManager.setupAdvancedFeatures();
 }
 
-// 开发调试工具
+// Development debugging tools
 function setupI18nDebugTools() {
 	if (typeof window !== 'undefined') {
 		window.i18nDebug = {
@@ -96,7 +96,7 @@ function setupI18nDebugTools() {
 			validate: () => i18nManager.validateTranslations(),
 			retranslate: () => i18nManager.forceRetranslate(),
 			reinit: () => i18nManager.reinitialize(),
-			// 快速语言测试
+			// Quick language test
 			testLanguage: (lang) => {
 				const oldLang = i18nManager.currentLanguage;
 				i18nManager.currentLanguage = lang;
@@ -114,7 +114,7 @@ function setupI18nDebugTools() {
 		console.log('- i18nDebug.testLanguage("en") - Test language switching');
 		console.log('- i18nDebug.quickCheck() - Quick status check');
 		
-		// 添加快速状态检查
+		// Add quick status check
 		window.i18nDebug.quickCheck = () => {
 			const info = i18nManager.getDebugInfo();
 			console.table(info);
@@ -133,12 +133,12 @@ function setupI18nDebugTools() {
 	}
 }
 
-// 全局错误处理
+// Global error handling
 function setupI18nErrorHandling() {
-	// 全局错误处理
+	// Global error handling
 	window.addEventListener('error', (event) => {
 		console.error('Global error:', event.error);
-		// 如果是多语言相关错误，尝试恢复
+		// If it's a multilingual related error, try to recover
 		if (event.error?.message?.includes('i18n') || event.error?.message?.includes('translation')) {
 			console.log('Detected i18n related error, attempting recovery...');
 			setTimeout(() => {
@@ -149,12 +149,12 @@ function setupI18nErrorHandling() {
 		}
 	});
 
-	// 未处理的Promise拒绝处理
+	// Unhandled Promise rejection handling
 	window.addEventListener('unhandledrejection', (event) => {
 		console.error('Unhandled promise rejection:', event.reason);
 		if (event.reason?.message?.includes('i18n') || event.reason?.message?.includes('translation')) {
 			console.log('Detected i18n promise error, attempting recovery...');
-			event.preventDefault(); // 防止错误显示给用户
+			event.preventDefault(); // Prevent error from showing to user
 			setTimeout(() => {
 				i18nManager.reinitialize().catch(error => {
 					console.error('I18n promise recovery failed:', error);
@@ -164,18 +164,18 @@ function setupI18nErrorHandling() {
 	});
 }
 
-// 初始化所有多语言功能
+// Initialize all multilingual features
 function initializeAllI18nFeatures() {
-	// 设置 Eagle 事件处理
+	// Setup Eagle event handling
 	setupEagleI18nEvents();
 	
-	// 设置调试工具
+	// Setup debugging tools
 	setupI18nDebugTools();
 	
-	// 设置错误处理
+	// Setup error handling
 	setupI18nErrorHandling();
 	
-	// 在DOM加载完成后设置高级功能
+	// Setup advanced features after DOM is loaded
 	if (document.readyState !== 'loading') {
 		setupAdvancedI18nFeatures();
 	} else {
@@ -183,7 +183,7 @@ function initializeAllI18nFeatures() {
 	}
 }
 
-// 导出函数
+// Export functions
 if (typeof module !== 'undefined' && module.exports) {
 	module.exports = {
 		i18nManager,
@@ -197,7 +197,7 @@ if (typeof module !== 'undefined' && module.exports) {
 		initializeAllI18nFeatures
 	};
 } else {
-	// 浏览器环境，将函数添加到全局作用域
+	// Browser environment, add functions to global scope
 	window.i18nManager = i18nManager;
 	window.initializeI18n = initializeI18n;
 	window.showMessage = showMessage;

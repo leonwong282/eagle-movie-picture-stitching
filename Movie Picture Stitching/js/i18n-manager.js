@@ -1,6 +1,6 @@
 /**
- * Eagle Plugin 多语言管理器
- * 提供完整的多语言支持功能
+ * Eagle Plugin Multilingual Manager
+ * Provides complete multilingual support functionality
  */
 
 class I18nManager {
@@ -13,20 +13,20 @@ class I18nManager {
 		this.initPromise = null;
 	}
 
-	// 检测当前语言
+	// Detect current language
 	detectLanguage() {
 		try {
-			// 优先使用 Eagle 的语言设置
+			// Priority use Eagle's language settings
 			if (eagle && eagle.app && eagle.app.locale) {
 				this.currentLanguage = eagle.app.locale;
 				console.log('Detected Eagle language setting:', this.currentLanguage);
 				return this.currentLanguage;
 			}
 			
-			// 降级到浏览器语言
+			// Fallback to browser language
 			const browserLang = navigator.language || navigator.userLanguage;
 			if (browserLang) {
-				// 将浏览器语言代码转换为支持的语言
+				// Convert browser language code to supported language
 				const langMap = {
 					'en': 'en',
 					'en-US': 'en',
@@ -59,14 +59,14 @@ class I18nManager {
 		return this.currentLanguage;
 	}
 
-	// 等待 i18next 加载
+	// Wait for i18next to load
 	async waitForI18next() {
 		console.log('Waiting for i18next library to load...');
 		return new Promise((resolve, reject) => {
 			const checkI18next = () => {
 				if (typeof i18next !== 'undefined') {
 					console.log('i18next library loaded successfully');
-					// 检查是否有翻译数据
+					// Check if translation data exists
 					const testTranslation = i18next.t('ui.buttons.preview');
 					console.log('Test translation result:', testTranslation);
 					resolve(true);
@@ -82,7 +82,7 @@ class I18nManager {
 		});
 	}
 
-	// 初始化多语言
+	// Initialize multilingual
 	async initialize() {
 		if (this.initPromise) {
 			return this.initPromise;
@@ -96,16 +96,16 @@ class I18nManager {
 		try {
 			console.log('Starting i18n system initialization...');
 			
-			// 检测语言
+			// Detect language
 			this.detectLanguage();
 			
-			// 等待 i18next 加载
+			// Wait for i18next to load
 			await this.waitForI18next();
 			
-			// 设置初始化标志（在应用翻译之前）
+			// Set initialization flag (before applying translations)
 			this.isInitialized = true;
 			
-			// 应用翻译
+			// Apply translations
 			this.applyTranslations();
 			
 			console.log('I18n system initialization completed, current language:', this.currentLanguage);
@@ -118,7 +118,7 @@ class I18nManager {
 		}
 	}
 
-	// 应用翻译到页面元素
+	// Apply translations to page elements
 	applyTranslations() {
 		if (typeof i18next === 'undefined') {
 			console.warn('i18next not loaded, skipping translation application');
@@ -128,7 +128,7 @@ class I18nManager {
 		try {
 			console.log('Starting translation application, current language:', this.currentLanguage);
 			
-			// 处理所有带有 data-i18n 属性的元素
+			// Process all elements with data-i18n attribute
 			const elements = document.querySelectorAll('[data-i18n]');
 			console.log(`Found ${elements.length} elements to translate`);
 			
@@ -136,7 +136,7 @@ class I18nManager {
 				this.translateElement(element);
 			});
 
-			// 特殊处理：动态更新的元素
+			// Special handling: dynamic update elements
 			this.updateDynamicElements();
 			
 			console.log('Translation application completed');
@@ -145,13 +145,13 @@ class I18nManager {
 		}
 	}
 
-	// 翻译单个元素
+	// Translate single element
 	translateElement(element) {
 		const key = element.getAttribute('data-i18n');
 		if (!key) return;
 
 		try {
-			// 处理属性绑定：[attribute]translation.key
+			// Handle attribute binding: [attribute]translation.key
 			if (key.startsWith('[') && key.includes(']')) {
 				const match = key.match(/\[([^\]]+)\](.+)/);
 				if (match) {
@@ -161,7 +161,7 @@ class I18nManager {
 					element.setAttribute(attribute, translation);
 				}
 			} else {
-				// 普通文本翻译
+				// Regular text translation
 				const translation = i18next.t(key);
 				if (translation && translation !== key) {
 					element.textContent = translation;
@@ -172,12 +172,12 @@ class I18nManager {
 		}
 	}
 
-	// 更新动态元素
+			// Update current language
 	updateDynamicElements() {
 		try {
 			console.log('Updating dynamic elements...');
 			
-			// 更新按钮
+			// Update buttons
 			const buttons = {
 				'previewButton': 'ui.buttons.preview',
 				'saveButton': 'ui.buttons.save'
@@ -195,7 +195,7 @@ class I18nManager {
 				}
 			});
 
-			// 更新动态提示文本
+			// Update dynamic tooltip text
 			this.updateRemainingCropValues();
 			
 			console.log('Dynamic elements update completed');
@@ -204,13 +204,13 @@ class I18nManager {
 		}
 	}
 
-	// 更新裁剪剩余值显示
+	// Update crop remaining value display
 	updateRemainingCropValues() {
 		const topElement = document.getElementById('remaining-top');
 		const bottomElement = document.getElementById('remaining-bottom');
 		
 		if (topElement && bottomElement) {
-			// 重新计算并更新显示
+			// Recalculate and update display
 			const { cropTopPercent, cropBottomPercent } = getParams();
 			const remainingTop = Math.max(0, 99 - cropBottomPercent);
 			const remainingBottom = Math.max(0, 99 - cropTopPercent);
@@ -220,9 +220,9 @@ class I18nManager {
 		}
 	}
 
-	// 安全的翻译函数
+	// Safe translation function
 	t(key, options = {}) {
-		// 只要i18next可用就尝试翻译，不必等待完整初始化
+		// Try to translate as long as i18next is available, no need to wait for complete initialization
 		if (typeof i18next === 'undefined') {
 			console.warn('i18next not loaded, returning key:', key);
 			return key;
@@ -230,7 +230,7 @@ class I18nManager {
 
 		try {
 			const result = i18next.t(key, options);
-			// 如果翻译结果和key相同，说明翻译不存在
+			// If translation result is same as key, it means translation doesn't exist
 			if (result === key) {
 				console.warn('Translation key not found:', key);
 			}
@@ -241,13 +241,13 @@ class I18nManager {
 		}
 	}
 
-	// 显示本地化消息
+	// Show localized message
 	showMessage(key, variables = {}) {
 		const message = this.t(key, variables);
 		alert(message);
 	}
 
-	// 强制重新初始化
+	// Force reinitialization
 	async reinitialize() {
 		this.isInitialized = false;
 		this.initPromise = null;
@@ -255,7 +255,7 @@ class I18nManager {
 		return this.initialize();
 	}
 
-	// 调试功能：获取多语言状态
+	// Debug function: get multilingual status
 	getDebugInfo() {
 		return {
 			isInitialized: this.isInitialized,
@@ -269,7 +269,7 @@ class I18nManager {
 		};
 	}
 
-	// 调试功能：验证翻译完整性
+	// Debug function: validate translation integrity
 	validateTranslations() {
 		const issues = [];
 		const elements = document.querySelectorAll('[data-i18n]');
@@ -295,21 +295,21 @@ class I18nManager {
 		};
 	}
 
-	// 调试功能：手动触发翻译
+	// Debug function: manually trigger translation
 	forceRetranslate() {
 		console.log('Force retranslating all elements...');
 		this.applyTranslations();
 		return this.validateTranslations();
 	}
 
-	// 设置DOM变化监听器和语言变化检测
+	// Setup DOM change listeners and language change detection
 	setupAdvancedFeatures() {
-		// 监听DOM变化，自动翻译新添加的元素
+		// Listen for DOM changes and automatically translate newly added elements
 		const observer = new MutationObserver((mutations) => {
 			mutations.forEach((mutation) => {
 				mutation.addedNodes.forEach((node) => {
 					if (node.nodeType === Node.ELEMENT_NODE) {
-						// 检查新添加的元素是否需要翻译
+						// Check if newly added elements need translation
 						const elementsToTranslate = node.querySelectorAll ? 
 							[node, ...node.querySelectorAll('[data-i18n]')] : 
 							[node];
@@ -324,13 +324,13 @@ class I18nManager {
 			});
 		});
 		
-		// 开始监听DOM变化
+		// Start listening for DOM changes
 		observer.observe(document.body, {
 			childList: true,
 			subtree: true
 		});
 		
-		// 定期检查语言变化（Eagle用户可能会切换语言）
+		// Periodically check for language changes (Eagle users might switch languages)
 		let lastDetectedLanguage = this.currentLanguage;
 		setInterval(() => {
 			const currentLanguage = this.detectLanguage();
@@ -341,11 +341,11 @@ class I18nManager {
 					console.error('Reinitialization failed after language change:', error);
 				});
 			}
-		}, 3000); // 每3秒检查一次
+		}, 3000); // Check every 3 seconds
 	}
 }
 
-// 导出多语言管理器类
+// Export multilingual manager class
 if (typeof module !== 'undefined' && module.exports) {
 	module.exports = I18nManager;
 } else {

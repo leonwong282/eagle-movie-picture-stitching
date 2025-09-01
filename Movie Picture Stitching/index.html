@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="Eagle 图片拼接插件 - 将多张图片垂直拼接成长图">
+  <meta name="description" content="Eagle Movie Picture Stitching Plugin - Vertically stitch multiple movie subtitle images into long panoramic images">
   <title>Movie Picture Stitching - Eagle Plugin</title>
   <link rel="stylesheet" href="css/index.css">
 </head>
@@ -14,56 +14,55 @@
     <header class="top" style="-webkit-app-region: drag" role="banner">
       <div class="top-left">
         <div class="logo" aria-hidden="true"></div>
-        <h1 class="title" data-i18n="ui.header.title">电影台词长图拼接</h1>
+        <h1 class="title" data-i18n="ui.header.title">Movie Subtitle Long Image Stitching</h1>
       </div>
       <div class="top-right">
-        <button class="pin-button" id="pinButton" type="button" data-i18n="[aria-label]ui.header.pinWindow" data-i18n-title="ui.header.pinWindow" aria-label="窗口置顶" title="窗口置顶">📌</button>
-        <button class="close-button" id="closeButton" type="button" data-i18n="[aria-label]ui.header.closeWindow" data-i18n-title="ui.header.closeWindow" aria-label="关闭窗口" title="关闭窗口">X</button>
+        <button class="pin-button" id="pinButton" type="button" data-i18n="[aria-label]ui.header.pinWindow" data-i18n-title="ui.header.pinWindow" aria-label="Pin Window" title="Pin Window">📌</button>
+        <button class="close-button" id="closeButton" type="button" data-i18n="[aria-label]ui.header.closeWindow" data-i18n-title="ui.header.closeWindow" aria-label="Close Window" title="Close Window">X</button>
       </div>
     </header>
     
     <main class="main" role="main">
       <div class="middle">
-        <aside class="list" role="complementary" data-i18n="[aria-label]ui.panels.imageList" aria-label="选中的图片列表"></aside>
+        <aside class="list" role="complementary" data-i18n="[aria-label]ui.panels.imageList" aria-label="Selected Images List"></aside>
         
-        <section class="preview" role="main" data-i18n="[aria-label]ui.panels.preview" aria-label="图片预览区域"></section>
+        <section class="preview" role="main" data-i18n="[aria-label]ui.panels.preview" aria-label="Image Preview Area"></section>
         
-        <aside class="property" role="complementary" data-i18n="[aria-label]ui.panels.settings" aria-label="设置面板">
-          <form class="property-controls" aria-label="图片处理参数">
+        <aside class="property" role="complementary" data-i18n="[aria-label]ui.panels.settings" aria-label="Settings Panel">
+          <form class="property-controls" aria-label="Image Processing Parameters">
             <div class="input-group">
-              <label for="cropTopPercent" data-i18n="ui.settings.cropTop">顶部裁剪高度(%)：</label>
+              <label for="cropTopPercent" data-i18n="ui.settings.cropTop">Top Crop Height (%):</label>
               <input type="number" id="cropTopPercent" value="85" min="0" max="99" 
                      data-i18n="[title]ui.tooltips.cropTop"
-                     title="设置从图片顶部裁剪的高度百分比" 
+                     title="Set the height percentage to crop from the top of images" 
                      aria-describedby="crop-top-help">
-              <small id="crop-top-help" class="help-text"><span data-i18n="ui.settings.maxSettingTop">最大可设置:</span> <span id="remaining-top">14</span>%</small>
+              <small id="crop-top-help" class="help-text"><span data-i18n="ui.settings.maxSettingTop">Max setting:</span> <span id="remaining-top">14</span>%</small>
             </div>
             
             <div class="input-group">
-              <label for="cropBottomPercent" data-i18n="ui.settings.cropBottom">底部裁剪高度(%)：</label>
+              <label for="cropBottomPercent" data-i18n="ui.settings.cropBottom">Bottom Crop Height (%):</label>
               <input type="number" id="cropBottomPercent" value="5" min="0" max="99" 
                      data-i18n="[title]ui.tooltips.cropBottom"
-                     title="设置从图片底部裁剪的高度百分比" 
+                     title="Set the height percentage to crop from the bottom of images" 
                      aria-describedby="crop-bottom-help">
-              <small id="crop-bottom-help" class="help-text"><span data-i18n="ui.settings.maxSettingBottom">最大可设置:</span> <span id="remaining-bottom">94</span>%</small>
+              <small id="crop-bottom-help" class="help-text"><span data-i18n="ui.settings.maxSettingBottom">Max setting:</span> <span id="remaining-bottom">94</span>%</small>
             </div>
             
             <div class="input-group">
-              <label for="exportFormat" data-i18n="ui.settings.exportFormat">导出格式：</label>
+              <label for="exportFormat" data-i18n="ui.settings.exportFormat">Export Format:</label>
               <select id="exportFormat" data-i18n="[title]ui.tooltips.exportFormat" aria-describedby="format-help">
                 <option value="jpg">JPG</option>
                 <option value="webp">WEBP</option>
                 <option value="png">PNG</option>
               </select>
-              <!-- <small id="format-help" class="help-text">选择输出图片格式</small> -->
             </div>
             
             <div class="input-group">
-              <label for="exportQuality" data-i18n="ui.settings.exportQuality">导出质量(0.1-1.0)：</label>
+              <label for="exportQuality" data-i18n="ui.settings.exportQuality">Export Quality (0.1-1.0):</label>
               <input type="number" id="exportQuality" value="0.92" min="0.1" max="1.0" step="0.01" 
                      data-i18n="[title]ui.tooltips.exportQuality"
-                     title="设置导出图片的质量，范围0.1-1.0" aria-describedby="quality-help">
-              <small id="quality-help" class="help-text" data-i18n="ui.settings.qualityHelp">值越高质量越好，文件越大</small>
+                     title="Set the quality of exported image, range 0.1-1.0" aria-describedby="quality-help">
+              <small id="quality-help" class="help-text" data-i18n="ui.settings.qualityHelp">Higher value = better quality, larger file</small>
             </div>
           </form>
           
@@ -71,22 +70,22 @@
             <button class="button" id="previewButton" type="button" 
                     data-i18n="[aria-label]ui.buttons.preview" 
                     data-i18n="[title]ui.tooltips.preview"
-                    aria-label="生成预览" title="生成拼接图片的预览">预览</button>
+                    aria-label="Generate Preview" title="Generate a preview of the stitched image">Preview</button>
             <button class="button" id="saveButton" type="button" 
                     data-i18n="[aria-label]ui.buttons.save" 
                     data-i18n="[title]ui.tooltips.save"
-                    aria-label="保存图片" title="将拼接图片保存到Eagle当前文件夹">保存</button>
+                    aria-label="Save Image" title="Save the stitched image to Eagle current folder">Save</button>
           </div>
         </aside>
       </div>
     </main>
   </div>
   
-  <!-- 多语言支持文件 -->
+  <!-- Internationalization support files -->
   <script type="text/javascript" src="js/i18n-manager.js"></script>
   <script type="text/javascript" src="js/i18n-utils.js"></script>
   
-  <!-- 主要插件逻辑 -->
+  <!-- Main plugin logic -->
   <script type="text/javascript" src="js/plugin.js"></script>
 </body>
 
