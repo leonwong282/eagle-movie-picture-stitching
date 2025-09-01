@@ -31,13 +31,13 @@ A modern, internationalized Eagle image management plugin for vertically stitchi
 - **Quality Control**: 0.1-1.0 precise quality adjustment
 - **Real-time Preview**: High-performance Canvas rendering
 
-### � Internationalization
+### 🌍 Internationalization
 - **8 Languages**: English, 简体中文, 繁體中文, 日本語, Español, Deutsch, 한국어, Русский
 - **Auto Detection**: Automatically detects Eagle's language settings
 - **Real-time Switching**: Dynamic language switching without restart
 - **Localized Interface**: All UI elements fully translated
 
-### �🎨 Modern Interface
+### 🎨 Modern Interface
 - **Dark Theme**: Eagle-style modern dark interface
 - **Glass Effects**: Frosted glass backgrounds and refined visual effects
 - **Smooth Animations**: Fluid page loading and interaction animations
@@ -70,7 +70,7 @@ A modern, internationalized Eagle image management plugin for vertically stitchi
 
 ![Plugin install two](./image/install_dev.png)
 
-## � Usage
+## 🎯 Usage
 
 1. **Select Images**: Select 2 or more images in Eagle that you want to stitch together
 2. **Open Plugin**: Right-click to open the context menu and click "Movie Picture Stitching"
@@ -125,7 +125,7 @@ The plugin automatically detects your Eagle language settings and switches to th
 - 💡 **Performance**: Recommended to process maximum 50 images per batch for optimal performance
 - 💡 **Memory Management**: Plugin automatically optimizes memory usage for large images
 
-## �️ Development
+## 🛠️ Development
 
 ### Prerequisites
 - Eagle 4.0 or higher
@@ -176,30 +176,6 @@ eagle-movie-picture-stitching/
     ├── main_interface.png                  # Main interface screenshot
     └── result_showcase.png                 # Result showcase
 ```
-│   ├── css/                                 # Modular stylesheets
-│   │   ├── index.css                       # Main stylesheet entry
-│   │   └── modules/                        # CSS component modules
-│   │       ├── variables.css               # CSS custom properties
-│   │       ├── base.css                    # Base styles and resets
-│   │       ├── layout.css                  # Layout and grid systems
-│   │       ├── components.css              # UI component styles
-│   │       ├── buttons.css                 # Button variations
-│   │       ├── forms.css                   # Form element styles
-│   │       ├── header.css                  # Header component styles
-│   │       ├── animations.css              # Transition animations
-│   │       ├── responsive.css              # Media queries
-│   │       └── scrollbar.css               # Custom scrollbar styles
-│   └── js/                                  # JavaScript modules
-│       └── plugin.js                       # Core business logic with i18n support
-├── image/                                   # Project documentation assets
-│   ├── cover.png                           # Project cover image
-│   └── feature.png                         # Feature showcase image
-└── screenshots/                             # Plugin screenshots
-    ├── feature_demo.png                    # Feature demonstration
-    ├── main_interface.png                  # Main interface screenshot
-    └── result_showcase.png                 # Result showcase
-```
-```
 
 ### 🌍 Internationalization Development
 
@@ -243,7 +219,6 @@ _locales/
    - Test edge cases (very large images, extreme crop values)
    - Validate performance with different batch sizes
 
-### Core API Reference
 ### Core API Reference
 ```javascript
 // Get validated parameters
