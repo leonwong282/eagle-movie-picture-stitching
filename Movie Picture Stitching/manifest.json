@@ -6,8 +6,8 @@
     "name": "{{manifest.app.name}}",
     "description": "{{manifest.app.description}}",
     "author": "Your Name",
-    "fallbackLanguage": "zh_CN",
-    "languages": ["en", "zh_CN", "zh_TW"],
+    "fallbackLanguage": "en",
+    "languages": ["en", "zh_CN", "zh_TW", "ja_JP", "es_ES", "de_DE", "ko_KR", "ru_RU"],
     "website": "https://github.com/liangshao07/eagle-movie-picture-stitching",
     "logo": "/logo.png",
     "keywords": [

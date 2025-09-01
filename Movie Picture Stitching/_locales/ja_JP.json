@@ -1,0 +1,83 @@
+{
+    "manifest": {
+        "app": {
+            "name": "映画画像結合",
+            "description": "複数の画像を垂直に結合してパノラマ画像を作成する、ガラスエフェクトUIを持つモダンプラグイン"
+        }
+    },
+    "ui": {
+        "header": {
+            "title": "映画字幕長画像結合",
+            "pinWindow": "ウィンドウを固定",
+            "closeWindow": "ウィンドウを閉じる"
+        },
+        "panels": {
+            "imageList": "選択された画像リスト",
+            "preview": "画像プレビューエリア",
+            "settings": "設定パネル"
+        },
+        "settings": {
+            "cropTop": "上部トリミング高さ(%)：",
+            "cropBottom": "下部トリミング高さ(%)：",
+            "exportFormat": "エクスポート形式：",
+            "exportQuality": "エクスポート品質(0.1-1.0)：",
+            "maxSettingTop": "最大設定値:",
+            "maxSettingBottom": "最大設定値:",
+            "qualityHelp": "値が高いほど品質が良く、ファイルサイズが大きくなります",
+            "cropHelp": "上部と下部のトリミングの合計は99%を超えることはできません",
+            "formatOptions": {
+                "jpg": "JPG - 写真に適しており、ファイルサイズが小さい",
+                "png": "PNG - 可逆圧縮、透明度をサポート",
+                "webp": "WEBP - モダン形式、ファイルサイズがより小さい"
+            }
+        },
+        "buttons": {
+            "preview": "プレビュー",
+            "save": "保存",
+            "processing": "処理中...",
+            "saving": "保存中..."
+        },
+        "status": {
+            "ready": "準備完了",
+            "loading": "読み込み中...",
+            "processing": "処理中...",
+            "success": "完了",
+            "error": "エラー"
+        },
+        "messages": {
+            "selectImages": "結合する画像を最初に選択してください",
+            "selectFolder": "最初にEagleでフォルダを選択してください",
+            "generatePreview": "最初にプレビューボタンをクリックして画像を生成してください",
+            "processing": "処理中...",
+            "saving": "保存中...",
+            "success": "画像が正常に保存されました！",
+            "error": "処理中にエラーが発生しました",
+            "saveError": "画像の保存に失敗しました: {{error}}"
+        },
+        "tooltips": {
+            "cropTop": "画像の上部からトリミングする高さの割合を設定",
+            "cropBottom": "画像の下部からトリミングする高さの割合を設定",
+            "exportQuality": "エクスポート画像の品質を設定、範囲0.1-1.0",
+            "exportFormat": "エクスポート画像の形式を選択",
+            "preview": "結合画像のプレビューを生成",
+            "save": "結合画像をEagle現在フォルダに保存"
+        },
+        "interface": {
+            "noImagesSelected": "画像が選択されていません<br>Eagleで結合する画像を選択してください",
+            "imagesSelected": "{{count}}枚の画像を選択",
+            "loadFailed": "読み込み失敗",
+            "selectImagesFirst": "最初に画像を選択してください",
+            "tooManyImages": "選択された画像が多すぎます（50枚を超えています）、選択を減らしてください",
+            "cropParameterError": "トリミングパラメータエラー：上部+下部トリミングは100%を超えることはできません",
+            "allImagesLoadFailed": "すべての画像の読み込みに失敗しました",
+            "imageLoadFailed": "{{count}}枚の画像の読み込みに失敗しました、残りの画像で続行します",
+            "imageSizeExceeded": "画像サイズが大きすぎます、画像数を減らすか解像度を下げてください",
+            "imagesProcessed": "{{count}}枚の画像を処理、サイズ: {{width}}×{{height}}px",
+            "previewGenerationFailed": "プレビュー生成に失敗しました: {{error}}",
+            "pinTitle": "ウィンドウを固定",
+            "unpinTitle": "ウィンドウ固定を解除",
+            "imageName": "画像 {{index}}",
+            "unknownError": "不明なエラー"
+        }
+    }
+}

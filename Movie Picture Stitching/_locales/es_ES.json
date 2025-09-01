@@ -1,0 +1,83 @@
+{
+    "manifest": {
+        "app": {
+            "name": "Unión de Imágenes de Película",
+            "description": "Un plugin moderno para unir verticalmente múltiples imágenes en composiciones panorámicas con interfaz de efecto cristal"
+        }
+    },
+    "ui": {
+        "header": {
+            "title": "Unión de Imágenes Largas de Subtítulos",
+            "pinWindow": "Fijar Ventana",
+            "closeWindow": "Cerrar Ventana"
+        },
+        "panels": {
+            "imageList": "Lista de Imágenes Seleccionadas",
+            "preview": "Área de Vista Previa",
+            "settings": "Panel de Configuración"
+        },
+        "settings": {
+            "cropTop": "Altura de Recorte Superior (%):",
+            "cropBottom": "Altura de Recorte Inferior (%):",
+            "exportFormat": "Formato de Exportación:",
+            "exportQuality": "Calidad de Exportación (0.1-1.0):",
+            "maxSettingTop": "Configuración máx:",
+            "maxSettingBottom": "Configuración máx:",
+            "qualityHelp": "Valor más alto = mejor calidad, archivo más grande",
+            "cropHelp": "El total de recorte superior e inferior no puede exceder el 99%",
+            "formatOptions": {
+                "jpg": "JPG - Adecuado para fotos, tamaño de archivo menor",
+                "png": "PNG - Compresión sin pérdida, soporta transparencia",
+                "webp": "WEBP - Formato moderno, tamaño de archivo menor"
+            }
+        },
+        "buttons": {
+            "preview": "Vista Previa",
+            "save": "Guardar",
+            "processing": "Procesando...",
+            "saving": "Guardando..."
+        },
+        "status": {
+            "ready": "Listo",
+            "loading": "Cargando...",
+            "processing": "Procesando...",
+            "success": "Completado",
+            "error": "Error"
+        },
+        "messages": {
+            "selectImages": "Por favor selecciona primero las imágenes a unir",
+            "selectFolder": "Por favor selecciona primero una carpeta en Eagle",
+            "generatePreview": "Por favor haz clic en el botón de vista previa para generar la imagen primero",
+            "processing": "Procesando...",
+            "saving": "Guardando...",
+            "success": "¡Imagen guardada exitosamente!",
+            "error": "Ocurrió un error durante el procesamiento",
+            "saveError": "Error al guardar imagen: {{error}}"
+        },
+        "tooltips": {
+            "cropTop": "Establecer el porcentaje de altura a recortar desde la parte superior de las imágenes",
+            "cropBottom": "Establecer el porcentaje de altura a recortar desde la parte inferior de las imágenes",
+            "exportQuality": "Establecer la calidad de la imagen exportada, rango 0.1-1.0",
+            "exportFormat": "Elegir el formato para la imagen exportada",
+            "preview": "Generar una vista previa de la imagen unida",
+            "save": "Guardar la imagen unida en la carpeta actual de Eagle"
+        },
+        "interface": {
+            "noImagesSelected": "No hay imágenes seleccionadas<br>Por favor selecciona imágenes para unir en Eagle",
+            "imagesSelected": "{{count}} imágenes seleccionadas",
+            "loadFailed": "Error de carga",
+            "selectImagesFirst": "Por favor selecciona primero las imágenes",
+            "tooManyImages": "Demasiadas imágenes seleccionadas (más de 50), por favor reduce la selección",
+            "cropParameterError": "Error de parámetro de recorte: Recorte superior + inferior no puede exceder el 100%",
+            "allImagesLoadFailed": "Todas las imágenes fallaron al cargar",
+            "imageLoadFailed": "{{count}} imágenes fallaron al cargar, continuando con las imágenes restantes",
+            "imageSizeExceeded": "Tamaño de imagen demasiado grande, por favor reduce el número de imágenes o la resolución",
+            "imagesProcessed": "Procesadas {{count}} imágenes, tamaño: {{width}}×{{height}}px",
+            "previewGenerationFailed": "Error en la generación de vista previa: {{error}}",
+            "pinTitle": "Fijar Ventana",
+            "unpinTitle": "Desfijar Ventana",
+            "imageName": "Imagen {{index}}",
+            "unknownError": "Error desconocido"
+        }
+    }
+}

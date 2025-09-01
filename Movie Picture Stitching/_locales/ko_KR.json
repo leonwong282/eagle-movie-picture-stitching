@@ -1,0 +1,83 @@
+{
+    "manifest": {
+        "app": {
+            "name": "영화 이미지 연결",
+            "description": "여러 이미지를 수직으로 연결하여 파노라마 구성을 만드는 글래스 효과 UI를 가진 현대적인 플러그인"
+        }
+    },
+    "ui": {
+        "header": {
+            "title": "영화 자막 긴 이미지 연결",
+            "pinWindow": "창 고정",
+            "closeWindow": "창 닫기"
+        },
+        "panels": {
+            "imageList": "선택된 이미지 목록",
+            "preview": "이미지 미리보기 영역",
+            "settings": "설정 패널"
+        },
+        "settings": {
+            "cropTop": "상단 자르기 높이(%):",
+            "cropBottom": "하단 자르기 높이(%):",
+            "exportFormat": "내보내기 형식:",
+            "exportQuality": "내보내기 품질(0.1-1.0):",
+            "maxSettingTop": "최대 설정:",
+            "maxSettingBottom": "최대 설정:",
+            "qualityHelp": "높은 값 = 더 좋은 품질, 더 큰 파일",
+            "cropHelp": "상단과 하단 자르기의 합계는 99%를 초과할 수 없습니다",
+            "formatOptions": {
+                "jpg": "JPG - 사진에 적합, 작은 파일 크기",
+                "png": "PNG - 무손실 압축, 투명도 지원",
+                "webp": "WEBP - 현대적인 형식, 더 작은 파일 크기"
+            }
+        },
+        "buttons": {
+            "preview": "미리보기",
+            "save": "저장",
+            "processing": "처리 중...",
+            "saving": "저장 중..."
+        },
+        "status": {
+            "ready": "준비",
+            "loading": "로딩 중...",
+            "processing": "처리 중...",
+            "success": "완료",
+            "error": "오류"
+        },
+        "messages": {
+            "selectImages": "먼저 연결할 이미지를 선택해주세요",
+            "selectFolder": "먼저 Eagle에서 폴더를 선택해주세요",
+            "generatePreview": "먼저 미리보기 버튼을 클릭하여 이미지를 생성해주세요",
+            "processing": "처리 중...",
+            "saving": "저장 중...",
+            "success": "이미지가 성공적으로 저장되었습니다!",
+            "error": "처리 중 오류가 발생했습니다",
+            "saveError": "이미지 저장 실패: {{error}}"
+        },
+        "tooltips": {
+            "cropTop": "이미지 상단에서 자를 높이의 백분율 설정",
+            "cropBottom": "이미지 하단에서 자를 높이의 백분율 설정",
+            "exportQuality": "내보낸 이미지의 품질 설정, 범위 0.1-1.0",
+            "exportFormat": "내보낸 이미지의 형식 선택",
+            "preview": "연결된 이미지의 미리보기 생성",
+            "save": "연결된 이미지를 Eagle 현재 폴더에 저장"
+        },
+        "interface": {
+            "noImagesSelected": "선택된 이미지가 없습니다<br>Eagle에서 연결할 이미지를 선택해주세요",
+            "imagesSelected": "{{count}}개 이미지 선택됨",
+            "loadFailed": "로딩 실패",
+            "selectImagesFirst": "먼저 이미지를 선택해주세요",
+            "tooManyImages": "너무 많은 이미지가 선택되었습니다(50개 초과), 선택을 줄여주세요",
+            "cropParameterError": "자르기 매개변수 오류: 상단 + 하단 자르기는 100%를 초과할 수 없습니다",
+            "allImagesLoadFailed": "모든 이미지 로딩 실패",
+            "imageLoadFailed": "{{count}}개 이미지 로딩 실패, 나머지 이미지로 계속 진행",
+            "imageSizeExceeded": "이미지 크기가 너무 큽니다, 이미지 수를 줄이거나 해상도를 낮춰주세요",
+            "imagesProcessed": "{{count}}개 이미지 처리됨, 크기: {{width}}×{{height}}px",
+            "previewGenerationFailed": "미리보기 생성 실패: {{error}}",
+            "pinTitle": "창 고정",
+            "unpinTitle": "창 고정 해제",
+            "imageName": "이미지 {{index}}",
+            "unknownError": "알 수 없는 오류"
+        }
+    }
+}

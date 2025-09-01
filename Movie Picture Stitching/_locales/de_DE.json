@@ -1,0 +1,83 @@
+{
+    "manifest": {
+        "app": {
+            "name": "Film-Bild-Zusammenfügung",
+            "description": "Ein modernes Plugin zum vertikalen Zusammenfügen mehrerer Bilder zu panoramischen Kompositionen mit Glaseffekt-UI"
+        }
+    },
+    "ui": {
+        "header": {
+            "title": "Film-Untertitel Langbild-Zusammenfügung",
+            "pinWindow": "Fenster Anheften",
+            "closeWindow": "Fenster Schließen"
+        },
+        "panels": {
+            "imageList": "Ausgewählte Bilderliste",
+            "preview": "Bildvorschau-Bereich",
+            "settings": "Einstellungsbereich"
+        },
+        "settings": {
+            "cropTop": "Obere Zuschneidehöhe (%):",
+            "cropBottom": "Untere Zuschneidehöhe (%):",
+            "exportFormat": "Export-Format:",
+            "exportQuality": "Export-Qualität (0.1-1.0):",
+            "maxSettingTop": "Max. Einstellung:",
+            "maxSettingBottom": "Max. Einstellung:",
+            "qualityHelp": "Höherer Wert = bessere Qualität, größere Datei",
+            "cropHelp": "Oberer und unterer Zuschnitt insgesamt kann 99% nicht überschreiten",
+            "formatOptions": {
+                "jpg": "JPG - Geeignet für Fotos, kleinere Dateigröße",
+                "png": "PNG - Verlustfreie Kompression, unterstützt Transparenz",
+                "webp": "WEBP - Modernes Format, kleinere Dateigröße"
+            }
+        },
+        "buttons": {
+            "preview": "Vorschau",
+            "save": "Speichern",
+            "processing": "Verarbeitung...",
+            "saving": "Speichern..."
+        },
+        "status": {
+            "ready": "Bereit",
+            "loading": "Laden...",
+            "processing": "Verarbeitung...",
+            "success": "Abgeschlossen",
+            "error": "Fehler"
+        },
+        "messages": {
+            "selectImages": "Bitte wählen Sie zuerst Bilder zum Zusammenfügen aus",
+            "selectFolder": "Bitte wählen Sie zuerst einen Ordner in Eagle aus",
+            "generatePreview": "Bitte klicken Sie zuerst auf die Vorschau-Schaltfläche, um das Bild zu generieren",
+            "processing": "Verarbeitung...",
+            "saving": "Speichern...",
+            "success": "Bild erfolgreich gespeichert!",
+            "error": "Fehler beim Verarbeiten aufgetreten",
+            "saveError": "Fehler beim Speichern des Bildes: {{error}}"
+        },
+        "tooltips": {
+            "cropTop": "Prozentsatz der Höhe festlegen, die vom oberen Bildrand zugeschnitten werden soll",
+            "cropBottom": "Prozentsatz der Höhe festlegen, die vom unteren Bildrand zugeschnitten werden soll",
+            "exportQuality": "Qualität des exportierten Bildes festlegen, Bereich 0.1-1.0",
+            "exportFormat": "Format für das exportierte Bild wählen",
+            "preview": "Vorschau des zusammengefügten Bildes generieren",
+            "save": "Zusammengefügtes Bild im aktuellen Eagle-Ordner speichern"
+        },
+        "interface": {
+            "noImagesSelected": "Keine Bilder ausgewählt<br>Bitte wählen Sie Bilder zum Zusammenfügen in Eagle aus",
+            "imagesSelected": "{{count}} Bilder ausgewählt",
+            "loadFailed": "Laden fehlgeschlagen",
+            "selectImagesFirst": "Bitte wählen Sie zuerst Bilder aus",
+            "tooManyImages": "Zu viele Bilder ausgewählt (über 50), bitte reduzieren Sie die Auswahl",
+            "cropParameterError": "Zuschneideparameter-Fehler: Oberer + unterer Zuschnitt kann 100% nicht überschreiten",
+            "allImagesLoadFailed": "Alle Bilder konnten nicht geladen werden",
+            "imageLoadFailed": "{{count}} Bilder konnten nicht geladen werden, mit verbleibenden Bildern fortfahren",
+            "imageSizeExceeded": "Bildgröße zu groß, bitte reduzieren Sie die Bildanzahl oder Auflösung",
+            "imagesProcessed": "{{count}} Bilder verarbeitet, Größe: {{width}}×{{height}}px",
+            "previewGenerationFailed": "Vorschau-Generierung fehlgeschlagen: {{error}}",
+            "pinTitle": "Fenster Anheften",
+            "unpinTitle": "Fenster Lösen",
+            "imageName": "Bild {{index}}",
+            "unknownError": "Unbekannter Fehler"
+        }
+    }
+}

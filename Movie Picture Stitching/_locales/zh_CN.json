@@ -52,16 +52,7 @@
             "saving": "保存中...",
             "success": "图片保存成功！",
             "error": "处理过程中出现错误",
-            "saveError": "保存图片失败: {{error}}",
-            "invalidQuality": "导出质量已调整到有效范围",
-            "cropAdjusted": "裁剪参数已调整",
-            "topCropAdjusted": "顶部裁剪已调整到最大可设置值: {{percent}}% (底部固定为 {{bottom}}%)",
-            "bottomCropAdjusted": "底部裁剪已调整到最大可设置值: {{percent}}% (顶部固定为 {{top}}%)",
-            "imageLoadFailed": "{{count}} 张图片加载失败，继续处理剩余图片",
-            "imageLoadTimeout": "图片加载超时: {{filename}}",
-            "noImagesSelected": "没有选中任何图片",
-            "previewGenerated": "预览生成完成",
-            "cleanupFailed": "清理临时文件失败"
+            "saveError": "保存图片失败: {{error}}"
         },
         "tooltips": {
             "cropTop": "设置从图片顶部裁剪的高度百分比",
@@ -70,6 +61,23 @@
             "exportFormat": "选择导出图片的格式",
             "preview": "生成拼接图片的预览",
             "save": "将拼接图片保存到Eagle当前文件夹"
+        },
+        "interface": {
+            "noImagesSelected": "未选择图片<br>请在 Eagle 中选择要拼接的图片",
+            "imagesSelected": "已选择 {{count}} 张图片",
+            "loadFailed": "加载失败",
+            "selectImagesFirst": "请先选择图片",
+            "tooManyImages": "选择的图片过多（超过50张），请减少选择",
+            "cropParameterError": "裁剪参数错误：顶部+底部裁剪不能超过100%",
+            "allImagesLoadFailed": "所有图片加载失败",
+            "imageLoadFailed": "{{count}} 张图片加载失败，继续处理剩余图片",
+            "imageSizeExceeded": "图片尺寸过大，请减少图片数量或降低图片分辨率",
+            "imagesProcessed": "已处理 {{count}} 张图片，尺寸: {{width}}×{{height}}px",
+            "previewGenerationFailed": "预览生成失败: {{error}}",
+            "pinTitle": "窗口置顶",
+            "unpinTitle": "取消置顶",
+            "imageName": "图片 {{index}}",
+            "unknownError": "未知错误"
         }
     }
 }
