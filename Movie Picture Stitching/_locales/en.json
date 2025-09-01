@@ -1,0 +1,75 @@
+{
+    "manifest": {
+        "app": {
+            "name": "Movie Picture Stitching",
+            "description": "A modern plugin for vertically stitching multiple images into panoramic compositions with glass effect UI"
+        }
+    },
+    "ui": {
+        "header": {
+            "title": "Movie Subtitle Long Image Stitching",
+            "pinWindow": "Pin Window",
+            "closeWindow": "Close Window"
+        },
+        "panels": {
+            "imageList": "Selected Images List",
+            "preview": "Image Preview Area",
+            "settings": "Settings Panel"
+        },
+        "settings": {
+            "cropTop": "Top Crop Height (%):",
+            "cropBottom": "Bottom Crop Height (%):",
+            "exportFormat": "Export Format:",
+            "exportQuality": "Export Quality (0.1-1.0):",
+            "maxSettingTop": "Max setting:",
+            "maxSettingBottom": "Max setting:",
+            "qualityHelp": "Higher value = better quality, larger file",
+            "cropHelp": "Top and bottom crop total cannot exceed 99%",
+            "formatOptions": {
+                "jpg": "JPG - Suitable for photos, smaller file size",
+                "png": "PNG - Lossless compression, supports transparency",
+                "webp": "WEBP - Modern format, smaller file size"
+            }
+        },
+        "buttons": {
+            "preview": "Preview",
+            "save": "Save",
+            "processing": "Processing...",
+            "saving": "Saving..."
+        },
+        "status": {
+            "ready": "Ready",
+            "loading": "Loading...",
+            "processing": "Processing...",
+            "success": "Complete",
+            "error": "Error"
+        },
+        "messages": {
+            "selectImages": "Please select images to stitch first",
+            "selectFolder": "Please select a folder in Eagle first",
+            "generatePreview": "Please click preview button to generate image first",
+            "processing": "Processing...",
+            "saving": "Saving...",
+            "success": "Image saved successfully!",
+            "error": "Error occurred while processing",
+            "saveError": "Failed to save image: {{error}}",
+            "invalidQuality": "Export quality adjusted to valid range",
+            "cropAdjusted": "Crop parameters have been adjusted",
+            "topCropAdjusted": "Top crop adjusted to maximum setting: {{percent}}% (bottom fixed at {{bottom}}%)",
+            "bottomCropAdjusted": "Bottom crop adjusted to maximum setting: {{percent}}% (top fixed at {{top}}%)",
+            "imageLoadFailed": "{{count}} images failed to load, continuing with remaining images",
+            "imageLoadTimeout": "Image load timeout: {{filename}}",
+            "noImagesSelected": "No images selected",
+            "previewGenerated": "Preview generated successfully",
+            "cleanupFailed": "Failed to cleanup temporary files"
+        },
+        "tooltips": {
+            "cropTop": "Set the height percentage to crop from the top of images",
+            "cropBottom": "Set the height percentage to crop from the bottom of images",
+            "exportQuality": "Set the quality of exported image, range 0.1-1.0",
+            "exportFormat": "Choose the format for exported image",
+            "preview": "Generate a preview of the stitched image",
+            "save": "Save the stitched image to Eagle current folder"
+        }
+    }
+}

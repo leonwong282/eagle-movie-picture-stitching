@@ -14,41 +14,43 @@
     <header class="top" style="-webkit-app-region: drag" role="banner">
       <div class="top-left">
         <div class="logo" aria-hidden="true"></div>
-        <h1 class="title">电影台词长图拼接</h1>
+        <h1 class="title" data-i18n="ui.header.title">电影台词长图拼接</h1>
       </div>
       <div class="top-right">
-        <button class="pin-button" id="pinButton" type="button" aria-label="窗口置顶" title="窗口置顶">📌</button>
-        <button class="close-button" id="closeButton" type="button" aria-label="关闭窗口" title="关闭窗口">X</button>
+        <button class="pin-button" id="pinButton" type="button" data-i18n="[aria-label]ui.header.pinWindow" data-i18n-title="ui.header.pinWindow" aria-label="窗口置顶" title="窗口置顶">📌</button>
+        <button class="close-button" id="closeButton" type="button" data-i18n="[aria-label]ui.header.closeWindow" data-i18n-title="ui.header.closeWindow" aria-label="关闭窗口" title="关闭窗口">X</button>
       </div>
     </header>
     
     <main class="main" role="main">
       <div class="middle">
-        <aside class="list" role="complementary" aria-label="选中的图片列表"></aside>
+        <aside class="list" role="complementary" data-i18n="[aria-label]ui.panels.imageList" aria-label="选中的图片列表"></aside>
         
-        <section class="preview" role="main" aria-label="图片预览区域"></section>
+        <section class="preview" role="main" data-i18n="[aria-label]ui.panels.preview" aria-label="图片预览区域"></section>
         
-        <aside class="property" role="complementary" aria-label="设置面板">
+        <aside class="property" role="complementary" data-i18n="[aria-label]ui.panels.settings" aria-label="设置面板">
           <form class="property-controls" aria-label="图片处理参数">
             <div class="input-group">
-              <label for="cropTopPercent">顶部裁剪高度(%)：</label>
+              <label for="cropTopPercent" data-i18n="ui.settings.cropTop">顶部裁剪高度(%)：</label>
               <input type="number" id="cropTopPercent" value="85" min="0" max="99" 
-                     title="顶部裁剪百分比，与底部总和不能超过99%" 
+                     data-i18n="[title]ui.tooltips.cropTop"
+                     title="设置从图片顶部裁剪的高度百分比" 
                      aria-describedby="crop-top-help">
-              <small id="crop-top-help" class="help-text">最大可设置: <span id="remaining-top">14</span>%</small>
+              <small id="crop-top-help" class="help-text"><span data-i18n="ui.settings.maxSettingTop">最大可设置:</span> <span id="remaining-top">14</span>%</small>
             </div>
             
             <div class="input-group">
-              <label for="cropBottomPercent">底部裁剪高度(%)：</label>
+              <label for="cropBottomPercent" data-i18n="ui.settings.cropBottom">底部裁剪高度(%)：</label>
               <input type="number" id="cropBottomPercent" value="5" min="0" max="99" 
-                     title="底部裁剪百分比，与顶部总和不能超过99%" 
+                     data-i18n="[title]ui.tooltips.cropBottom"
+                     title="设置从图片底部裁剪的高度百分比" 
                      aria-describedby="crop-bottom-help">
-              <small id="crop-bottom-help" class="help-text">最大可设置: <span id="remaining-bottom">94</span>%</small>
+              <small id="crop-bottom-help" class="help-text"><span data-i18n="ui.settings.maxSettingBottom">最大可设置:</span> <span id="remaining-bottom">94</span>%</small>
             </div>
             
             <div class="input-group">
-              <label for="exportFormat">导出格式：</label>
-              <select id="exportFormat" aria-describedby="format-help">
+              <label for="exportFormat" data-i18n="ui.settings.exportFormat">导出格式：</label>
+              <select id="exportFormat" data-i18n="[title]ui.tooltips.exportFormat" aria-describedby="format-help">
                 <option value="jpg">JPG</option>
                 <option value="webp">WEBP</option>
                 <option value="png">PNG</option>
@@ -57,16 +59,23 @@
             </div>
             
             <div class="input-group">
-              <label for="exportQuality">导出质量(0.1-1.0)：</label>
+              <label for="exportQuality" data-i18n="ui.settings.exportQuality">导出质量(0.1-1.0)：</label>
               <input type="number" id="exportQuality" value="0.92" min="0.1" max="1.0" step="0.01" 
-                     title="输入范围: 0.1 到 1.0" aria-describedby="quality-help">
-              <small id="quality-help" class="help-text">值越高质量越好，文件越大</small>
+                     data-i18n="[title]ui.tooltips.exportQuality"
+                     title="设置导出图片的质量，范围0.1-1.0" aria-describedby="quality-help">
+              <small id="quality-help" class="help-text" data-i18n="ui.settings.qualityHelp">值越高质量越好，文件越大</small>
             </div>
           </form>
           
           <div class="property-bottom">
-            <button class="button" id="previewButton" type="button" aria-label="生成预览">预览</button>
-            <button class="button" id="saveButton" type="button" aria-label="保存图片">保存</button>
+            <button class="button" id="previewButton" type="button" 
+                    data-i18n="[aria-label]ui.buttons.preview" 
+                    data-i18n="[title]ui.tooltips.preview"
+                    aria-label="生成预览" title="生成拼接图片的预览">预览</button>
+            <button class="button" id="saveButton" type="button" 
+                    data-i18n="[aria-label]ui.buttons.save" 
+                    data-i18n="[title]ui.tooltips.save"
+                    aria-label="保存图片" title="将拼接图片保存到Eagle当前文件夹">保存</button>
           </div>
         </aside>
       </div>

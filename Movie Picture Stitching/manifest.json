@@ -3,9 +3,11 @@
     "version": "1.0.0",
     "platform": "all",
     "arch": "all",
-    "name": "Movie Picture Stitching",
-    "description": "A modern plugin for vertically stitching multiple images into panoramic compositions with glass effect UI",
+    "name": "{{manifest.app.name}}",
+    "description": "{{manifest.app.description}}",
     "author": "Your Name",
+    "fallbackLanguage": "zh_CN",
+    "languages": ["en", "zh_CN", "zh_TW"],
     "website": "https://github.com/liangshao07/eagle-movie-picture-stitching",
     "logo": "/logo.png",
     "keywords": [
