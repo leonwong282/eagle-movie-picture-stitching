@@ -1,6 +1,6 @@
 /* ==========================================================================
-   响应式设计
-   ========================================================================== */
+  Responsive Design
+  ========================================================================== */
 
 @media (max-width: 768px) {
   .top {
@@ -73,11 +73,11 @@
   .input-group input,
   .input-group select {
     padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 16px; /* 防止iOS缩放 */
+  font-size: 16px; /* Prevent iOS zoom */
   }
 }
 
-/* 平板设备适配 */
+/* Tablet device adaptation */
 @media (min-width: 769px) and (max-width: 1024px) {
   .middle {
     padding: var(--spacing-lg);
@@ -98,7 +98,7 @@
   }
 }
 
-/* 大屏设备优化 */
+/* Large screen device optimization */
 @media (min-width: 1440px) {
   .container {
     max-width: 1600px;
@@ -131,7 +131,7 @@
   }
 }
 
-/* 超大屏幕 */
+/* Ultra-large screen */
 @media (min-width: 1920px) {
   .container {
     max-width: 1800px;
@@ -143,7 +143,7 @@
   }
 }
 
-/* 高度较小的屏幕优化 */
+/* Small height screen optimization */
 @media (max-height: 600px) {
   .top {
     height: 48px;

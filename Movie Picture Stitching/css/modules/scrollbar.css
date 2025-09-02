@@ -1,6 +1,6 @@
 /* ==========================================================================
-   滚动条美化
-   ========================================================================== */
+  Beautify Scrollbar
+  ========================================================================== */
 
 .list::-webkit-scrollbar,
 .preview::-webkit-scrollbar,
@@ -29,7 +29,7 @@
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* 为Firefox提供滚动条样式 */
+/* Provide scrollbar styles for Firefox */
 .list,
 .preview,
 .property-controls {

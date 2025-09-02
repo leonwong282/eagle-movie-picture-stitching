@@ -1,6 +1,6 @@
 /* ==========================================================================
-   表单控件样式
-   ========================================================================== */
+  Form Control Styles
+  ========================================================================== */
 
 .input-group {
   margin-bottom: var(--spacing-2xl);
@@ -74,7 +74,7 @@
   border-left: 3px solid var(--color-accent-primary);
 }
 
-/* 数字输入框特殊样式 */
+/* Special styles for number input */
 .input-group input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
@@ -87,7 +87,7 @@
   margin: 0;
 }
 
-/* 选择框美化 */
+/* Beautify select box */
 .input-group select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -99,7 +99,7 @@
   padding-right: calc(var(--spacing-lg) * 2);
 }
 
-/* 焦点环美化 */
+/* Beautify focus ring */
 .input-group input:focus-visible,
 .input-group select:focus-visible {
   outline: 2px solid var(--color-accent-primary);

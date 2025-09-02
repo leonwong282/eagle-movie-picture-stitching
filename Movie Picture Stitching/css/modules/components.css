@@ -1,8 +1,8 @@
 /* ==========================================================================
-   组件样式 - 列表和预览区域美化
-   ========================================================================== */
+  Component Styles - Beautify List and Preview Areas
+  ========================================================================== */
 
-/* 图片列表美化 */
+/* Beautify image list */
 .list {
   position: relative;
 }
@@ -21,7 +21,7 @@
     transparent);
 }
 
-/* 预览区域美化 */
+/* Beautify preview area */
 .preview {
   position: relative;
   background: radial-gradient(circle at center, 
@@ -35,7 +35,7 @@
   border: 1px solid var(--glass-border);
 }
 
-/* 图片容器样式 */
+/* Image container styles */
 .preview canvas,
 .preview img {
   border-radius: var(--border-radius-lg);
@@ -49,7 +49,7 @@
   box-shadow: var(--shadow-xl), 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
-/* 加载状态美化 */
+/* Beautify loading state */
 .preview .loading-state {
   display: flex;
   flex-direction: column;
@@ -75,7 +75,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/* 信息文本美化 */
+/* Beautify info text */
 .preview .info-text {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -87,7 +87,7 @@
   text-align: center;
 }
 
-/* 错误状态美化 */
+/* Beautify error state */
 .preview .error-state {
   color: var(--color-accent-danger);
   background: rgba(218, 54, 51, 0.1);
@@ -98,7 +98,7 @@
   font-weight: 500;
 }
 
-/* 空状态美化 */
+/* Beautify empty state */
 .preview .empty-state {
   color: var(--color-text-muted);
   text-align: center;

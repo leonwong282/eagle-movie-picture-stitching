@@ -1,9 +1,9 @@
 /* ==========================================================================
    Movie Picture Stitching - Eagle Plugin
-   主样式文件 - 模块化导入
+   Main Style File - Modular Imports
    ========================================================================== */
 
-/* 导入各个模块 */
+/* Import each module */
 @import './modules/variables.css';
 @import './modules/base.css';
 @import './modules/layout.css';

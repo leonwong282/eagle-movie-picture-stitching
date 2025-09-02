@@ -1,8 +1,8 @@
 /* ==========================================================================
-   动画和过渡效果
-   ========================================================================== */
+  Animation and Transition Effects
+  ========================================================================== */
 
-/* 页面加载动画 */
+/* Page load animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -45,7 +45,7 @@
   }
 }
 
-/* 应用动画 */
+/* Apply animations */
 .container {
   animation: fadeIn 0.5s ease-out;
 }
@@ -62,7 +62,7 @@
   animation: slideInRight 0.6s ease-out 0.3s both;
 }
 
-/* 按钮点击动画 */
+/* Button click animation */
 @keyframes buttonPulse {
   0% {
     transform: scale(1);
@@ -79,7 +79,7 @@
   animation: buttonPulse 0.15s ease-out;
 }
 
-/* 加载动画 */
+/* Loading animation */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -98,7 +98,7 @@
   animation: shimmer 1.5s ease-in-out infinite;
 }
 
-/* 成功状态动画 */
+/* Success state animation */
 @keyframes checkmark {
   0% {
     stroke-dashoffset: 50;
@@ -124,7 +124,7 @@
   animation: successPulse 1.5s ease-out;
 }
 
-/* 错误状态动画 */
+/* Error state animation */
 @keyframes shake {
   0%, 100% {
     transform: translateX(0);
@@ -141,7 +141,7 @@
   animation: shake 0.5s ease-in-out;
 }
 
-/* 悬浮效果 */
+/* Floating effect */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -155,7 +155,7 @@
   animation: float 3s ease-in-out infinite;
 }
 
-/* 渐变背景动画 */
+/* Gradient background animation */
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -173,7 +173,7 @@
   animation: gradientShift 8s ease infinite;
 }
 
-/* 禁用动画的用户偏好 */
+/* User preference: disable animations */
 @media (prefers-reduced-motion: reduce) {
   .container,
   .list,

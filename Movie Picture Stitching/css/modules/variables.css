@@ -1,9 +1,9 @@
 /* ==========================================================================
-   CSS 变量定义
-   ========================================================================== */
+  CSS Variable Definitions
+  ========================================================================== */
 
 :root {
-  /* 现代化颜色变量 */
+  /* Modern color variables */
   --color-bg-primary: #0d1117;
   --color-bg-secondary: #161b22;
   --color-bg-tertiary: #21262d;
@@ -30,13 +30,13 @@
   --color-accent-warning: #d29922;
   --color-accent-danger: #da3633;
   
-  /* 渐变色 */
+  /* Gradient colors */
   --gradient-primary: linear-gradient(135deg, #238636, #2ea043);
   --gradient-secondary: linear-gradient(135deg, #1f6feb, #388bfd);
   --gradient-surface: linear-gradient(135deg, #21262d, #30363d);
   --gradient-header: linear-gradient(135deg, #161b22, #21262d);
   
-  /* 尺寸变量 */
+  /* Size variables */
   --header-height: 64px;
   --border-radius-xs: 4px;
   --border-radius-sm: 6px;
@@ -50,7 +50,7 @@
   --spacing-xl: 24px;
   --spacing-2xl: 32px;
   
-  /* 阴影变量 - 更现代的阴影 */
+  /* Shadow variables - modern shadows */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -59,12 +59,12 @@
   --shadow-glow: 0 0 20px rgba(35, 134, 54, 0.3);
   --shadow-glow-blue: 0 0 20px rgba(31, 111, 235, 0.3);
   
-  /* 过渡变量 */
+  /* Transition variables */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* 新增特效变量 */
+  /* Additional effect variables */
   --backdrop-blur: blur(10px);
   --glass-bg: rgba(48, 54, 61, 0.9);
   --glass-border: rgba(240, 246, 252, 0.15);
