@@ -17,8 +17,8 @@ A modern, internationalized Eagle image management plugin for vertically stitchi
 
 ## 📸 Preview
 
-![cover](./image/cover.png)
-![feature](./image/feature.png)
+![cover](./image/cover.webp)
+![feature](./image/feature.webp)
 
 
 ## ✨ Features
@@ -59,16 +59,16 @@ A modern, internationalized Eagle image management plugin for vertically stitchi
 3. Click `Install Plugin`
 4. Enable the plugin
 
-![Plugin install one](./image/install_eagle.png)
+![Plugin install one](./image/install_eagle.webp)
 
 ### Method 2: Development Installation
 1. Download the plugin package
 2. Open `Settings` → `Plugins` → `Developer` in Eagle
 3. Click `Import Local Project`
-4. Select the plugin folder
+4. Select the plugin folder `Movie Picture Stitching`
 5. Enable the plugin
 
-![Plugin install two](./image/install_dev.png)
+![Plugin install two](./image/install_dev.webp)
 
 ## 🎯 Usage
 
@@ -81,6 +81,14 @@ A modern, internationalized Eagle image management plugin for vertically stitchi
    - **Format**: Choose output format (JPG, WebP, PNG)
 4. **Real-time Preview**: The plugin provides real-time preview as you adjust parameters
 5. **Save Result**: Click the "Save Image" button to export the stitched image
+
+![](./screenshots/main_interface.webp)
+![](./screenshots/feature_demo1.webp)
+![](./screenshots/feature_demo2.webp)
+![](./screenshots/feature_demo3.webp)
+![](./screenshots/feature_demo4.webp)
+![](./screenshots/feature_demo5.webp)
+![](./screenshots/result_showcase.webp)
 
 ### 🌍 Language Support
 
@@ -104,10 +112,6 @@ The plugin automatically detects your Eagle language settings and switches to th
   - Use WebP for smaller file sizes with good quality
   - Use PNG for images requiring transparency or lossless compression
 - **Performance**: For large images, the plugin automatically optimizes processing for smooth operation
-
-![](./screenshots/main_interface.png)
-![](./screenshots/feature_demo.png)
-![](./screenshots/result_showcase.png)
 
 ### 📊 Parameter Guide
 - **Top Cropping**: Affects all images except the first one, crops specified percentage from top

@@ -17,8 +17,8 @@
 
 ## 📸 预览
 
-![cover](./image/cover.png)
-![feature](./image/feature.png)
+![cover](./image/cover.webp)
+![feature](./image/feature.webp)
 
 ## ✨ 功能特性
 
@@ -59,17 +59,17 @@
 3. 点击 `安装插件`
 4. 启用插件
 
-![Plugin install one](./image/install_eagle.png)
+![Plugin install one](./image/install_eagle.webp)
 
 
 ### 方式二：开发安装
 1. 下载插件文件包
 2. 在Eagle中打开 `设置` → `插件` → `开发者选项`
 3. 点击 `导入本地项目`
-4. 选择插件文件夹
+4. 选择插件文件夹 `Movie Picture Stitching`
 5. 启用插件
 
-![Plugin install two](./image/install_dev.png)
+![Plugin install two](./image/install_dev.webp)
 
 ## 🎯 使用方法
 
@@ -82,6 +82,14 @@
    - **格式**: 选择输出格式 (JPG, WebP, PNG)
 4. **实时预览**: 插件提供参数调整的实时预览
 5. **保存结果**: 点击"保存图片"按钮导出拼接结果
+
+![](./screenshots/main_interface.webp)
+![](./screenshots/feature_demo1.webp)
+![](./screenshots/feature_demo2.webp)
+![](./screenshots/feature_demo3.webp)
+![](./screenshots/feature_demo4.webp)
+![](./screenshots/feature_demo5.webp)
+![](./screenshots/result_showcase.webp)
 
 ### 🌍 语言支持
 
@@ -105,10 +113,6 @@
   - 使用WebP获得更小的文件大小和良好质量
   - 使用PNG处理需要透明度或无损压缩的图片
 - **性能**: 对于大图片，插件会自动优化处理以确保流畅操作
-
-![](./screenshots/main_interface.png)
-![](./screenshots/feature_demo.png)
-![](./screenshots/result_showcase.png)
 
 ### 📊 参数指南
 - **顶部裁剪**: 除第一张图片外的所有图片，从顶部裁剪指定百分比
