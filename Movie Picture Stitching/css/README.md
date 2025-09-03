@@ -2,8 +2,6 @@
 
 This project uses a modular CSS architecture that provides clear code organization and excellent maintainability.
 
-**[中文](./README_CN.md)** | **English**
-
 ## 📁 File Structure
 
 ```
