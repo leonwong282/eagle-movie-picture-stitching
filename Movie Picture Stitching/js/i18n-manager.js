@@ -210,13 +210,30 @@ class I18nManager {
 		const bottomElement = document.getElementById('remaining-bottom');
 		
 		if (topElement && bottomElement) {
-			// Recalculate and update display
-			const { cropTopPercent, cropBottomPercent } = getParams();
-			const remainingTop = Math.max(0, 99 - cropBottomPercent);
-			const remainingBottom = Math.max(0, 99 - cropTopPercent);
-			
-			topElement.textContent = remainingTop;
-			bottomElement.textContent = remainingBottom;
+			// Check if global parameter manager is available
+			if (typeof window !== 'undefined' && window.parameterManager && typeof window.parameterManager.getParams === 'function') {
+				// Recalculate and update display using global parameter manager
+				const { cropTopPercent, cropBottomPercent } = window.parameterManager.getParams();
+				const remainingTop = Math.max(0, 99 - cropBottomPercent);
+				const remainingBottom = Math.max(0, 99 - cropTopPercent);
+				
+				topElement.textContent = remainingTop;
+				bottomElement.textContent = remainingBottom;
+			} else {
+				// Fallback: read values directly from DOM elements
+				const cropTopInput = document.getElementById('cropTopPercent');
+				const cropBottomInput = document.getElementById('cropBottomPercent');
+				
+				if (cropTopInput && cropBottomInput) {
+					const cropTopPercent = parseFloat(cropTopInput.value) || 0;
+					const cropBottomPercent = parseFloat(cropBottomInput.value) || 0;
+					const remainingTop = Math.max(0, 99 - cropBottomPercent);
+					const remainingBottom = Math.max(0, 99 - cropTopPercent);
+					
+					topElement.textContent = remainingTop;
+					bottomElement.textContent = remainingBottom;
+				}
+			}
 		}
 	}
 

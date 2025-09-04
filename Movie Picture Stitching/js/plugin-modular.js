@@ -463,6 +463,11 @@ class MoviePictureStitchingApp {
       this.lastImageData = null;
       this.lastValidImages = null;
       
+      // Clean up global references
+      if (typeof window !== 'undefined') {
+        window.parameterManager = null;
+      }
+      
       // Cleanup all modules
       this.eagleAPI.cleanup();
       this.canvasRenderer.cleanup();
@@ -500,6 +505,10 @@ if (typeof eagle !== 'undefined') {
       
       // Create and initialize application
       app = new MoviePictureStitchingApp();
+      
+      // Make parameter manager globally accessible for i18n dynamic updates
+      window.parameterManager = app.parameterManager;
+      
       await app.initialize();
       
       // Set initial window state
@@ -516,6 +525,10 @@ if (typeof eagle !== 'undefined') {
     eagle.onPluginBeforeExit(() => {
       if (app) {
         app.cleanup();
+      }
+      // Clean up global references
+      if (typeof window !== 'undefined') {
+        window.parameterManager = null;
       }
     });
   }
