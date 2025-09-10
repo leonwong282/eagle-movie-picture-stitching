@@ -19,8 +19,8 @@
 
 ## 📸 Preview
 
-![cover](./image/cover.webp)
-![feature](./image/feature.webp)
+![cover](./images/cover.webp)
+![feature](./images/feature.webp)
 
 
 ## ✨ Features
@@ -61,7 +61,7 @@
 3. Click `Install Plugin`
 4. Enable the plugin
 
-![Plugin install one](./image/install_eagle.webp)
+![Plugin install one](./images/install_eagle.webp)
 
 ### Method 2: Development Installation
 1. Download the plugin package
@@ -70,7 +70,7 @@
 4. Select the plugin folder `Movie Picture Stitching`
 5. Enable the plugin
 
-![Plugin install two](./image/install_dev.webp)
+![Plugin install two](./images/install_dev.webp)
 
 ## 🎯 Usage
 
