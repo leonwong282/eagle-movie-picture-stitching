@@ -9,8 +9,7 @@
 ![License](https://img.shields.io/badge/License-GPL--3.0-red?style=for-the-badge)
 ![Internationalization](https://img.shields.io/badge/i18n-8_Languages-orange?style=for-the-badge)
 
-**[中文](./README.zh-TW.md)** | **English**
-
+[🌍 English](README.md) | [🇹🇼 繁體中文](README.zh-TW.md) 
 
 [Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Development](#-development)
 
@@ -125,12 +124,20 @@ The plugin automatically detects your Eagle language settings and switches to th
   - `PNG`: Lossless format, ideal for graphics and images requiring transparency
 - **Export Quality**: Range 0.1-1.0, higher values mean better quality but larger files
 
+![parameter1](./screenshots/parameter1.png)
+![parameter2](./screenshots/parameter2.png)
+![parameter3](./screenshots/parameter3.png)
+![parameter4](./screenshots/parameter4.png)
+
 ### 🎯 Usage Tips
 - 💡 **Smart Validation**: System automatically displays valid parameter ranges
 - 💡 **Cropping Limits**: Total cropping (top + bottom) cannot exceed 99%
 - 💡 **Live Preview**: Preview updates in real-time as you adjust parameters
 - 💡 **Performance**: Recommended to process maximum 50 images per batch for optimal performance
 - 💡 **Memory Management**: Plugin automatically optimizes memory usage for large images
+
+![tip1](./screenshots/tip1.png)
+![tip2](./screenshots/tip2.png)
 
 ## 🛠️ Development
 
@@ -211,7 +218,7 @@ _locales/
 
 1. **Clone Repository**:
    ```bash
-   git clone https://github.com/liangshao07/eagle-movie-picture-stitching.git
+   git clone https://github.com/leonwong282/eagle-movie-picture-stitching.git
    cd eagle-movie-picture-stitching
    ```
 
@@ -341,10 +348,10 @@ This project is licensed under the [GPL-3.0 License](LICENSE).
 
 ## 📞 Contact & Support
 
-- **Project Homepage**: [GitHub Repository](https://github.com/liangshao07/eagle-movie-picture-stitching)
-- **Bug Reports**: [Issues](https://github.com/liangshao07/eagle-movie-picture-stitching/issues)
-- **Feature Requests**: [Discussions](https://github.com/liangshao07/eagle-movie-picture-stitching/discussions)
-- **Documentation**: [Wiki](https://github.com/liangshao07/eagle-movie-picture-stitching/wiki)
+- **Project Homepage**: [GitHub Repository](https://github.com/leonwong282/eagle-movie-picture-stitching)
+- **Bug Reports**: [Issues](https://github.com/leonwong282/eagle-movie-picture-stitching/issues)
+- **Feature Requests**: [Discussions](https://github.com/leonwong282/eagle-movie-picture-stitching/discussions)
+- **Documentation**: [Wiki](https://github.com/leonwong282/eagle-movie-picture-stitching/wiki)
 
 ---
 

@@ -57,9 +57,9 @@ This project follows [Semantic Versioning](https://semver.org/) guidelines:
 
 If you encounter any issues or have feature suggestions, please reach out:
 
-- **GitHub Issues**: [Issues](https://github.com/liangshao07/eagle-movie-picture-stitching/issues)
-- **Feature Requests**: [Discussions](https://github.com/liangshao07/eagle-movie-picture-stitching/discussions)
-- **Documentation**: [Wiki](https://github.com/liangshao07/eagle-movie-picture-stitching/wiki)
+- **GitHub Issues**: [Issues](https://github.com/leonwong282/eagle-movie-picture-stitching/issues)
+- **Feature Requests**: [Discussions](https://github.com/leonwong282/eagle-movie-picture-stitching/discussions)
+- **Documentation**: [Wiki](https://github.com/leonwong282/eagle-movie-picture-stitching/wiki)
 - **Email**: liangwatcher82@gmail.com
 
 ---

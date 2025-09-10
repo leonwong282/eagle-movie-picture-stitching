@@ -51,7 +51,7 @@ Before contributing, ensure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/liangshao07/eagle-movie-picture-stitching.git
+git clone https://github.com/leonwong282/eagle-movie-picture-stitching.git
 cd eagle-movie-picture-stitching
 ```
 
@@ -400,7 +400,7 @@ Thank you for contributing to Movie Picture Stitching! Your efforts help make th
 
 ## Quick Links
 
-- [Project Homepage](https://github.com/liangshao07/eagle-movie-picture-stitching)
-- [Issue Tracker](https://github.com/liangshao07/eagle-movie-picture-stitching/issues)
-- [Discussions](https://github.com/liangshao07/eagle-movie-picture-stitching/discussions)
-- [Latest Release](https://github.com/liangshao07/eagle-movie-picture-stitching/releases/latest)
+- [Project Homepage](https://github.com/leonwong282/eagle-movie-picture-stitching)
+- [Issue Tracker](https://github.com/leonwong282/eagle-movie-picture-stitching/issues)
+- [Discussions](https://github.com/leonwong282/eagle-movie-picture-stitching/discussions)
+- [Latest Release](https://github.com/leonwong282/eagle-movie-picture-stitching/releases/latest)
