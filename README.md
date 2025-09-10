@@ -3,7 +3,7 @@
 <div align="center">
 
 ![Eagle Plugin](https://img.shields.io/badge/Eagle-Plugin-blue?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-1.1.0-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.0.0-green?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-GPL--3.0-red?style=for-the-badge)
 ![Internationalization](https://img.shields.io/badge/i18n-8_Languages-orange?style=for-the-badge)
 
@@ -315,7 +315,7 @@ The project uses a modular CSS architecture with CSS variable system:
 
 ## 📋 Changelog
 
-### v1.1.0 (2025-09-01) 🌍
+### v1.0.0 (2025-09-01) 🌍
 - **🌍 Full Internationalization**: Complete 8-language support system
   - English, 简体中文, 繁體中文, 日本語, Español, Deutsch, 한국어, Русский
   - Automatic Eagle language detection
@@ -324,19 +324,6 @@ The project uses a modular CSS architecture with CSS variable system:
 - **🔧 Enhanced Error Handling**: Improved multilingual error messages
 - **🎨 UI Improvements**: Better accessibility and language-specific formatting
 - **📚 Code Documentation**: Comprehensive English comments and JSDoc
-
-### v1.0.0 (2025-08-31)
-- 🎨 Brand new modern UI design
-- 🚀 Complete rewrite of core functionality
-- 📱 Added responsive design support
-- ✨ New glass effects and animations
-- 🔧 Optimized performance and error handling
-- 📖 Modular CSS architecture
-
-### v0.0.1 (Initial)
-- 🎯 Basic image stitching functionality
-- ⚙️ Parameter adjustment interface
-- 💾 Multi-format export support
 
 ## 📄 License
 

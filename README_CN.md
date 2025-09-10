@@ -3,7 +3,7 @@
 <div align="center">
 
 ![Eagle Plugin](https://img.shields.io/badge/Eagle-Plugin-blue?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-1.1.0-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.0.0-green?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-GPL--3.0-red?style=for-the-badge)
 ![Internationalization](https://img.shields.io/badge/i18n-8_Languages-orange?style=for-the-badge)
 
@@ -316,7 +316,7 @@ i18nManager.setLanguage('zh_CN');
 
 ## 📋 更新日志
 
-### v1.1.0 (2025-09-01) 🌍
+### v1.0.0 (2025-09-01) 🌍
 - **🌍 完整国际化**: 完整的8语言支持系统
   - English, 简体中文, 繁體中文, 日本語, Español, Deutsch, 한국어, Русский
   - 自动Eagle语言检测
@@ -325,19 +325,6 @@ i18nManager.setLanguage('zh_CN');
 - **🔧 增强错误处理**: 改进的多语言错误信息
 - **🎨 UI改进**: 更好的可访问性和语言特定格式
 - **📚 代码文档**: 全面的英文注释和JSDoc
-
-### v1.0.0 (2025-08-31)
-- 🎨 全新现代UI设计
-- 🚀 核心功能完全重写
-- 📱 新增响应式设计支持
-- ✨ 新的玻璃效果和动画
-- 🔧 优化性能和错误处理
-- 📖 模块化CSS架构
-
-### v0.0.1 (初始版本)
-- 🎯 基础图片拼接功能
-- ⚙️ 参数调整界面
-- 💾 多格式导出支持
 
 ## 📄 许可证
 
