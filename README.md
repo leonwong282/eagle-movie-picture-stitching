@@ -1,19 +1,22 @@
-# Movie Picture Stitching - Eagle Plugin
-
 <div align="center">
+
+# 🚀 Movie Picture Stitching - Eagle Plugin
+
+> A modern, internationalized Eagle image management plugin for vertically stitching multiple movie images into panoramic compositions with full multilingual support
 
 ![Eagle Plugin](https://img.shields.io/badge/Eagle-Plugin-blue?style=for-the-badge)
 ![Version](https://img.shields.io/badge/Version-1.0.0-green?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-GPL--3.0-red?style=for-the-badge)
 ![Internationalization](https://img.shields.io/badge/i18n-8_Languages-orange?style=for-the-badge)
 
-**[中文](./README_CN.md)** | **English**
+**[中文](./README.zh-TW.md)** | **English**
 
-A modern, internationalized Eagle image management plugin for vertically stitching multiple movie images into panoramic compositions with full multilingual support
 
 [Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Development](#-development)
 
 </div>
+
+<a id="readme-top"></a>
 
 ## 📸 Preview
 
@@ -354,3 +357,5 @@ Made with ❤️ for the Eagle community
 *Supporting Eagle's mission to make digital asset management effortless*
 
 </div>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>

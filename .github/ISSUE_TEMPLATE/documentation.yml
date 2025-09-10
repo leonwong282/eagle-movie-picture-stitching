@@ -1,0 +1,55 @@
+---
+name: 📚 Documentation Issue
+about: Report an issue with documentation
+title: '[DOCS] '
+labels: ['documentation', 'needs-triage']
+assignees: ''
+---
+
+## 📚 Documentation Issue
+
+### 📍 Location
+
+Please specify where the documentation issue is located:
+
+- [ ] README.md
+- [ ] Contributing guidelines
+- [ ] API documentation
+- [ ] Code comments
+- [ ] Wiki
+- [ ] Other: ________________
+
+**Specific URL or file path**: 
+
+### 🐛 Issue Type
+
+- [ ] Missing documentation
+- [ ] Incorrect information
+- [ ] Outdated content
+- [ ] Unclear/confusing explanation
+- [ ] Typo/grammar error
+- [ ] Broken link
+- [ ] Missing example
+- [ ] Other: ________________
+
+### 📝 Description
+
+A clear and concise description of the documentation issue.
+
+### ✅ Expected
+
+What should the documentation say or include?
+
+### 💡 Suggested Fix
+
+If you have suggestions for how to fix this, please describe them here.
+
+### 📋 Additional Context
+
+Add any other context about the documentation issue here.
+
+### 📝 Checklist
+
+- [ ] I have checked for existing documentation issues
+- [ ] I have provided specific location information
+- [ ] I am willing to help improve the documentation

@@ -1,0 +1,34 @@
+---
+name: ❓ Question
+about: Ask a question about the project
+title: '[QUESTION] '
+labels: ['question', 'needs-triage']
+assignees: ''
+---
+
+## ❓ Question
+
+### 🎯 What would you like to know?
+
+A clear and concise description of your question.
+
+### 🔍 Context
+
+Please provide any relevant context that might help us answer your question better.
+
+### 🔄 What have you tried?
+
+Please describe what you've already tried or researched.
+
+### 📚 Resources Checked
+
+- [ ] README.md
+- [ ] Documentation
+- [ ] Existing issues
+- [ ] Stack Overflow
+- [ ] Community discussions
+- [ ] Other: ________________
+
+### 📋 Additional Information
+
+Add any other information that might be helpful.
