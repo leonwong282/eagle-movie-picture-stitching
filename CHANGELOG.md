@@ -31,9 +31,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ⚡ **Performance**: Optimized language switching and translation caching
 - 🛡️ **Fallback System**: Graceful fallback to English for missing translations
 
-![](./screenshots/main_interface.png)
-![](./screenshots/feature_demo.png)
-![](./screenshots/result_showcase.png)
+![v1_main_interface_2025_9_28](./screenshots/v1_main_interface_2025_9_28.webp)
+![v1_main_interface_bank_2025_9_28](./screenshots/v1_main_interface_bank_2025_9_28.webp)
+
+---
+
+## [0.0.0] - 2024-10 self-use UI backup
+
+![v0_main_interface_1_2024_10](./screenshots/v0_main_interface_1_2024_10.webp)
+![v0_main_interface_2_2024_10](./screenshots/v0_main_interface_2_2024_10.webp)
+![v0_result_2024_10](./screenshots/v0_result_2024_10.webp)
 
 ---
 
