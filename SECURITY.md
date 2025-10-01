@@ -19,7 +19,7 @@ We take security seriously. If you discover a security vulnerability, please fol
 
 Instead, please report security issues privately:
 
-1. **Email**: Send details to [security@your-domain.com](mailto:security@your-domain.com)
+1. **Email**: Send details to [leonwong282@gmail.com](mailto:leonwong282@gmail.com)
 2. **Subject**: Include "SECURITY" in the email subject
 3. **Details**: Provide as much information as possible:
    - Description of the vulnerability
@@ -81,7 +81,6 @@ This project implements:
 
 ## Security Resources
 
-- **Security Advisories**: [GitHub Security Advisories](https://github.com/leonwong282/awesome-project-template/security/advisories)
 - **Vulnerability Database**: [GitHub Advisory Database](https://github.com/advisories)
 - **Security Guides**: [GitHub Security Documentation](https://docs.github.com/en/code-security)
 
