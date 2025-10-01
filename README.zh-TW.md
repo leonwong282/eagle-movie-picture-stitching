@@ -25,7 +25,7 @@
 
 ![cover](./images/cover.webp)
 ![feature](./images/feature.webp)
-![mulit-language](./images/mulit-language.webp)
+![mulit-language](./images/multi-language.webp)
 
 
 ## ✨ 功能特色
