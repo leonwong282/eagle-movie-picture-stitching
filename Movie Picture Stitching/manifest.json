@@ -8,7 +8,7 @@
     "author": "Liang",
     "fallbackLanguage": "en",
     "languages": ["en", "zh_CN", "zh_TW", "ja_JP", "es_ES", "de_DE", "ko_KR", "ru_RU"],
-    "website": "https://github.com/liangshao07/eagle-movie-picture-stitching",
+    "website": "https://github.com/leonwong282/eagle-movie-picture-stitching",
     "logo": "/logo.png",
     "keywords": [
         "movie",
