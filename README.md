@@ -25,7 +25,7 @@
 
 ![cover](./images/cover.webp)
 ![feature](./images/feature.webp)
-
+![mulit-language](./images/mulit-language.webp)
 
 ## ✨ Features
 
@@ -88,13 +88,12 @@
 4. **Real-time Preview**: The plugin provides real-time preview as you adjust parameters
 5. **Save Result**: Click the "Save Image" button to export the stitched image
 
-![](./screenshots/main_interface.webp)
-![](./screenshots/feature_demo1.webp)
-![](./screenshots/feature_demo2.webp)
-![](./screenshots/feature_demo3.webp)
-![](./screenshots/feature_demo4.webp)
-![](./screenshots/feature_demo5.webp)
-![](./screenshots/result_showcase.webp)
+![](./images/feature_demo1.webp)
+![](./images/feature_demo2.webp)
+![](./images/feature_demo3.webp)
+![](./images/feature_demo4.webp)
+![](./images/feature_demo5.webp)
+![](./images/result_showcase.webp)
 
 ### 🌍 Language Support
 
@@ -128,11 +127,6 @@ The plugin automatically detects your Eagle language settings and switches to th
   - `PNG`: Lossless format, ideal for graphics and images requiring transparency
 - **Export Quality**: Range 0.1-1.0, higher values mean better quality but larger files
 
-![parameter1](./screenshots/parameter1.png)
-![parameter2](./screenshots/parameter2.png)
-![parameter3](./screenshots/parameter3.png)
-![parameter4](./screenshots/parameter4.png)
-
 ### 🎯 Usage Tips
 - 💡 **Smart Validation**: System automatically displays valid parameter ranges
 - 💡 **Cropping Limits**: Total cropping (top + bottom) cannot exceed 99%
@@ -140,8 +134,12 @@ The plugin automatically detects your Eagle language settings and switches to th
 - 💡 **Performance**: Recommended to process maximum 50 images per batch for optimal performance
 - 💡 **Memory Management**: Plugin automatically optimizes memory usage for large images
 
-![tip1](./screenshots/tip1.png)
-![tip2](./screenshots/tip2.png)
+![tip1](./images/tip1.webp)
+![tip2](./images/tip2.webp)
+![tip3](./images/tip3.webp)
+![tip4](./images/tip4.webp)
+![tip5](./images/tip5.webp)
+![tip6](./images/tip6.webp)
 
 ## 🛠️ Development
 
@@ -190,9 +188,7 @@ eagle-movie-picture-stitching/
 │   ├── cover.png                           # Project cover image
 │   └── feature.png                         # Feature showcase image
 └── screenshots/                             # Plugin screenshots
-    ├── feature_demo.png                    # Feature demonstration
     ├── main_interface.png                  # Main interface screenshot
-    └── result_showcase.png                 # Result showcase
 ```
 
 ### 🌍 Internationalization Development

@@ -25,6 +25,8 @@
 
 ![cover](./images/cover.webp)
 ![feature](./images/feature.webp)
+![mulit-language](./images/mulit-language.webp)
+
 
 ## ✨ 功能特色
 
@@ -87,13 +89,12 @@
 4. **即時預覽**：調整參數時即時預覽拼接效果
 5. **儲存結果**：點擊「儲存圖片」匯出拼接後圖片
 
-![](./screenshots/main_interface.webp)
-![](./screenshots/feature_demo1.webp)
-![](./screenshots/feature_demo2.webp)
-![](./screenshots/feature_demo3.webp)
-![](./screenshots/feature_demo4.webp)
-![](./screenshots/feature_demo5.webp)
-![](./screenshots/result_showcase.webp)
+![](./images/feature_demo1.webp)
+![](./images/feature_demo2.webp)
+![](./images/feature_demo3.webp)
+![](./images/feature_demo4.webp)
+![](./images/feature_demo5.webp)
+![](./images/result_showcase.webp)
 
 ### 🌍 語言支援
 
@@ -127,11 +128,6 @@
   - `PNG`：無損格式，適合需透明的圖片
 - **匯出品質**：範圍 0.1-1.0，值越高畫質越好但檔案越大
 
-![parameter1](./screenshots/parameter1.png)
-![parameter2](./screenshots/parameter2.png)
-![parameter3](./screenshots/parameter3.png)
-![parameter4](./screenshots/parameter4.png)
-
 ### 🎯 使用提示
 - 💡 **智慧驗證**：系統自動顯示有效參數範圍
 - 💡 **裁切限制**：總裁切（上+下）不可超過 99%
@@ -139,8 +135,12 @@
 - 💡 **效能建議**：建議每批最多處理 50 張圖片
 - 💡 **記憶體管理**：大圖自動優化記憶體使用
 
-![tip1](./screenshots/tip1.png)
-![tip2](./screenshots/tip2.png)
+![tip1](./images/tip1.webp)
+![tip2](./images/tip2.webp)
+![tip3](./images/tip3.webp)
+![tip4](./images/tip4.webp)
+![tip5](./images/tip5.webp)
+![tip6](./images/tip6.webp)
 
 ## 🛠️ 開發指南
 
@@ -189,9 +189,7 @@ eagle-movie-picture-stitching/
 │   ├── cover.png                           # 封面
 │   └── feature.png                         # 功能展示
 └── screenshots/                             # 插件截圖
-    ├── feature_demo.png                    # 功能演示
     ├── main_interface.png                  # 主介面
-    └── result_showcase.png                 # 結果展示
 ```
 
 ### 🌍 國際化開發
