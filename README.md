@@ -1,5 +1,9 @@
 <div align="center">
 
+<a href="https://github.com/leonwong282/awesome-project-template">
+  <img src="images/logo.png" alt="Logo" width="80" height="80">
+</a>
+
 # 🚀 Movie Picture Stitching - Eagle Plugin
 
 > A modern, internationalized Eagle image management plugin for vertically stitching multiple movie images into panoramic compositions with full multilingual support

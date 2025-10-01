@@ -1,5 +1,9 @@
 <div align="center">
 
+<a href="https://github.com/leonwong282/awesome-project-template">
+  <img src="images/logo.png" alt="Logo" width="80" height="80">
+</a>
+
 # 🚀 Movie Picture Stitching - Eagle 插件
 
 > 一款現代化、國際化的 Eagle 影像管理插件，支援將多張電影圖片垂直拼接成全景圖，並具備完整多語言介面
