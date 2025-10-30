@@ -26,9 +26,7 @@ This optimization plan addresses the technical debt and enhancement opportunitie
 
 ## 🚀 **Optimization Phases**
 
-## Add new feature
-
-- save parameters
+- Use Bootstrap 5 to reconstruct the UI layout and style
 
 ## **Phase 1: Security & Stability** (Priority: Critical)
 *Timeline: 2-3 weeks*
