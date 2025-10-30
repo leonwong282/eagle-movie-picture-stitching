@@ -14,20 +14,20 @@
   right: 0;
   width: 1px;
   height: 100%;
-  background: linear-gradient(to bottom, 
-    transparent, 
-    var(--color-border-subtle) 20%, 
-    var(--color-border-subtle) 80%, 
-    transparent);
+  background: linear-gradient(to bottom,
+      transparent,
+      var(--color-border-subtle) 20%,
+      var(--color-border-subtle) 80%,
+      transparent);
 }
 
 /* Beautify preview area */
 .preview {
   position: relative;
-  background: radial-gradient(circle at center, 
-    rgba(255, 255, 255, 0.02) 0%, 
-    rgba(255, 255, 255, 0.01) 50%, 
-    transparent 100%);
+  background: radial-gradient(circle at center,
+      rgba(255, 255, 255, 0.02) 0%,
+      rgba(255, 255, 255, 0.01) 50%,
+      transparent 100%);
 }
 
 .preview::before {
@@ -71,8 +71,13 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Beautify info text */

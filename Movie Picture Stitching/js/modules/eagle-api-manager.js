@@ -129,7 +129,7 @@ class EagleAPIManager {
       try {
         const selected = await this.getSelectedImages();
         const currentIds = selected.map(item => item.id).join(',');
-        
+
         if (currentIds !== this.lastSelectedIds) {
           this.lastSelectedIds = currentIds;
           if (callback) {

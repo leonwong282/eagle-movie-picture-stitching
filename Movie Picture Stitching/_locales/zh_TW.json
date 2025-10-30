@@ -1,83 +1,83 @@
 {
-    "manifest": {
-        "app": {
-            "name": "電影圖片拼接",
-            "description": "一個現代化的外掛程式，用於將多張圖片垂直拼接成全景圖，具有玻璃效果介面"
-        }
-    },
-    "ui": {
-        "header": {
-            "title": "電影台詞長圖拼接",
-            "pinWindow": "視窗置頂",
-            "closeWindow": "關閉視窗"
-        },
-        "panels": {
-            "imageList": "選中的圖片清單",
-            "preview": "圖片預覽區域",
-            "settings": "設定面板"
-        },
-        "settings": {
-            "cropTop": "頂部裁剪高度(%)：",
-            "cropBottom": "底部裁剪高度(%)：",
-            "exportFormat": "匯出格式：",
-            "exportQuality": "匯出品質(0.1-1.0)：",
-            "maxSettingTop": "最大可設定:",
-            "maxSettingBottom": "最大可設定:",
-            "qualityHelp": "數值越高品質越好，檔案越大",
-            "cropHelp": "頂部和底部裁剪總和不能超過99%",
-            "formatOptions": {
-                "jpg": "JPG - 適合照片，檔案較小",
-                "png": "PNG - 無損壓縮，支援透明",
-                "webp": "WEBP - 現代格式，體積更小"
-            }
-        },
-        "buttons": {
-            "preview": "預覽",
-            "save": "儲存",
-            "processing": "處理中...",
-            "saving": "儲存中..."
-        },
-        "status": {
-            "ready": "就緒",
-            "loading": "載入中...",
-            "processing": "處理中...",
-            "success": "完成",
-            "error": "錯誤"
-        },
-        "messages": {
-            "selectImages": "請先選擇要拼接的圖片",
-            "selectFolder": "請先在 Eagle 中選擇一個資料夾",
-            "generatePreview": "請先點擊預覽按鈕產生圖片",
-            "processing": "處理中...",
-            "saving": "儲存中...",
-            "success": "圖片儲存成功！",
-            "error": "處理過程中出現錯誤",
-            "saveError": "儲存圖片失敗: {{error}}"
-        },
-        "tooltips": {
-            "cropTop": "設定從圖片頂部裁剪的高度百分比",
-            "cropBottom": "設定從圖片底部裁剪的高度百分比",
-            "exportQuality": "設定匯出圖片的品質，範圍0.1-1.0",
-            "exportFormat": "選擇匯出圖片的格式",
-            "preview": "產生拼接圖片的預覽",
-            "save": "將拼接圖片儲存到Eagle目前資料夾"
-        },
-        "interface": {
-            "noImagesSelected": "未選擇圖片<br>請在 Eagle 中選擇要拼接的圖片",
-            "imagesSelected": "已選擇 {{count}} 張圖片",
-            "loadFailed": "載入失敗",
-            "selectImagesFirst": "請先選擇圖片",
-            "tooManyImages": "選擇的圖片過多（超過50張），請減少選擇",
-            "cropParameterError": "裁剪參數錯誤：頂部+底部裁剪不能超過100%",
-            "allImagesLoadFailed": "所有圖片載入失敗",
-            "imageLoadFailed": "{{count}} 張圖片載入失敗，繼續處理剩餘圖片",
-            "imageSizeExceeded": "圖片尺寸過大，請減少圖片數量或降低圖片解析度",
-            "imagesProcessed": "已處理 {{count}} 張圖片，尺寸: {{width}}×{{height}}px",
-            "previewGenerationFailed": "預覽產生失敗: {{error}}",
-            "pinTitle": "視窗置頂",
-            "unpinTitle": "取消置頂",
-            "imageName": "圖片 {{index}}",
-            "unknownError": "未知錯誤"
-        }
+  "manifest": {
+    "app": {
+      "name": "電影圖片拼接",
+      "description": "一個現代化的外掛程式，用於將多張圖片垂直拼接成全景圖，具有玻璃效果介面"
     }
+  },
+  "ui": {
+    "header": {
+      "title": "電影台詞長圖拼接",
+      "pinWindow": "視窗置頂",
+      "closeWindow": "關閉視窗"
+    },
+    "panels": {
+      "imageList": "選中的圖片清單",
+      "preview": "圖片預覽區域",
+      "settings": "設定面板"
+    },
+    "settings": {
+      "cropTop": "頂部裁剪高度(%)：",
+      "cropBottom": "底部裁剪高度(%)：",
+      "exportFormat": "匯出格式：",
+      "exportQuality": "匯出品質(0.1-1.0)：",
+      "maxSettingTop": "最大可設定:",
+      "maxSettingBottom": "最大可設定:",
+      "qualityHelp": "數值越高品質越好，檔案越大",
+      "cropHelp": "頂部和底部裁剪總和不能超過99%",
+      "formatOptions": {
+        "jpg": "JPG - 適合照片，檔案較小",
+        "png": "PNG - 無損壓縮，支援透明",
+        "webp": "WEBP - 現代格式，體積更小"
+      }
+    },
+    "buttons": {
+      "preview": "預覽",
+      "save": "儲存",
+      "processing": "處理中...",
+      "saving": "儲存中..."
+    },
+    "status": {
+      "ready": "就緒",
+      "loading": "載入中...",
+      "processing": "處理中...",
+      "success": "完成",
+      "error": "錯誤"
+    },
+    "messages": {
+      "selectImages": "請先選擇要拼接的圖片",
+      "selectFolder": "請先在 Eagle 中選擇一個資料夾",
+      "generatePreview": "請先點擊預覽按鈕產生圖片",
+      "processing": "處理中...",
+      "saving": "儲存中...",
+      "success": "圖片儲存成功！",
+      "error": "處理過程中出現錯誤",
+      "saveError": "儲存圖片失敗: {{error}}"
+    },
+    "tooltips": {
+      "cropTop": "設定從圖片頂部裁剪的高度百分比",
+      "cropBottom": "設定從圖片底部裁剪的高度百分比",
+      "exportQuality": "設定匯出圖片的品質，範圍0.1-1.0",
+      "exportFormat": "選擇匯出圖片的格式",
+      "preview": "產生拼接圖片的預覽",
+      "save": "將拼接圖片儲存到Eagle目前資料夾"
+    },
+    "interface": {
+      "noImagesSelected": "未選擇圖片<br>請在 Eagle 中選擇要拼接的圖片",
+      "imagesSelected": "已選擇 {{count}} 張圖片",
+      "loadFailed": "載入失敗",
+      "selectImagesFirst": "請先選擇圖片",
+      "tooManyImages": "選擇的圖片過多（超過50張），請減少選擇",
+      "cropParameterError": "裁剪參數錯誤：頂部+底部裁剪不能超過100%",
+      "allImagesLoadFailed": "所有圖片載入失敗",
+      "imageLoadFailed": "{{count}} 張圖片載入失敗，繼續處理剩餘圖片",
+      "imageSizeExceeded": "圖片尺寸過大，請減少圖片數量或降低圖片解析度",
+      "imagesProcessed": "已處理 {{count}} 張圖片，尺寸: {{width}}×{{height}}px",
+      "previewGenerationFailed": "預覽產生失敗: {{error}}",
+      "pinTitle": "視窗置頂",
+      "unpinTitle": "取消置頂",
+      "imageName": "圖片 {{index}}",
+      "unknownError": "未知錯誤"
+    }
+  }
 }

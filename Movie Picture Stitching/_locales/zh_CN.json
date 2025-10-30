@@ -1,83 +1,83 @@
 {
-    "manifest": {
-        "app": {
-            "name": "电影图片拼接",
-            "description": "一个现代化的插件，用于将多张图片垂直拼接成全景图，具有玻璃效果界面"
-        }
-    },
-    "ui": {
-        "header": {
-            "title": "电影台词长图拼接",
-            "pinWindow": "窗口置顶",
-            "closeWindow": "关闭窗口"
-        },
-        "panels": {
-            "imageList": "选中的图片列表",
-            "preview": "图片预览区域",
-            "settings": "设置面板"
-        },
-        "settings": {
-            "cropTop": "顶部裁剪高度(%)：",
-            "cropBottom": "底部裁剪高度(%)：",
-            "exportFormat": "导出格式：",
-            "exportQuality": "导出质量(0.1-1.0)：",
-            "maxSettingTop": "最大可设置:",
-            "maxSettingBottom": "最大可设置:",
-            "qualityHelp": "值越高质量越好，文件越大",
-            "cropHelp": "顶部和底部裁剪总和不能超过99%",
-            "formatOptions": {
-                "jpg": "JPG - 适合照片，文件较小",
-                "png": "PNG - 无损压缩，支持透明",
-                "webp": "WEBP - 现代格式，体积更小"
-            }
-        },
-        "buttons": {
-            "preview": "预览",
-            "save": "保存",
-            "processing": "处理中...",
-            "saving": "保存中..."
-        },
-        "status": {
-            "ready": "就绪",
-            "loading": "加载中...",
-            "processing": "处理中...",
-            "success": "完成",
-            "error": "错误"
-        },
-        "messages": {
-            "selectImages": "请先选择要拼接的图片",
-            "selectFolder": "请先在 Eagle 中选择一个文件夹",
-            "generatePreview": "请先点击预览按钮生成图片",
-            "processing": "处理中...",
-            "saving": "保存中...",
-            "success": "图片保存成功！",
-            "error": "处理过程中出现错误",
-            "saveError": "保存图片失败: {{error}}"
-        },
-        "tooltips": {
-            "cropTop": "设置从图片顶部裁剪的高度百分比",
-            "cropBottom": "设置从图片底部裁剪的高度百分比",
-            "exportQuality": "设置导出图片的质量，范围0.1-1.0",
-            "exportFormat": "选择导出图片的格式",
-            "preview": "生成拼接图片的预览",
-            "save": "将拼接图片保存到Eagle当前文件夹"
-        },
-        "interface": {
-            "noImagesSelected": "未选择图片<br>请在 Eagle 中选择要拼接的图片",
-            "imagesSelected": "已选择 {{count}} 张图片",
-            "loadFailed": "加载失败",
-            "selectImagesFirst": "请先选择图片",
-            "tooManyImages": "选择的图片过多（超过50张），请减少选择",
-            "cropParameterError": "裁剪参数错误：顶部+底部裁剪不能超过100%",
-            "allImagesLoadFailed": "所有图片加载失败",
-            "imageLoadFailed": "{{count}} 张图片加载失败，继续处理剩余图片",
-            "imageSizeExceeded": "图片尺寸过大，请减少图片数量或降低图片分辨率",
-            "imagesProcessed": "已处理 {{count}} 张图片，尺寸: {{width}}×{{height}}px",
-            "previewGenerationFailed": "预览生成失败: {{error}}",
-            "pinTitle": "窗口置顶",
-            "unpinTitle": "取消置顶",
-            "imageName": "图片 {{index}}",
-            "unknownError": "未知错误"
-        }
+  "manifest": {
+    "app": {
+      "name": "电影图片拼接",
+      "description": "一个现代化的插件，用于将多张图片垂直拼接成全景图，具有玻璃效果界面"
     }
+  },
+  "ui": {
+    "header": {
+      "title": "电影台词长图拼接",
+      "pinWindow": "窗口置顶",
+      "closeWindow": "关闭窗口"
+    },
+    "panels": {
+      "imageList": "选中的图片列表",
+      "preview": "图片预览区域",
+      "settings": "设置面板"
+    },
+    "settings": {
+      "cropTop": "顶部裁剪高度(%)：",
+      "cropBottom": "底部裁剪高度(%)：",
+      "exportFormat": "导出格式：",
+      "exportQuality": "导出质量(0.1-1.0)：",
+      "maxSettingTop": "最大可设置:",
+      "maxSettingBottom": "最大可设置:",
+      "qualityHelp": "值越高质量越好，文件越大",
+      "cropHelp": "顶部和底部裁剪总和不能超过99%",
+      "formatOptions": {
+        "jpg": "JPG - 适合照片，文件较小",
+        "png": "PNG - 无损压缩，支持透明",
+        "webp": "WEBP - 现代格式，体积更小"
+      }
+    },
+    "buttons": {
+      "preview": "预览",
+      "save": "保存",
+      "processing": "处理中...",
+      "saving": "保存中..."
+    },
+    "status": {
+      "ready": "就绪",
+      "loading": "加载中...",
+      "processing": "处理中...",
+      "success": "完成",
+      "error": "错误"
+    },
+    "messages": {
+      "selectImages": "请先选择要拼接的图片",
+      "selectFolder": "请先在 Eagle 中选择一个文件夹",
+      "generatePreview": "请先点击预览按钮生成图片",
+      "processing": "处理中...",
+      "saving": "保存中...",
+      "success": "图片保存成功！",
+      "error": "处理过程中出现错误",
+      "saveError": "保存图片失败: {{error}}"
+    },
+    "tooltips": {
+      "cropTop": "设置从图片顶部裁剪的高度百分比",
+      "cropBottom": "设置从图片底部裁剪的高度百分比",
+      "exportQuality": "设置导出图片的质量，范围0.1-1.0",
+      "exportFormat": "选择导出图片的格式",
+      "preview": "生成拼接图片的预览",
+      "save": "将拼接图片保存到Eagle当前文件夹"
+    },
+    "interface": {
+      "noImagesSelected": "未选择图片<br>请在 Eagle 中选择要拼接的图片",
+      "imagesSelected": "已选择 {{count}} 张图片",
+      "loadFailed": "加载失败",
+      "selectImagesFirst": "请先选择图片",
+      "tooManyImages": "选择的图片过多（超过50张），请减少选择",
+      "cropParameterError": "裁剪参数错误：顶部+底部裁剪不能超过100%",
+      "allImagesLoadFailed": "所有图片加载失败",
+      "imageLoadFailed": "{{count}} 张图片加载失败，继续处理剩余图片",
+      "imageSizeExceeded": "图片尺寸过大，请减少图片数量或降低图片分辨率",
+      "imagesProcessed": "已处理 {{count}} 张图片，尺寸: {{width}}×{{height}}px",
+      "previewGenerationFailed": "预览生成失败: {{error}}",
+      "pinTitle": "窗口置顶",
+      "unpinTitle": "取消置顶",
+      "imageName": "图片 {{index}}",
+      "unknownError": "未知错误"
+    }
+  }
 }

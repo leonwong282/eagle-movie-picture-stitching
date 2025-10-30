@@ -81,9 +81,9 @@
   left: -var(--spacing-xl);
   right: -var(--spacing-xl);
   height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    var(--color-border-subtle) 20%, 
-    var(--color-border-subtle) 80%, 
-    transparent);
+  background: linear-gradient(90deg,
+      transparent,
+      var(--color-border-subtle) 20%,
+      var(--color-border-subtle) 80%,
+      transparent);
 }

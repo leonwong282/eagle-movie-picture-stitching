@@ -294,7 +294,7 @@ eagle.onPluginCreate(async (plugin) => {
   });
 
   // Pin to top button event
-  document.getElementById('pinButton')?.addEventListener('click', function() {
+  document.getElementById('pinButton')?.addEventListener('click', function () {
     isAlwaysOnTop = !isAlwaysOnTop;
     eagle.window.setAlwaysOnTop(isAlwaysOnTop);
     this.style.color = isAlwaysOnTop ? '#ffd700' : '#fff';
@@ -499,120 +499,120 @@ async function renderPreview() {
     );
 
     const loadedImages = await Promise.all(loadPromises);
-		
-		// Filter out failed to load images
-		const validImages = loadedImages.filter(item => item !== null);
-		
-		if (validImages.length === 0) {
-			const allFailedText = i18nManager.t('ui.interface.allImagesLoadFailed');
-			previewContainer.innerHTML = `<div style="text-align: center; padding: 20px; color: #f44;">${allFailedText}</div>`;
-			return;
-		}
-		
-		if (validImages.length !== images.length) {
-			const failedCount = images.length - validImages.length;
-			const partialFailedMsg = i18nManager.t('ui.interface.imageLoadFailed', { count: failedCount });
-			console.warn(`${failedCount} images failed to load, continuing with remaining images`);
-		}
-		
-		const canvas = document.createElement('canvas');
-		const ctx = canvas.getContext('2d');
-		
-		// Calculate total height and validate dimensions
-		const totalHeight = validImages.reduce((sum, { data }, idx) => {
-			if (idx === 0) {
-				const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
-				return sum + (data.height - cropBottom);
-			} else {
-				const cropTop = Math.round(data.height * (cropTopPercent / 100));
-				const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
-				return sum + (data.height - cropTop - cropBottom);
-			}
-		}, 0);
-		
-		const maxWidth = Math.max(...validImages.map(({ data }) => data.width));
-		
-		// Check canvas size limits
-		if (maxWidth > 32767 || totalHeight > 32767) {
-			const sizeExceededText = i18nManager.t('ui.interface.imageSizeExceeded');
-			previewContainer.innerHTML = `<div style="text-align: center; padding: 20px; color: #f44;">${sizeExceededText}</div>`;
-			return;
-		}
-		
-		canvas.width = maxWidth;
-		canvas.height = totalHeight;
-		
-		let currentY = 0;
-		
-		// Batch draw images (preloaded, better performance)
-		validImages.forEach(({ img, data }, i) => {
-			if (i === 0) {
-				// First image only crop bottom
-				const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
-				const cropHeight = data.height - cropBottom;
-				if (cropHeight > 0) {
-					ctx.drawImage(img, 0, 0, data.width, cropHeight, 0, currentY, data.width, cropHeight);
-					currentY += cropHeight;
-				}
-			} else {
-				// Crop top and bottom of other images
-				const cropTop = Math.round(data.height * (cropTopPercent / 100));
-				const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
-				const cropHeight = data.height - cropTop - cropBottom;
-				if (cropHeight > 0) {
-					ctx.drawImage(img, 0, cropTop, data.width, cropHeight, 0, currentY, data.width, cropHeight);
-					currentY += cropHeight;
-				}
-			}
-		});
-		
-		// Clear loading state
-		previewContainer.innerHTML = '';
-		
-		// Optimization: Use Canvas directly for display, avoiding unnecessary conversions
-		canvas.style.maxWidth = '100%';
-		canvas.style.maxHeight = '100%';
-		canvas.style.display = 'block';
-		canvas.style.margin = '0 auto';
-		canvas.style.border = '1px solid #444';
-		canvas.setAttribute('alt', 'Stitched preview');
-		
-		previewContainer.appendChild(canvas);
-		
-		// Store canvas reference for save use
-		window.previewCanvas = canvas;
-		
-		// Performance statistics
-		const endTime = performance.now();
-		console.log(`Preview generation completed in ${(endTime - startTime).toFixed(2)}ms, processed ${validImages.length} images`);
-		
-		// Show generation information
-		const infoDiv = document.createElement('div');
-		infoDiv.style.cssText = 'text-align: center; padding: 10px; color: #999; font-size: 12px;';
-		const processedText = i18nManager.t('ui.interface.imagesProcessed', { 
-			count: validImages.length, 
-			width: maxWidth, 
-			height: totalHeight 
-		});
-		infoDiv.textContent = processedText;
-		previewContainer.appendChild(infoDiv);
-		
-	} catch (error) {
-		console.error('Error rendering preview:', error);
-		const previewContainer = document.querySelector('.preview');
-		if (previewContainer) {
-			const failedText = i18nManager.t('ui.interface.previewGenerationFailed', { 
-				error: error.message || i18nManager.t('ui.interface.unknownError')
-			});
-			previewContainer.innerHTML = `<div style="text-align: center; padding: 20px; color: #f44;">${failedText}</div>`;
-		}
-	} finally {
-		// Restore button state
-		if (previewButton) {
-			previewButton.textContent = originalText;
-			previewButton.disabled = false;
-		}
-	}
+
+    // Filter out failed to load images
+    const validImages = loadedImages.filter(item => item !== null);
+
+    if (validImages.length === 0) {
+      const allFailedText = i18nManager.t('ui.interface.allImagesLoadFailed');
+      previewContainer.innerHTML = `<div style="text-align: center; padding: 20px; color: #f44;">${allFailedText}</div>`;
+      return;
+    }
+
+    if (validImages.length !== images.length) {
+      const failedCount = images.length - validImages.length;
+      const partialFailedMsg = i18nManager.t('ui.interface.imageLoadFailed', { count: failedCount });
+      console.warn(`${failedCount} images failed to load, continuing with remaining images`);
+    }
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Calculate total height and validate dimensions
+    const totalHeight = validImages.reduce((sum, { data }, idx) => {
+      if (idx === 0) {
+        const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
+        return sum + (data.height - cropBottom);
+      } else {
+        const cropTop = Math.round(data.height * (cropTopPercent / 100));
+        const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
+        return sum + (data.height - cropTop - cropBottom);
+      }
+    }, 0);
+
+    const maxWidth = Math.max(...validImages.map(({ data }) => data.width));
+
+    // Check canvas size limits
+    if (maxWidth > 32767 || totalHeight > 32767) {
+      const sizeExceededText = i18nManager.t('ui.interface.imageSizeExceeded');
+      previewContainer.innerHTML = `<div style="text-align: center; padding: 20px; color: #f44;">${sizeExceededText}</div>`;
+      return;
+    }
+
+    canvas.width = maxWidth;
+    canvas.height = totalHeight;
+
+    let currentY = 0;
+
+    // Batch draw images (preloaded, better performance)
+    validImages.forEach(({ img, data }, i) => {
+      if (i === 0) {
+        // First image only crop bottom
+        const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
+        const cropHeight = data.height - cropBottom;
+        if (cropHeight > 0) {
+          ctx.drawImage(img, 0, 0, data.width, cropHeight, 0, currentY, data.width, cropHeight);
+          currentY += cropHeight;
+        }
+      } else {
+        // Crop top and bottom of other images
+        const cropTop = Math.round(data.height * (cropTopPercent / 100));
+        const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
+        const cropHeight = data.height - cropTop - cropBottom;
+        if (cropHeight > 0) {
+          ctx.drawImage(img, 0, cropTop, data.width, cropHeight, 0, currentY, data.width, cropHeight);
+          currentY += cropHeight;
+        }
+      }
+    });
+
+    // Clear loading state
+    previewContainer.innerHTML = '';
+
+    // Optimization: Use Canvas directly for display, avoiding unnecessary conversions
+    canvas.style.maxWidth = '100%';
+    canvas.style.maxHeight = '100%';
+    canvas.style.display = 'block';
+    canvas.style.margin = '0 auto';
+    canvas.style.border = '1px solid #444';
+    canvas.setAttribute('alt', 'Stitched preview');
+
+    previewContainer.appendChild(canvas);
+
+    // Store canvas reference for save use
+    window.previewCanvas = canvas;
+
+    // Performance statistics
+    const endTime = performance.now();
+    console.log(`Preview generation completed in ${(endTime - startTime).toFixed(2)}ms, processed ${validImages.length} images`);
+
+    // Show generation information
+    const infoDiv = document.createElement('div');
+    infoDiv.style.cssText = 'text-align: center; padding: 10px; color: #999; font-size: 12px;';
+    const processedText = i18nManager.t('ui.interface.imagesProcessed', {
+      count: validImages.length,
+      width: maxWidth,
+      height: totalHeight
+    });
+    infoDiv.textContent = processedText;
+    previewContainer.appendChild(infoDiv);
+
+  } catch (error) {
+    console.error('Error rendering preview:', error);
+    const previewContainer = document.querySelector('.preview');
+    if (previewContainer) {
+      const failedText = i18nManager.t('ui.interface.previewGenerationFailed', {
+        error: error.message || i18nManager.t('ui.interface.unknownError')
+      });
+      previewContainer.innerHTML = `<div style="text-align: center; padding: 20px; color: #f44;">${failedText}</div>`;
+    }
+  } finally {
+    // Restore button state
+    if (previewButton) {
+      previewButton.textContent = originalText;
+      previewButton.disabled = false;
+    }
+  }
 }
 
 // Add cleanup before window close
@@ -620,35 +620,35 @@ window.addEventListener('beforeunload', cleanup);
 
 // Add Eagle plugin lifecycle events
 if (typeof eagle !== 'undefined') {
-	eagle.onPluginBeforeExit && eagle.onPluginBeforeExit(() => {
-		cleanup();
-	});
+  eagle.onPluginBeforeExit && eagle.onPluginBeforeExit(() => {
+    cleanup();
+  });
 }
 
 // Global error handling
 window.addEventListener('error', (event) => {
-	console.error('Global error:', event.error);
-	// If it's a multilingual related error, try to recover
-	if (event.error?.message?.includes('i18n') || event.error?.message?.includes('translation')) {
-		console.log('Detected i18n related error, attempting recovery...');
-		setTimeout(() => {
-			i18nManager.reinitialize().catch(error => {
-				console.error('I18n recovery failed:', error);
-			});
-		}, 1000);
-	}
+  console.error('Global error:', event.error);
+  // If it's a multilingual related error, try to recover
+  if (event.error?.message?.includes('i18n') || event.error?.message?.includes('translation')) {
+    console.log('Detected i18n related error, attempting recovery...');
+    setTimeout(() => {
+      i18nManager.reinitialize().catch(error => {
+        console.error('I18n recovery failed:', error);
+      });
+    }, 1000);
+  }
 });
 
 // Unhandled Promise rejection handling
 window.addEventListener('unhandledrejection', (event) => {
-	console.error('Unhandled promise rejection:', event.reason);
-	if (event.reason?.message?.includes('i18n') || event.reason?.message?.includes('translation')) {
-		console.log('Detected i18n promise error, attempting recovery...');
-		event.preventDefault(); // Prevent error from being shown to user
-		setTimeout(() => {
-			i18nManager.reinitialize().catch(error => {
-				console.error('I18n promise recovery failed:', error);
-			});
-		}, 1000);
-	}
+  console.error('Unhandled promise rejection:', event.reason);
+  if (event.reason?.message?.includes('i18n') || event.reason?.message?.includes('translation')) {
+    console.log('Detected i18n promise error, attempting recovery...');
+    event.preventDefault(); // Prevent error from being shown to user
+    setTimeout(() => {
+      i18nManager.reinitialize().catch(error => {
+        console.error('I18n promise recovery failed:', error);
+      });
+    }, 1000);
+  }
 });

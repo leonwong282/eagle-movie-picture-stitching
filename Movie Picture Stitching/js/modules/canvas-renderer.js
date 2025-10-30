@@ -68,7 +68,7 @@ class CanvasRenderer {
   loadImage(url, timeout = 10000) {
     return new Promise((resolve, reject) => {
       const img = new Image();
-      
+
       const timeoutId = setTimeout(() => {
         reject(new Error(`Image load timeout: ${url}`));
       }, timeout);
@@ -116,7 +116,7 @@ class CanvasRenderer {
    */
   calculateTotalHeight(validImages, params) {
     const { cropTopPercent, cropBottomPercent } = params;
-    
+
     return validImages.reduce((sum, { data }, i) => {
       if (i === 0) {
         // First image only crop bottom
@@ -139,7 +139,7 @@ class CanvasRenderer {
    */
   renderStitchedImage(validImages, params) {
     const { cropTopPercent, cropBottomPercent } = params;
-    
+
     // Calculate dimensions
     const totalHeight = this.calculateTotalHeight(validImages, params);
     const maxWidth = Math.max(...validImages.map(({ data }) => data.width));

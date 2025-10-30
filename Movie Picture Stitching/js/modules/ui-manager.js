@@ -23,7 +23,7 @@ class UIManager {
   setupEventListeners() {
     // Parameter input listeners with debounced preview updates
     const paramInputs = ['cropTopPercent', 'cropBottomPercent', 'exportQuality'];
-    
+
     paramInputs.forEach(id => {
       const element = document.getElementById(id);
       if (element) {
@@ -33,7 +33,7 @@ class UIManager {
           window.dispatchEvent(new CustomEvent('ui:parameterChanged', {
             detail: { element: id }
           }));
-          
+
           // Auto-trigger preview for crop parameters if preview exists
           if ((id === 'cropTopPercent' || id === 'cropBottomPercent') && window.previewCanvas) {
             window.dispatchEvent(new CustomEvent('ui:autoPreviewRequested', {
@@ -41,14 +41,14 @@ class UIManager {
             }));
           }
         }, 500));
-        
+
         // Blur event for immediate validation
         element.addEventListener('blur', () => {
           window.dispatchEvent(new CustomEvent('ui:parameterChanged', {
             detail: { element: id, immediate: true }
           }));
         });
-        
+
         // Real-time remaining values update for crop parameters
         if (id === 'cropTopPercent' || id === 'cropBottomPercent') {
           element.addEventListener('input', () => {
@@ -97,7 +97,7 @@ class UIManager {
     if (!button) return;
 
     button.disabled = !enabled;
-    
+
     if (textKey && this.i18n) {
       button.textContent = this.i18n.t(textKey);
     }
@@ -174,11 +174,11 @@ class UIManager {
     // Create info container
     const info = document.createElement('div');
     info.style.cssText = 'flex: 1; color: #ccc; font-size: 12px;';
-    
-    const imageName = item.name || (this.i18n ? 
-      this.i18n.t('ui.interface.imageName', { index: index + 1 }) : 
+
+    const imageName = item.name || (this.i18n ?
+      this.i18n.t('ui.interface.imageName', { index: index + 1 }) :
       `Image ${index + 1}`);
-    
+
     info.innerHTML = `
       <div style="font-weight: bold; margin-bottom: 2px;">${index + 1}. ${this.escapeHtml(imageName)}</div>
       <div>${item.width} × ${item.height}px</div>
@@ -233,15 +233,15 @@ class UIManager {
     if (stats.count) {
       const infoDiv = document.createElement('div');
       infoDiv.style.cssText = 'text-align: center; padding: 10px; color: #999; font-size: 12px;';
-      
-      const processedText = this.i18n ? 
+
+      const processedText = this.i18n ?
         this.i18n.t('ui.interface.imagesProcessed', {
           count: stats.count,
           width: stats.width || 0,
           height: stats.height || 0
-        }) : 
+        }) :
         `Processed ${stats.count} images (${stats.width}×${stats.height}px)`;
-      
+
       infoDiv.textContent = processedText;
       previewContainer.appendChild(infoDiv);
     }
@@ -256,7 +256,7 @@ class UIManager {
     if (!pinButton) return;
 
     pinButton.style.color = isPinned ? '#ffd700' : '#fff';
-    
+
     const titleKey = isPinned ? 'ui.header.unpinWindow' : 'ui.header.pinWindow';
     if (this.i18n) {
       pinButton.title = this.i18n.t(titleKey);

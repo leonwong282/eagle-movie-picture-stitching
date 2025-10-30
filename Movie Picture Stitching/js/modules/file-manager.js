@@ -8,7 +8,7 @@ class FileManager {
     this.fs = null;
     this.path = null;
     this.tempFiles = new Set();
-    
+
     // Initialize Node.js modules if available
     try {
       this.fs = require('fs');
@@ -53,7 +53,7 @@ class FileManager {
     }
 
     const filePath = this.path.join(directory, filename);
-    
+
     try {
       this.fs.writeFileSync(filePath, buffer);
       this.tempFiles.add(filePath);
@@ -253,11 +253,11 @@ class FileManager {
    */
   cleanupTempFiles() {
     console.log(`Cleaning up ${this.tempFiles.size} temporary files`);
-    
+
     for (const filePath of this.tempFiles) {
       this.deleteFile(filePath);
     }
-    
+
     this.tempFiles.clear();
   }
 
