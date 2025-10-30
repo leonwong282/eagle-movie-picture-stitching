@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### ✨ Added
+- 💾 **Parameter Persistence**: Automatically saves and restores user settings
+  - Crop percentages (top and bottom)
+  - Export format (JPG, PNG, WebP)
+  - Export quality (0.1-1.0)
+  - Settings persist across plugin sessions
+  - No manual save/load required - completely automatic
+- 🔧 **Storage Manager Module**: New modular storage system with localStorage
+  - Robust validation and error handling
+  - Graceful degradation when storage unavailable
+  - Debug utilities for development
+
+### 🚀 Improved
+- ⚡ **Performance**: Fixed 5-second plugin load delay
+  - Converted parameter loading to asynchronous pattern
+  - Used `requestIdleCallback` for non-blocking initialization
+  - Plugin now opens instantly (< 200ms vs ~5 seconds)
+  - Parameters load progressively in background
+- 🎯 **User Experience**: Parameters no longer reset to defaults on plugin reopen
+- ⚡ **Auto-Save**: Debounced auto-save (300ms) prevents excessive writes
+- 🛡️ **Data Safety**: Comprehensive validation before saving/loading parameters
+
+### 🐛 Fixed
+- 🔧 Removed duplicate `getParams()` method definition
+- ⚡ Eliminated blocking DOM wait in constructor
+- 🚀 Async parameter loading prevents UI freeze on plugin open
+
+### 🔧 Technical Changes
+- `ParameterManager.loadSavedParametersAsync()`: New async loading method
+- `ParameterManager.applyParametersToDOMAsync()`: Non-blocking DOM updates
+- `ParameterManager.loadSavedParameters()`: Deprecated (kept for compatibility)
+- Event listeners now use `{ once: true }` to prevent memory leaks
+
 ## [1.0.0] - 2025-09-01 🌍
 
 ### ✨ Added

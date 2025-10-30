@@ -14,16 +14,16 @@ class MoviePictureStitchingApp {
     this.canvasRenderer = new CanvasRenderer();
     this.uiManager = new UIManager(i18nManager);
     this.fileManager = new FileManager();
-    
+
     // Application state
     this.isAlwaysOnTop = false;
     this.isProcessing = false;
     this.isAutoPreview = false;
-    
+
     // Image caching for auto-preview performance
     this.lastImageData = null;
     this.lastValidImages = null;
-    
+
     // Performance tracking
     this.performanceMonitor = {
       lastRenderTime: 0,
@@ -37,20 +37,21 @@ class MoviePictureStitchingApp {
   async initialize() {
     try {
       console.log('🚀 Initializing Movie Picture Stitching App...');
-      
+
       // Initialize all modules
+      this.parameterManager.initialize(); // Apply saved parameters to DOM
       await this.eagleAPI.initialize();
       this.canvasRenderer.initialize();
       this.uiManager.initialize();
       this.fileManager.initialize();
-      
+
       // Setup event listeners
       this.setupEventListeners();
-      
+
       // Initial UI render
       await this.renderImageList();
       this.parameterManager.updateRemainingValues();
-      
+
       console.log('✅ Application initialization completed');
     } catch (error) {
       console.error('❌ Application initialization failed:', error);
@@ -79,7 +80,7 @@ class MoviePictureStitchingApp {
 
     // Button clicks
     this.setupButtonListeners();
-    
+
     // Window lifecycle
     this.setupWindowListeners();
   }
@@ -142,7 +143,7 @@ class MoviePictureStitchingApp {
       // Clear image cache when selection changes
       this.lastImageData = null;
       this.lastValidImages = null;
-      
+
       await this.renderImageList();
     } catch (error) {
       console.error('Failed to handle selection change:', error);
@@ -158,16 +159,16 @@ class MoviePictureStitchingApp {
     try {
       // Update remaining values with context of what changed
       this.parameterManager.updateRemainingValues();
-      
+
       // Skip validation for update-only events
       if (details.updateOnly) {
         return;
       }
-      
+
       // Validate current parameters
       const params = this.parameterManager.getParams(element);
       const validation = this.parameterManager.validateParams(params);
-      
+
       if (!validation.isValid) {
         console.warn('Parameter validation issues:', validation.errors);
       }
@@ -188,10 +189,10 @@ class MoviePictureStitchingApp {
 
     try {
       console.log('Auto-preview triggered by:', details.trigger);
-      
+
       // Set a flag to indicate this is an auto-preview
       this.isAutoPreview = true;
-      
+
       // Perform preview update with reduced UI feedback
       await this.renderPreview(true);
     } catch (error) {
@@ -214,7 +215,7 @@ class MoviePictureStitchingApp {
     try {
       this.isProcessing = true;
       this.uiManager.disableButtons();
-      
+
       await this.renderPreview();
     } catch (error) {
       console.error('Preview generation failed:', error);
@@ -237,7 +238,7 @@ class MoviePictureStitchingApp {
     try {
       this.isProcessing = true;
       this.uiManager.setButtonState('saveButton', false, 'ui.buttons.saving');
-      
+
       await this.saveImage();
     } catch (error) {
       console.error('Save operation failed:', error);
@@ -308,7 +309,7 @@ class MoviePictureStitchingApp {
    */
   async renderPreview(isAutoPreview = false) {
     const startTime = performance.now();
-    
+
     try {
       // Show loading state only for manual preview
       if (!isAutoPreview) {
@@ -318,7 +319,7 @@ class MoviePictureStitchingApp {
       // Get and validate selected images
       const selected = await this.eagleAPI.getSelectedImages();
       const selectionValidation = this.eagleAPI.validateSelection(selected);
-      
+
       if (!selectionValidation.isValid) {
         throw new Error(selectionValidation.errors.join(', '));
       }
@@ -326,7 +327,7 @@ class MoviePictureStitchingApp {
       // Get and validate parameters
       const params = this.parameterManager.getParams();
       const paramValidation = this.parameterManager.validateParams(params);
-      
+
       if (!paramValidation.isValid) {
         throw new Error(paramValidation.errors.join(', '));
       }
@@ -342,9 +343,9 @@ class MoviePictureStitchingApp {
       // For auto-preview, check if we need to reload images
       // (Skip if images haven't changed and we're just updating crop parameters)
       let validImages;
-      
-      if (isAutoPreview && this.lastImageData && 
-          JSON.stringify(images.map(i => i.url)) === JSON.stringify(this.lastImageData.map(i => i.url))) {
+
+      if (isAutoPreview && this.lastImageData &&
+        JSON.stringify(images.map(i => i.url)) === JSON.stringify(this.lastImageData.map(i => i.url))) {
         // Reuse previously loaded images for performance
         validImages = this.lastValidImages;
         console.log('Auto-preview: Reusing loaded images');
@@ -352,13 +353,13 @@ class MoviePictureStitchingApp {
         // Load images
         console.log(`Loading ${images.length} images...`);
         validImages = await this.canvasRenderer.loadImages(images);
-        
+
         if (validImages.length === 0) {
           throw new Error('All images failed to load');
         }
 
         console.log(`Successfully loaded ${validImages.length}/${images.length} images`);
-        
+
         // Cache for auto-preview
         this.lastImageData = images;
         this.lastValidImages = validImages;
@@ -366,7 +367,7 @@ class MoviePictureStitchingApp {
 
       // Render stitched image
       const canvas = this.canvasRenderer.renderStitchedImage(validImages, params);
-      
+
       // Style and display canvas
       this.canvasRenderer.styleCanvasForPreview(canvas);
       this.canvasRenderer.setPreviewCanvas(canvas);
@@ -394,12 +395,12 @@ class MoviePictureStitchingApp {
 
     } catch (error) {
       console.error('Preview rendering failed:', error);
-      
+
       // Only show error UI for manual preview
       if (!isAutoPreview) {
         this.uiManager.showPreviewError('ui.messages.previewError', { error: error.message });
       }
-      
+
       throw error;
     }
   }
@@ -411,10 +412,10 @@ class MoviePictureStitchingApp {
     try {
       // Get current folder
       const folder = await this.eagleAPI.getSelectedFolder();
-      
+
       // Get parameters
       const params = this.parameterManager.getParams();
-      
+
       // Get preview canvas
       const canvas = this.canvasRenderer.getPreviewCanvas();
       if (!canvas) {
@@ -458,22 +459,22 @@ class MoviePictureStitchingApp {
   cleanup() {
     try {
       console.log('🧹 Cleaning up application resources...');
-      
+
       // Clear image cache
       this.lastImageData = null;
       this.lastValidImages = null;
-      
+
       // Clean up global references
       if (typeof window !== 'undefined') {
         window.parameterManager = null;
       }
-      
+
       // Cleanup all modules
       this.eagleAPI.cleanup();
       this.canvasRenderer.cleanup();
       this.uiManager.cleanup();
       this.fileManager.cleanup();
-      
+
       console.log('✅ Cleanup completed');
     } catch (error) {
       console.error('❌ Cleanup failed:', error);
@@ -488,7 +489,7 @@ class MoviePictureStitchingApp {
     return {
       lastRenderTime: this.performanceMonitor.lastRenderTime,
       renderCount: this.performanceMonitor.renderCount,
-      averageRenderTime: this.performanceMonitor.renderCount > 0 ? 
+      averageRenderTime: this.performanceMonitor.renderCount > 0 ?
         this.performanceMonitor.lastRenderTime / this.performanceMonitor.renderCount : 0
     };
   }
@@ -502,18 +503,18 @@ if (typeof eagle !== 'undefined') {
   eagle.onPluginCreate(async (plugin) => {
     try {
       console.log('🎬 Movie Picture Stitching Plugin Create Event');
-      
+
       // Create and initialize application
       app = new MoviePictureStitchingApp();
-      
+
       // Make parameter manager globally accessible for i18n dynamic updates
       window.parameterManager = app.parameterManager;
-      
+
       await app.initialize();
-      
+
       // Set initial window state
       app.eagleAPI.setAlwaysOnTop(app.isAlwaysOnTop);
-      
+
       console.log('🎉 Plugin successfully created and initialized');
     } catch (error) {
       console.error('❌ Plugin creation failed:', error);
@@ -538,4 +539,96 @@ if (typeof eagle !== 'undefined') {
 if (typeof window !== 'undefined') {
   window.MoviePictureStitchingApp = MoviePictureStitchingApp;
   window.getApp = () => app;
+
+  // Storage debugging utilities
+  window.storageDebug = {
+    // Quick access to storage manager
+    getManager: () => app?.parameterManager?.storageManager,
+
+    // View all saved parameters
+    viewAll: function () {
+      const manager = this.getManager();
+      if (!manager) {
+        console.error('Storage manager not available');
+        return null;
+      }
+      const info = manager.getStorageInfo();
+      console.table(info.parameters);
+      return info;
+    },
+
+    // Clear all parameters
+    clearAll: function () {
+      const manager = this.getManager();
+      if (!manager) {
+        console.error('Storage manager not available');
+        return;
+      }
+      manager.clearAllParameters();
+      console.log('✅ All parameters cleared');
+    },
+
+    // Reset to defaults
+    resetDefaults: function () {
+      if (app && app.parameterManager) {
+        app.parameterManager.resetToDefaults();
+        console.log('✅ Reset to defaults');
+      } else {
+        console.error('Parameter manager not available');
+      }
+    },
+
+    // Test save/load cycle
+    testCycle: function () {
+      const manager = this.getManager();
+      if (!manager) {
+        console.error('Storage manager not available');
+        return;
+      }
+
+      const testParams = {
+        cropTopPercent: 80,
+        cropBottomPercent: 15,
+        exportFormat: 'webp',
+        exportQuality: 0.85
+      };
+
+      console.log('Saving test params:', testParams);
+      manager.saveAllParameters(testParams);
+
+      console.log('Loading params...');
+      const loaded = manager.loadAllParameters();
+
+      console.log('Loaded params:', loaded);
+      const match = JSON.stringify(testParams) === JSON.stringify(loaded);
+      console.log(match ? '✅ Test passed!' : '❌ Test failed!');
+
+      return { testParams, loaded, match };
+    },
+
+    // Check storage status
+    status: function () {
+      const manager = this.getManager();
+      if (!manager) {
+        return { available: false, error: 'Manager not initialized' };
+      }
+
+      const info = manager.getStorageInfo();
+      console.log('Storage Status:');
+      console.log('- Available:', info.available);
+      console.log('- Parameters stored:', info.count);
+      console.log('- Last saved:', info.lastSaved);
+      console.log('\nStored parameters:');
+      console.table(info.parameters);
+
+      return info;
+    }
+  };
+
+  console.log('💾 Storage debug tools loaded! Use:');
+  console.log('  storageDebug.viewAll()      - View all saved parameters');
+  console.log('  storageDebug.clearAll()     - Clear all saved parameters');
+  console.log('  storageDebug.resetDefaults() - Reset to default values');
+  console.log('  storageDebug.testCycle()    - Test save/load cycle');
+  console.log('  storageDebug.status()       - Check storage status');
 }
