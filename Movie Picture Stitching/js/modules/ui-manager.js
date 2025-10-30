@@ -132,7 +132,7 @@ class UIManager {
     list.innerHTML = '';
 
     if (!images || images.length === 0) {
-      const noImagesText = this.i18n ? this.i18n.t('ui.interface.noImages') : 'No images selected';
+      const noImagesText = this.i18n ? this.i18n.t('ui.interface.noImagesSelected') : 'No images selected';
       list.innerHTML = `<div style="text-align: center; padding: 20px; color: #999; font-size: 14px;">${noImagesText}</div>`;
       return;
     }
