@@ -219,7 +219,7 @@ class MoviePictureStitchingApp {
       await this.renderPreview();
     } catch (error) {
       console.error('Preview generation failed:', error);
-      this.uiManager.showPreviewError('ui.messages.previewError', { error: error.message });
+      this.uiManager.showPreviewError('ui.messages.saveError', { error: error.message });
     } finally {
       this.isProcessing = false;
       this.uiManager.enableButtons();

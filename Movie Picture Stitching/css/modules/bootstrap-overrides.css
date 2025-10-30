@@ -24,8 +24,17 @@
 
   /* Cards */
   --bs-card-bg: rgba(48, 54, 61, 0.9);
+  --bs-card-bg-gradient-start: #e8e9eb;
+  --bs-card-bg-gradient-end: #30363c;
   --bs-card-border-color: rgba(255, 255, 255, 0.1);
   --bs-card-cap-bg: rgba(48, 54, 61, 0.95);
+
+  /* Navbar */
+  --bs-navbar-bg-gradient-start: rgba(22, 27, 34, 0.98);
+  --bs-navbar-bg-gradient-end: rgba(17, 21, 27, 0.95);
+
+  /* Container */
+  --bs-container-bg: #30363c;
 
   /* Form Controls */
   --bs-form-control-bg: rgba(48, 54, 61, 0.95);
@@ -97,7 +106,7 @@
 .card {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: linear-gradient(135deg, rgba(48, 54, 61, 0.95) 0%, rgba(30, 36, 43, 0.9) 100%) !important;
+  background: linear-gradient(135deg, var(--bs-card-bg-gradient-start) 0%, var(--bs-card-bg-gradient-end) 100%);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   overflow: hidden;
@@ -126,7 +135,7 @@
 .navbar {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: linear-gradient(180deg, rgba(22, 27, 34, 0.98) 0%, rgba(17, 21, 27, 0.95) 100%) !important;
+  background: linear-gradient(180deg, var(--bs-navbar-bg-gradient-start) 0%, var(--bs-navbar-bg-gradient-end) 100%);
   flex-shrink: 0;
   /* padding: 0.75rem 1.5rem; */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -518,7 +527,7 @@
 
 /* Background gradients for container */
 .bg-dark {
-  background: rgba(22, 27, 34, 0.95) !important;
+  background: var(--bs-container-bg);
 }
 
 /* ==========================================================================

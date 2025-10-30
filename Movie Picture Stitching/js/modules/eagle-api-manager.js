@@ -195,11 +195,11 @@ class EagleAPIManager {
     const errors = [];
 
     if (!selected || selected.length === 0) {
-      errors.push('No images selected');
+      errors.push(i18nManager.t('ui.interface.selectImagesFirst'));
     }
 
     if (selected && selected.length > 50) {
-      errors.push('Too many images selected (maximum 50)');
+      errors.push(i18nManager.t('ui.interface.tooManyImages'));
     }
 
     // Check for valid image formats
