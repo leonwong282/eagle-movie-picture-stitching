@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="Eagle Movie Picture Stitching Plugin - Vertically stitch multiple movie subtitle images into long panoramic images">
+  <meta name="description"
+    content="Eagle Movie Picture Stitching Plugin - Vertically stitch multiple movie subtitle images into long panoramic images">
   <title>Movie Picture Stitching - Eagle Plugin</title>
   <link rel="stylesheet" href="css/index.css">
 </head>
@@ -17,37 +18,42 @@
         <h1 class="title" data-i18n="ui.header.title">Movie Subtitle Long Image Stitching</h1>
       </div>
       <div class="top-right">
-        <button class="pin-button" id="pinButton" type="button" data-i18n="[aria-label]ui.header.pinWindow" data-i18n-title="ui.header.pinWindow" aria-label="Pin Window" title="Pin Window">📌</button>
-        <button class="close-button" id="closeButton" type="button" data-i18n="[aria-label]ui.header.closeWindow" data-i18n-title="ui.header.closeWindow" aria-label="Close Window" title="Close Window">X</button>
+        <button class="pin-button" id="pinButton" type="button" data-i18n="[aria-label]ui.header.pinWindow"
+          data-i18n-title="ui.header.pinWindow" aria-label="Pin Window" title="Pin Window">📌</button>
+        <button class="close-button" id="closeButton" type="button" data-i18n="[aria-label]ui.header.closeWindow"
+          data-i18n-title="ui.header.closeWindow" aria-label="Close Window" title="Close Window">X</button>
       </div>
     </header>
-    
+
     <main class="main" role="main">
       <div class="middle">
-        <aside class="list" role="complementary" data-i18n="[aria-label]ui.panels.imageList" aria-label="Selected Images List"></aside>
-        
-        <section class="preview" role="main" data-i18n="[aria-label]ui.panels.preview" aria-label="Image Preview Area"></section>
-        
-        <aside class="property" role="complementary" data-i18n="[aria-label]ui.panels.settings" aria-label="Settings Panel">
+        <aside class="list" role="complementary" data-i18n="[aria-label]ui.panels.imageList"
+          aria-label="Selected Images List"></aside>
+
+        <section class="preview" role="main" data-i18n="[aria-label]ui.panels.preview" aria-label="Image Preview Area">
+        </section>
+
+        <aside class="property" role="complementary" data-i18n="[aria-label]ui.panels.settings"
+          aria-label="Settings Panel">
           <form class="property-controls" aria-label="Image Processing Parameters">
             <div class="input-group">
               <label for="cropTopPercent" data-i18n="ui.settings.cropTop">Top Crop Height (%):</label>
-              <input type="number" id="cropTopPercent" value="85" min="0" max="99" 
-                     data-i18n="[title]ui.tooltips.cropTop"
-                     title="Set the height percentage to crop from the top of images" 
-                     aria-describedby="crop-top-help">
-              <small id="crop-top-help" class="help-text"><span data-i18n="ui.settings.maxSettingTop">Max setting:</span> <span id="remaining-top">14</span>%</small>
+              <input type="number" id="cropTopPercent" value="85" min="0" max="99"
+                data-i18n="[title]ui.tooltips.cropTop" title="Set the height percentage to crop from the top of images"
+                aria-describedby="crop-top-help">
+              <small id="crop-top-help" class="help-text"><span data-i18n="ui.settings.maxSettingTop">Max
+                  setting:</span> <span id="remaining-top">14</span>%</small>
             </div>
-            
+
             <div class="input-group">
               <label for="cropBottomPercent" data-i18n="ui.settings.cropBottom">Bottom Crop Height (%):</label>
-              <input type="number" id="cropBottomPercent" value="5" min="0" max="99" 
-                     data-i18n="[title]ui.tooltips.cropBottom"
-                     title="Set the height percentage to crop from the bottom of images" 
-                     aria-describedby="crop-bottom-help">
-              <small id="crop-bottom-help" class="help-text"><span data-i18n="ui.settings.maxSettingBottom">Max setting:</span> <span id="remaining-bottom">94</span>%</small>
+              <input type="number" id="cropBottomPercent" value="5" min="0" max="99"
+                data-i18n="[title]ui.tooltips.cropBottom"
+                title="Set the height percentage to crop from the bottom of images" aria-describedby="crop-bottom-help">
+              <small id="crop-bottom-help" class="help-text"><span data-i18n="ui.settings.maxSettingBottom">Max
+                  setting:</span> <span id="remaining-bottom">94</span>%</small>
             </div>
-            
+
             <div class="input-group">
               <label for="exportFormat" data-i18n="ui.settings.exportFormat">Export Format:</label>
               <select id="exportFormat" data-i18n="[title]ui.tooltips.exportFormat" aria-describedby="format-help">
@@ -56,42 +62,42 @@
                 <option value="png">PNG</option>
               </select>
             </div>
-            
+
             <div class="input-group">
               <label for="exportQuality" data-i18n="ui.settings.exportQuality">Export Quality (0.1-1.0):</label>
-              <input type="number" id="exportQuality" value="0.92" min="0.1" max="1.0" step="0.01" 
-                     data-i18n="[title]ui.tooltips.exportQuality"
-                     title="Set the quality of exported image, range 0.1-1.0" aria-describedby="quality-help">
-              <small id="quality-help" class="help-text" data-i18n="ui.settings.qualityHelp">Higher value = better quality, larger file</small>
+              <input type="number" id="exportQuality" value="0.92" min="0.1" max="1.0" step="0.01"
+                data-i18n="[title]ui.tooltips.exportQuality" title="Set the quality of exported image, range 0.1-1.0"
+                aria-describedby="quality-help">
+              <small id="quality-help" class="help-text" data-i18n="ui.settings.qualityHelp">Higher value = better
+                quality, larger file</small>
             </div>
           </form>
-          
+
           <div class="property-bottom">
-            <button class="button" id="previewButton" type="button" 
-                    data-i18n="[aria-label]ui.buttons.preview" 
-                    data-i18n="[title]ui.tooltips.preview"
-                    aria-label="Generate Preview" title="Generate a preview of the stitched image">Preview</button>
-            <button class="button" id="saveButton" type="button" 
-                    data-i18n="[aria-label]ui.buttons.save" 
-                    data-i18n="[title]ui.tooltips.save"
-                    aria-label="Save Image" title="Save the stitched image to Eagle current folder">Save</button>
+            <button class="button" id="previewButton" type="button" data-i18n="[aria-label]ui.buttons.preview"
+              data-i18n="[title]ui.tooltips.preview" aria-label="Generate Preview"
+              title="Generate a preview of the stitched image">Preview</button>
+            <button class="button" id="saveButton" type="button" data-i18n="[aria-label]ui.buttons.save"
+              data-i18n="[title]ui.tooltips.save" aria-label="Save Image"
+              title="Save the stitched image to Eagle current folder">Save</button>
           </div>
         </aside>
       </div>
     </main>
   </div>
-  
+
   <!-- Internationalization support files -->
   <script type="text/javascript" src="js/i18n-manager.js"></script>
   <script type="text/javascript" src="js/i18n-utils.js"></script>
-  
+
   <!-- Modular architecture - Core modules -->
+  <script type="text/javascript" src="js/modules/storage-manager.js"></script>
   <script type="text/javascript" src="js/modules/parameter-manager.js"></script>
   <script type="text/javascript" src="js/modules/eagle-api-manager.js"></script>
   <script type="text/javascript" src="js/modules/canvas-renderer.js"></script>
   <script type="text/javascript" src="js/modules/ui-manager.js"></script>
   <script type="text/javascript" src="js/modules/file-manager.js"></script>
-  
+
   <!-- Main application -->
   <script type="text/javascript" src="js/plugin-modular.js"></script>
 </body>

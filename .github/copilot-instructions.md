@@ -1,153 +1,280 @@
-# Eagle Movie Picture Stitching Plugin - AI Development Guide
+# Eagle Movie Picture Stitching Plugin - AI Coding Instructions
 
 ## Project Overview
-This is an Eagle plugin for vertically stitching multiple movie images into panoramic compositions. It features a modern glass-effect UI with comprehensive internationalization support for 8 languages.
 
-## Architecture & Key Components
+An Eagle desktop plugin for vertically stitching multiple images into panoramic compositions. Built with vanilla JavaScript, modular architecture, and comprehensive i18n support for 8 languages.
 
-### Plugin Structure
-- **`manifest.json`**: Eagle plugin configuration with i18n template strings (`{{manifest.app.name}}`)
-- **`index.html`**: Single-page application entry point
-- **`js/plugin.js`**: Core business logic with Eagle API integration (655 lines)
-- **`js/i18n-manager.js`**: Comprehensive internationalization system
-- **`_locales/`**: Translation files for 8 languages (en, zh_CN, zh_TW, ja_JP, es_ES, de_DE, ko_KR, ru_RU)
-- **`css/`**: Modular CSS architecture with 10+ component modules
+**Tech Stack:** HTML5 Canvas API, vanilla JavaScript ES6+, Eagle Plugin API, Node.js (fs/path for file ops)
 
-### Core APIs & Integration Points
+## Architecture Patterns
 
-#### Eagle API Integration
+### Modular JavaScript Architecture
+The plugin uses **class-based modules** with clear separation of concerns:
+
 ```javascript
-// Key Eagle API patterns used throughout:
-eagle.onPluginCreate() // Plugin lifecycle
-eagle.item.getSelected() // Get selected images
-eagle.folder.getSelected() // Get current folder
-eagle.item.addFromPath() // Save stitched image
-eagle.window.setAlwaysOnTop() // Window management
-eagle.app.locale // Language detection
+// Core modules (js/modules/):
+ParameterManager      // Input validation & parameter management
+EagleAPIManager       // Eagle API integration & polling
+CanvasRenderer        // Image processing & rendering
+UIManager             // DOM manipulation & user feedback
+FileManager           // File system operations & cleanup
+
+// Main app (js/plugin-modular.js):
+MoviePictureStitchingApp  // Orchestrates all modules with event-driven communication
 ```
 
-#### Canvas-Based Image Processing
-- Uses HTML5 Canvas API for real-time preview and stitching
-- Implements percentage-based cropping (top/bottom) with smart validation
-- Supports JPG/PNG/WebP export with quality control
-- Global `window.previewCanvas` object for performance optimization
+**Critical Pattern:** Modules communicate via **custom DOM events** (`eagle:selectionChanged`, `ui:parameterChanged`, `ui:autoPreviewRequested`). Never use direct module coupling.
 
-### Internationalization System
-
-#### Language Detection Flow
-1. Detect Eagle's `eagle.app.locale` setting
-2. Fallback to browser `navigator.language`
-3. Auto-map language codes (e.g., `zh-CN` → `zh_CN`)
-4. Load appropriate JSON translation file from `_locales/`
-
-#### i18n Manager API
+### Event-Driven Communication
 ```javascript
-// Core i18n patterns:
-i18nManager.init() // Initialize with Eagle language detection
-i18nManager.t('ui.messages.success') // Translate keys
-i18nManager.setLanguage('en') // Runtime language switching
-initializeAllI18nFeatures() // Apply translations to DOM
+// Dispatch events from modules
+window.dispatchEvent(new CustomEvent('eagle:selectionChanged', {
+  detail: { selected }
+}));
+
+// Listen in main app
+window.addEventListener('eagle:selectionChanged', (event) => {
+  this.handleSelectionChange(event.detail.selected);
+});
 ```
 
-#### Translation File Structure
-```json
-{
-  "manifest": { "app": { "name": "...", "description": "..." } },
-  "ui": {
-    "header": { "title": "...", "pinWindow": "..." },
-    "settings": { "cropTop": "...", "formatOptions": {...} },
-    "messages": { "selectImages": "...", "success": "..." }
+### Eagle Plugin Lifecycle
+**Always** hook into Eagle's lifecycle:
+```javascript
+eagle.onPluginCreate(async (plugin) => {
+  app = new MoviePictureStitchingApp();
+  await app.initialize();
+});
+
+eagle.onPluginBeforeExit(() => {
+  app?.cleanup();  // CRITICAL: cleanup resources
+});
+```
+
+## Internationalization (i18n)
+
+### Translation System
+Uses **i18next** with custom `I18nManager` class. Language files in `_locales/*.json` (8 languages).
+
+**Critical Pattern:** All UI text MUST use `data-i18n` attributes:
+```html
+<!-- Correct: -->
+<button data-i18n="ui.buttons.save">Save</button>
+<input data-i18n="[title]ui.tooltips.cropTop" />
+
+<!-- Wrong: Never hardcode text -->
+<button>Save Image</button>
+```
+
+**Dynamic Translation:**
+```javascript
+// Use i18nManager.t() for runtime text
+this.uiManager.showMessage('ui.messages.success');
+i18nManager.t('ui.interface.imagesProcessed', { count: 5, width: 1920, height: 1080 });
+```
+
+### Language Detection Flow
+1. Check `eagle.app.locale` (primary)
+2. Fallback to `navigator.language` with mapping
+3. Default to `'en'` if unavailable
+
+## Canvas Rendering Patterns
+
+### Image Stitching Algorithm
+Images are stitched **vertically** with percentage-based cropping:
+- **First image:** Only crop bottom
+- **Remaining images:** Crop top AND bottom
+
+```javascript
+// Key constraint: cropTopPercent + cropBottomPercent < 100
+const totalHeight = validImages.reduce((sum, { data }, i) => {
+  if (i === 0) {
+    return sum + (data.height - Math.round(data.height * (cropBottomPercent / 100)));
+  } else {
+    const cropTop = Math.round(data.height * (cropTopPercent / 100));
+    const cropBottom = Math.round(data.height * (cropBottomPercent / 100));
+    return sum + (data.height - cropTop - cropBottom);
   }
+}, 0);
+```
+
+### Canvas Limits
+**Always validate canvas dimensions** before rendering:
+```javascript
+const MAX_CANVAS_SIZE = 32767;  // Browser hard limit
+if (width > MAX_CANVAS_SIZE || height > MAX_CANVAS_SIZE) {
+  throw new Error(`Canvas size exceeds maximum`);
 }
 ```
 
-### CSS Architecture
+### Performance Optimizations
+1. **Image Caching:** Cache loaded images for auto-preview to avoid reloading
+2. **Debounced Updates:** Real-time preview uses `isAutoPreview` flag for reduced UI feedback
+3. **Parallel Loading:** Load all images with `Promise.all()`, filter failures
 
-#### Modular Design Pattern
-- **`css/index.css`**: Central import hub for all modules
-- **`css/modules/variables.css`**: CSS custom properties system
-- **`css/modules/base.css`**: Reset and base styles
-- **Component modules**: `buttons.css`, `forms.css`, `header.css`, etc.
+## Parameter Validation
 
-#### Design System Variables
-```css
-:root {
-  --color-bg-primary: #0d1117; /* GitHub dark theme colors */
-  --color-accent-primary: #238636; /* Green accent */
-  --border-radius-lg: 12px; /* Modern rounded corners */
-  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+### Smart Adjustment Pattern
+When users adjust crop parameters, **only adjust the active parameter**:
+```javascript
+// User adjusting top crop -> constrain top, keep bottom fixed
+if (adjustingElement === 'cropTopPercent') {
+  const maxTop = 99 - cropBottomPercent;
+  cropTopPercent = Math.min(cropTopPercent, maxTop);
 }
+```
+
+### Remaining Value Display
+Update `#remaining-top` and `#remaining-bottom` spans **immediately** when parameters change. Access via `window.parameterManager.updateRemainingValues()`.
+
+## File Management
+
+### Parameter Persistence
+
+**Storage Strategy:**
+Uses browser localStorage with namespaced keys:
+- Prefix: `eagle-movie-stitching:`
+- Individual keys per parameter for granular control
+- Auto-save on parameter change (debounced 300ms)
+- Auto-load on ParameterManager construction
+
+**Storage Manager API:**
+```javascript
+// Save single parameter
+storageManager.saveParameter('cropTopPercent', 85);
+
+// Load with default fallback
+const value = storageManager.loadParameter('cropTopPercent', 0);
+
+// Batch operations
+storageManager.saveAllParameters(params);
+const params = storageManager.loadAllParameters();
+
+// Debug utilities
+storageDebug.viewAll();      // View all saved parameters
+storageDebug.clearAll();     // Clear storage
+storageDebug.resetDefaults(); // Reset to defaults
+```
+
+**Critical:** Always validate loaded data before applying to DOM/logic.
+
+### Temporary File Lifecycle
+```javascript
+// 1. Save canvas to temp file
+const filePath = await this.fileManager.saveCanvasAsImage(canvas, { format, quality });
+
+// 2. Add to Eagle
+await this.eagleAPI.addImageToEagle(filePath, { name, folders });
+
+// 3. Schedule cleanup (1 second delay for Eagle to import)
+this.fileManager.scheduleCleanup(filePath, 1000);
+```
+
+**Never** keep temp files longer than necessary. Track with `Set()` in FileManager.
+
+## CSS Modular System
+
+### Variable-Based Theming
+All colors, spacing, and effects in `css/modules/variables.css`:
+```css
+--color-bg-primary: #0d1117;        /* Dark GitHub theme */
+--color-accent-primary: #238636;     /* Green accent */
+--border-radius-lg: 12px;
+--transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+--glass-bg: rgba(48, 54, 61, 0.9);  /* Frosted glass effect */
+```
+
+**Never use hardcoded colors/sizes.** Reference variables in all module CSS files.
+
+### Module Organization
+```
+css/
+├── index.css           # Import all modules
+└── modules/
+    ├── variables.css   # CSS custom properties (source of truth)
+    ├── base.css        # Reset & base styles
+    ├── layout.css      # Grid & flexbox layouts
+    ├── components.css  # Reusable UI components
+    ├── animations.css  # Transitions & keyframes
+    └── responsive.css  # Media queries
+```
+
+## Error Handling
+
+### Global Error Recovery
+Plugin implements **i18n recovery** for translation failures:
+```javascript
+window.addEventListener('error', (event) => {
+  if (error?.message?.includes('i18n')) {
+    setTimeout(() => {
+      i18nManager.reinitialize().catch(recoveryError => {
+        console.error('I18n recovery failed:', recoveryError);
+      });
+    }, 1000);
+  }
+});
+```
+
+### User-Facing Error Messages
+**Always** show localized errors with context:
+```javascript
+// Wrong:
+alert('Error');
+
+// Correct:
+this.uiManager.showMessage('ui.messages.saveError', { error: error.message });
 ```
 
 ## Development Workflows
 
-### Parameter Validation Logic
-The plugin implements smart crop validation where total cropping cannot exceed 99%:
-```javascript
-// Key validation pattern in getParams():
-if (adjustingElement === 'cropTopPercent') {
-  // Fix bottom value, adjust top to maximum allowed
-} else if (adjustingElement === 'cropBottomPercent') {
-  // Fix top value, adjust bottom to maximum allowed
-}
-```
-
-### Performance Optimization Patterns
-- **Debounced rendering**: 200ms debounce on parameter changes
-- **Canvas reuse**: Global `window.previewCanvas` prevents recreation
-- **Memory cleanup**: `cleanup()` function clears timers and references
-- **Polling management**: Clear intervals on plugin close
-
-### File System Integration
-- **Temp file pattern**: Save to `__dirname` then import to Eagle
-- **Auto cleanup**: Remove temp files after 1 second delay
-- **Buffer handling**: Convert Canvas dataURL to Buffer for fs operations
-
-## Critical Conventions
-
-### Error Handling & User Feedback
-- Use `showMessage()` with i18n keys: `showMessage('ui.messages.error')`
-- Always provide fallback values in parameter validation
-- Log warnings for auto-corrections: `console.warn('Export quality adjusted...')`
-
-### Event Binding Pattern
-```javascript
-// Standard event binding in eagle.onPluginCreate():
-document.getElementById('previewButton')?.addEventListener('click', renderPreview);
-// Always use optional chaining for robustness
-```
-
-### State Management
-- **Global variables**: `lastSelectedIds`, `isAlwaysOnTop`, `pollingInterval`
-- **Timer cleanup**: Always clear timers in `cleanup()` function
-- **Window state**: Persist pin-to-top state across operations
-
-## Testing & Debugging
-
-### Local Development Setup
+### Testing Changes
 1. Copy `Movie Picture Stitching/` folder to Eagle plugins directory
-2. Enable developer mode in Eagle settings
-3. Use Eagle's plugin developer tools for debugging
+2. In Eagle: Settings → Plugins → Developer → Import Local Project
+3. Enable plugin and reload Eagle (Cmd+R on macOS)
 
-### Common Testing Scenarios
-- Multi-language UI switching (test all 8 languages)
-- Edge cases: extreme crop values, very large images, 50+ image batches
-- Format validation: JPG quality settings, PNG transparency, WebP compression
-- Performance: Memory usage with large canvases, cleanup verification
+### Debugging Tips
+- Use `window.getApp()` to access app instance in console
+- Check `app.getPerformanceStats()` for render metrics
+- Validate i18n: `i18nManager.validateTranslations()`
+- Inspect Eagle API: `eagle.item.getSelected()` in console
 
-## File Naming & Organization
+### Performance Profiling
+```javascript
+const startTime = performance.now();
+// ... operation ...
+const duration = performance.now() - startTime;
+console.log(`Operation took ${duration.toFixed(2)}ms`);
+```
 
-### Critical Files to Understand
-- **`js/plugin.js`**: Contains all core logic - start here for any business logic changes
-- **`js/i18n-manager.js`**: Language detection and translation system
-- **`css/modules/variables.css`**: All design tokens and theme variables
-- **`_locales/en.json`**: Base language file - template for other translations
+## Common Pitfalls
 
-### Adding New Features
-1. Add UI strings to `_locales/en.json` first
-2. Implement logic in `js/plugin.js` with proper validation
-3. Add styles to appropriate CSS module in `css/modules/`
-4. Test across all supported languages
-5. Update `manifest.json` version if needed
+1. **Never use `innerHTML` for user-generated content** (XSS risk). Use `textContent` or `createElement()`.
+2. **Always cleanup canvas references** in `cleanup()` methods to prevent memory leaks.
+3. **Check Eagle API availability** with `typeof eagle !== 'undefined'` before use.
+4. **Validate file paths** to prevent path traversal: reject paths with `..` characters.
+5. **Respect parameter constraints:** Total crop must be < 100%, quality 0.1-1.0.
 
-This plugin emphasizes robust internationalization, modern CSS architecture, and Eagle API integration. Focus on maintaining the modular structure and comprehensive i18n support when making changes.
+## Feature Branches
+
+Currently on `feature/save-parameters` branch. When adding parameter persistence:
+- Store in `localStorage` with namespaced keys: `eagle-movie-stitching:cropTopPercent`
+- Load in `ParameterManager.constructor()`
+- Save on `ui:parameterChanged` events
+
+## Key Files Reference
+
+- **Entry point:** `Movie Picture Stitching/index.html`
+- **Main logic:** `js/plugin-modular.js` (orchestration)
+- **Manifest:** `manifest.json` (plugin metadata, 8 language support)
+- **Translations:** `_locales/en.json` (template for all languages)
+- **Optimization plan:** `OPTIMIZATION_PLAN.md` (future improvements)
+
+## Testing Checklist
+
+Before committing changes:
+- [ ] Test with 2, 10, and 50 images
+- [ ] Verify all 8 language UIs work
+- [ ] Check parameter validation edge cases (0%, 99%, total=99%)
+- [ ] Confirm temp files are cleaned up
+- [ ] Test all export formats (JPG, PNG, WebP)
+- [ ] Validate canvas doesn't exceed 32767px

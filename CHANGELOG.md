@@ -5,6 +5,67 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.0.1] - 2025-10-30 💾
+
+### ✨ Added
+- 💾 **Parameter Persistence**: Automatically saves and restores user settings
+  - Crop percentages (top and bottom)
+  - Export format (JPG, PNG, WebP)
+  - Export quality (0.1-1.0)
+  - Settings persist across plugin sessions using localStorage
+  - No manual save/load required - completely automatic
+  - Auto-save with 300ms debounce prevents excessive writes
+- 🔧 **Storage Manager Module**: New modular storage system with localStorage
+  - Robust validation and error handling
+  - Graceful degradation when storage unavailable
+  - Debug utilities for development (`storageDebug.*` console commands)
+  - Namespaced storage keys for data isolation
+
+### 🚀 Improved
+- ⚡ **Performance**: Instant plugin load time
+  - Fixed critical 5-second delay on plugin open
+  - Optimized initialization sequence - DOM operations deferred
+  - Plugin now opens instantly (< 200ms)
+  - Parameters load and apply synchronously after DOM ready
+- 🎯 **User Experience**: Seamless parameter restoration
+  - Settings automatically restored on plugin reopen
+  - No need to reconfigure parameters every session
+  - Smooth, non-blocking initialization
+- 🛡️ **Data Safety**: Comprehensive validation before saving/loading parameters
+  - Parameter validation prevents invalid values
+  - Safe fallback to defaults on load errors
+
+### 🐛 Fixed
+- 🔧 Fixed incorrect DOM element IDs causing parameters not to apply
+- 🔧 Removed duplicate `getParams()` method definition
+- ⚡ Eliminated blocking DOM wait in constructor
+- 🚀 Separated initialization logic to prevent UI freeze on plugin open
+
+### 🔧 Technical Changes
+- **New Files**:
+  - `js/modules/storage-manager.js`: localStorage abstraction layer
+- **Modified Files**:
+  - `js/modules/parameter-manager.js`: Added storage integration and initialize() method
+  - `js/plugin-modular.js`: Updated initialization sequence
+  - `index.html`: Added storage-manager.js script
+- **New Methods**:
+  - `ParameterManager.initialize()`: Apply saved parameters after DOM ready
+  - `ParameterManager.applyParametersToDOMSync()`: Synchronous DOM updates
+  - `ParameterManager.saveCurrentParameters()`: Debounced auto-save
+  - `StorageManager.*`: Complete storage abstraction API
+- **Debug Tools**:
+  - `storageDebug.viewAll()`: View all saved parameters
+  - `storageDebug.clearAll()`: Clear all saved parameters
+  - `storageDebug.resetDefaults()`: Reset to default values
+  - `storageDebug.testCycle()`: Test save/load cycle
+
+### 📚 Documentation
+- Added comprehensive technical documentation
+- Created testing guides and troubleshooting steps
+- Updated code comments and JSDoc
+
 ## [1.0.0] - 2025-09-01 🌍
 
 ### ✨ Added

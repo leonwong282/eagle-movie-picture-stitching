@@ -5,12 +5,144 @@
 
 class ParameterManager {
   constructor() {
+    // Initialize storage manager for parameter persistence
+    this.storageManager = new StorageManager();
+
+    // Default parameters
     this.defaultParams = {
       cropTopPercent: 0,
       cropBottomPercent: 0,
       exportFormat: 'jpg',
       exportQuality: 0.92,
     };
+
+    // Track last saved params to avoid redundant saves
+    this.lastSavedParams = null;
+
+    // Debounce tracking
+    this.savePending = false;
+    this.saveTimeout = null;
+
+    // Load saved parameters immediately (synchronous - localStorage is fast)
+    this.savedParams = this.storageManager.loadAllParameters();
+    console.log('[ParameterManager] Parameters loaded in constructor:', this.savedParams);
+
+    // DO NOT apply to DOM here - will be done after initialization
+    // This prevents blocking the constructor
+  }
+
+  /**
+   * Initialize parameter manager after DOM is ready
+   * Should be called from app.initialize() after DOM is confirmed ready
+   */
+  initialize() {
+    // Apply saved parameters to DOM elements
+    this.applyParametersToDOMSync();
+  }
+
+  /**
+   * Apply saved parameters to DOM (synchronous version for after DOM is ready)
+   */
+  applyParametersToDOMSync() {
+    // Apply values to DOM elements
+    if (!this.savedParams || Object.keys(this.savedParams).length === 0) {
+      console.log('[ParameterManager] No saved parameters to apply');
+      return;
+    }
+
+    try {
+      // Apply crop top (using correct element IDs from HTML)
+      if (this.savedParams.cropTopPercent !== undefined) {
+        const cropTopInput = document.getElementById('cropTopPercent');
+        if (cropTopInput) {
+          cropTopInput.value = this.savedParams.cropTopPercent;
+        }
+      }
+
+      // Apply crop bottom
+      if (this.savedParams.cropBottomPercent !== undefined) {
+        const cropBottomInput = document.getElementById('cropBottomPercent');
+        if (cropBottomInput) {
+          cropBottomInput.value = this.savedParams.cropBottomPercent;
+        }
+      }
+
+      // Apply export format
+      if (this.savedParams.exportFormat !== undefined) {
+        const exportFormatSelect = document.getElementById('exportFormat');
+        if (exportFormatSelect) {
+          exportFormatSelect.value = this.savedParams.exportFormat;
+        }
+      }
+
+      // Apply export quality
+      if (this.savedParams.exportQuality !== undefined) {
+        const exportQualityInput = document.getElementById('exportQuality');
+        if (exportQualityInput) {
+          exportQualityInput.value = this.savedParams.exportQuality;
+        }
+      }
+
+      // Update remaining values display
+      this.updateRemainingValues();
+
+      console.log('[ParameterManager] Parameters applied to DOM');
+    } catch (error) {
+      console.error('[ParameterManager] Failed to apply parameters to DOM:', error);
+    }
+  }
+
+  /**
+   * Save current parameters to storage (with debouncing)
+   * @param {Object} params - Parameters to save
+   */
+  saveCurrentParameters(params) {
+    // Check if parameters actually changed
+    if (this.lastSavedParams &&
+      JSON.stringify(params) === JSON.stringify(this.lastSavedParams)) {
+      return; // No changes, skip save
+    }
+
+    // Clear existing timeout if any
+    if (this.saveTimeout) {
+      clearTimeout(this.saveTimeout);
+    }
+
+    // Set pending flag
+    this.savePending = true;
+
+    // Debounce save operation (300ms)
+    this.saveTimeout = setTimeout(() => {
+      const success = this.storageManager.saveAllParameters(params);
+
+      if (success) {
+        this.lastSavedParams = { ...params };
+        console.log('Parameters saved to storage');
+      } else {
+        console.warn('Failed to save parameters to storage');
+      }
+
+      this.savePending = false;
+      this.saveTimeout = null;
+    }, 300);
+  }
+
+  /**
+   * Reset all parameters to defaults
+   * Clears storage and resets UI
+   */
+  resetToDefaults() {
+    // Clear storage
+    this.storageManager.clearAllParameters();
+
+    // Reset to default params
+    this.lastSavedParams = null;
+
+    // Apply defaults to DOM
+    this.savedParams = this.defaultParams;
+    this.applyParametersToDOMSync();
+
+    console.log('Parameters reset to defaults');
   }
 
   /**
@@ -97,12 +229,17 @@ class ParameterManager {
       }
     }
 
-    return {
+    const params = {
       cropTopPercent,
       cropBottomPercent,
       exportFormat: elements.exportFormat.value || 'jpg',
       exportQuality,
     };
+
+    // Auto-save parameters after validation
+    this.saveCurrentParameters(params);
+
+    return params;
   }
 
   /**
@@ -144,7 +281,7 @@ class ParameterManager {
    */
   validateParams(params) {
     const errors = [];
-    
+
     if (params.cropTopPercent + params.cropBottomPercent >= 100) {
       errors.push('Total crop percentage cannot exceed 99%');
     }

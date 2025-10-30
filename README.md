@@ -50,6 +50,7 @@
 - **Responsive Design**: Perfect adaptation to various screen sizes
 
 ### 🚀 Advanced Features
+- **Parameter Persistence**: Automatically remembers your last settings (NEW!)
 - **Parameter Validation**: Smart parameter adjustment preventing invalid inputs
 - **Error Handling**: Comprehensive error catching with user-friendly messages
 - **Resource Management**: Automatic cleanup of temporary files and memory
@@ -110,6 +111,7 @@ The plugin automatically detects your Eagle language settings and switches to th
 
 ### 💡 Pro Tips
 
+- **Settings Memory**: Your parameters (crop percentages, format, quality) are automatically saved and restored when you reopen the plugin
 - **Cropping Guidelines**: Keep total crop percentage (top + bottom) under 80% for best results
 - **Quality Balance**: Use 0.8-0.9 quality for optimal file size vs image quality balance
 - **Format Selection**: 

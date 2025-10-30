@@ -26,6 +26,10 @@ This optimization plan addresses the technical debt and enhancement opportunitie
 
 ## 🚀 **Optimization Phases**
 
+## Add new feature
+
+- save parameters
+
 ## **Phase 1: Security & Stability** (Priority: Critical)
 *Timeline: 2-3 weeks*
 
