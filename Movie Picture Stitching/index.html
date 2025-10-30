@@ -3,88 +3,155 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
     content="Eagle Movie Picture Stitching Plugin - Vertically stitch multiple movie subtitle images into long panoramic images">
   <title>Movie Picture Stitching - Eagle Plugin</title>
-  <link rel="stylesheet" href="css/index.css">
+
+  <!-- Bootstrap 5.3.8 CSS -->
+  <link rel="stylesheet" href="vendor/bootstrap-5.3.8/css/bootstrap.min.css">
+
+  <!-- Custom CSS Variables & Bootstrap Overrides -->
+  <link rel="stylesheet" href="css/modules/variables.css">
+  <link rel="stylesheet" href="css/modules/bootstrap-overrides.css">
+
+  <!-- Additional Custom Modules -->
+  <link rel="stylesheet" href="css/modules/base.css">
+  <link rel="stylesheet" href="css/modules/animations.css">
+  <link rel="stylesheet" href="css/modules/scrollbar.css">
 </head>
 
 <body>
-  <div class="container">
-    <header class="top" style="-webkit-app-region: drag" role="banner">
-      <div class="top-left">
-        <div class="logo" aria-hidden="true"></div>
-        <h1 class="title" data-i18n="ui.header.title">Movie Subtitle Long Image Stitching</h1>
-      </div>
-      <div class="top-right">
-        <button class="pin-button" id="pinButton" type="button" data-i18n="[aria-label]ui.header.pinWindow"
-          data-i18n-title="ui.header.pinWindow" aria-label="Pin Window" title="Pin Window">📌</button>
-        <button class="close-button" id="closeButton" type="button" data-i18n="[aria-label]ui.header.closeWindow"
-          data-i18n-title="ui.header.closeWindow" aria-label="Close Window" title="Close Window">X</button>
+  <div class="container-fluid vh-100 d-flex flex-column p-0 m-0">
+    <!-- Header / Navbar -->
+    <header class="navbar navbar-dark bg-dark border-bottom shadow-sm" style="-webkit-app-region: drag" role="banner">
+      <div class="container-fluid px-4">
+        <!-- Left: Logo + Title -->
+        <div class="navbar-brand d-flex align-items-center gap-3 mb-0">
+          <img src="logo.png" alt="Logo" width="40" height="40" class="rounded" aria-hidden="true">
+          <h1 class="h5 mb-0 text-white fw-bold" data-i18n="ui.header.title">
+            Movie Subtitle Long Image Stitching
+          </h1>
+        </div>
+
+        <!-- Right: Action Buttons -->
+        <div class="d-flex gap-2" style="-webkit-app-region: no-drag">
+          <button class="btn btn-sm btn-outline-warning header-icon-btn" id="pinButton" type="button"
+            data-i18n="[aria-label]ui.header.pinWindow" data-i18n-title="ui.header.pinWindow" aria-label="Pin Window"
+            title="Pin Window">📌</button>
+          <button class="btn btn-sm btn-outline-danger header-icon-btn" id="closeButton" type="button"
+            data-i18n="[aria-label]ui.header.closeWindow" data-i18n-title="ui.header.closeWindow"
+            aria-label="Close Window" title="Close Window">✕</button>
+        </div>
       </div>
     </header>
 
-    <main class="main" role="main">
-      <div class="middle">
-        <aside class="list" role="complementary" data-i18n="[aria-label]ui.panels.imageList"
-          aria-label="Selected Images List"></aside>
+    <!-- Main Content Area - 3 Column Layout -->
+    <main class="row g-2 m-0 p-2 overflow-hidden" style="flex: 1 1 0; min-height: 0;" role="main">
+      <!-- Left Panel: Image List -->
+      <aside class="col-12 col-md-3 col-lg-2 d-flex flex-column" style="min-height: 0;">
+        <div class="card bg-dark text-white border-secondary h-100 shadow-lg d-flex flex-column" role="complementary"
+          data-i18n="[aria-label]ui.panels.imageList" aria-label="Selected Images List">
+          <div class="card-body overflow-auto list" style="flex: 1 1 0; min-height: 0; padding: 0.75rem;">
+            <!-- Image list will be populated by JavaScript -->
+          </div>
+        </div>
+      </aside>
 
-        <section class="preview" role="main" data-i18n="[aria-label]ui.panels.preview" aria-label="Image Preview Area">
-        </section>
+      <!-- Center Panel: Preview -->
+      <section class="col-12 col-md-6 col-lg-7 d-flex flex-column" style="min-height: 0;">
+        <div class="card bg-dark text-white border-secondary h-100 shadow-lg d-flex flex-column"
+          data-i18n="[aria-label]ui.panels.preview" aria-label="Image Preview Area">
+          <div class="card-body d-flex flex-column align-items-center justify-content-center overflow-auto preview"
+            style="flex: 1 1 0; min-height: 0; padding: 0.75rem;">
+            <!-- Preview canvas will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
 
-        <aside class="property" role="complementary" data-i18n="[aria-label]ui.panels.settings"
-          aria-label="Settings Panel">
-          <form class="property-controls" aria-label="Image Processing Parameters">
-            <div class="input-group">
-              <label for="cropTopPercent" data-i18n="ui.settings.cropTop">Top Crop Height (%):</label>
-              <input type="number" id="cropTopPercent" value="85" min="0" max="99"
-                data-i18n="[title]ui.tooltips.cropTop" title="Set the height percentage to crop from the top of images"
+      <!-- Right Panel: Settings -->
+      <aside class="col-12 col-md-3 col-lg-3 d-flex flex-column" style="min-height: 0;">
+        <div class="card bg-dark text-white border-secondary h-100 shadow-lg d-flex flex-column" role="complementary"
+          data-i18n="[aria-label]ui.panels.settings" aria-label="Settings Panel">
+          <div class="card-body d-flex flex-column overflow-auto property"
+            style="flex: 1 1 0; min-height: 0; padding: 0.75rem;">
+            <!-- Top Cropping Percentage -->
+            <div class="mb-3">
+              <label for="cropTopPercent" class="form-label fw-bold text-white mb-1">
+                <span data-i18n="ui.settings.cropTop">Top Crop Height (%):</span>
+              </label>
+              <input type="number" id="cropTopPercent" class="form-control bg-dark text-white border-secondary"
+                value="0" min="0" max="99" data-i18n="[title]ui.tooltips.cropTop"
+                title="Set the height percentage to crop from the top of images" aria-label="Top Cropping Percentage"
                 aria-describedby="crop-top-help">
-              <small id="crop-top-help" class="help-text"><span data-i18n="ui.settings.maxSettingTop">Max
-                  setting:</span> <span id="remaining-top">14</span>%</small>
+              <small id="crop-top-help" class="form-text text-muted">
+                <span data-i18n="ui.settings.maxSettingTop">Max setting:</span>
+                <span id="remaining-top">99</span>%
+              </small>
             </div>
 
-            <div class="input-group">
-              <label for="cropBottomPercent" data-i18n="ui.settings.cropBottom">Bottom Crop Height (%):</label>
-              <input type="number" id="cropBottomPercent" value="5" min="0" max="99"
-                data-i18n="[title]ui.tooltips.cropBottom"
-                title="Set the height percentage to crop from the bottom of images" aria-describedby="crop-bottom-help">
-              <small id="crop-bottom-help" class="help-text"><span data-i18n="ui.settings.maxSettingBottom">Max
-                  setting:</span> <span id="remaining-bottom">94</span>%</small>
+            <!-- Bottom Cropping Percentage -->
+            <div class="mb-3">
+              <label for="cropBottomPercent" class="form-label fw-bold text-white mb-1">
+                <span data-i18n="ui.settings.cropBottom">Bottom Crop Height (%):</span>
+              </label>
+              <input type="number" id="cropBottomPercent" class="form-control bg-dark text-white border-secondary"
+                value="15" min="0" max="99" data-i18n="[title]ui.tooltips.cropBottom"
+                title="Set the height percentage to crop from the bottom of images"
+                aria-label="Bottom Cropping Percentage" aria-describedby="crop-bottom-help">
+              <small id="crop-bottom-help" class="form-text text-muted">
+                <span data-i18n="ui.settings.maxSettingBottom">Max setting:</span>
+                <span id="remaining-bottom">84</span>%
+              </small>
             </div>
 
-            <div class="input-group">
-              <label for="exportFormat" data-i18n="ui.settings.exportFormat">Export Format:</label>
-              <select id="exportFormat" data-i18n="[title]ui.tooltips.exportFormat" aria-describedby="format-help">
-                <option value="jpg">JPG</option>
+            <!-- Export Image Format -->
+            <div class="mb-3">
+              <label for="exportFormat" class="form-label fw-bold text-white mb-1" data-i18n="ui.settings.exportFormat">
+                Export Format:
+              </label>
+              <select id="exportFormat" class="form-select bg-dark text-white border-secondary"
+                data-i18n="[title]ui.tooltips.exportFormat" aria-label="Export Image Format"
+                aria-describedby="format-help">
+                <option value="jpg" selected>JPG</option>
                 <option value="webp">WEBP</option>
                 <option value="png">PNG</option>
               </select>
             </div>
 
-            <div class="input-group">
-              <label for="exportQuality" data-i18n="ui.settings.exportQuality">Export Quality (0.1-1.0):</label>
-              <input type="number" id="exportQuality" value="0.92" min="0.1" max="1.0" step="0.01"
-                data-i18n="[title]ui.tooltips.exportQuality" title="Set the quality of exported image, range 0.1-1.0"
+            <!-- Export Image Quality -->
+            <div class="mb-3">
+              <label for="exportQuality" class="form-label fw-bold text-white mb-1"
+                data-i18n="ui.settings.exportQuality">
+                Export Quality (0.1-1.0):
+              </label>
+              <input type="number" id="exportQuality" class="form-control bg-dark text-white border-secondary"
+                value="0.92" min="0.1" max="1" step="0.01" data-i18n="[title]ui.tooltips.exportQuality"
+                title="Set the quality of exported image, range 0.1-1.0" aria-label="Export Image Quality"
                 aria-describedby="quality-help">
-              <small id="quality-help" class="help-text" data-i18n="ui.settings.qualityHelp">Higher value = better
-                quality, larger file</small>
+              <small id="quality-help" class="form-text text-muted" data-i18n="ui.settings.qualityHelp">Higher value =
+                better quality, larger file</small>
             </div>
-          </form>
-
-          <div class="property-bottom">
-            <button class="button" id="previewButton" type="button" data-i18n="[aria-label]ui.buttons.preview"
-              data-i18n="[title]ui.tooltips.preview" aria-label="Generate Preview"
-              title="Generate a preview of the stitched image">Preview</button>
-            <button class="button" id="saveButton" type="button" data-i18n="[aria-label]ui.buttons.save"
-              data-i18n="[title]ui.tooltips.save" aria-label="Save Image"
-              title="Save the stitched image to Eagle current folder">Save</button>
           </div>
-        </aside>
-      </div>
-    </main>
+
+          <!-- Action Buttons -->
+          <div class="d-grid gap-2 mt-auto">
+            <button id="previewButton" class="btn btn-primary shadow-sm" type="button"
+              aria-label="Preview Stitched Image">
+              <span class="button-text" data-i18n="ui.buttons.preview">Preview</span>
+            </button>
+            <button id="saveButton" class="btn btn-success shadow-sm" type="button" aria-label="Save Image to Eagle">
+              <span class="button-text" data-i18n="ui.buttons.save">Save to Eagle</span>
+            </button>
+          </div>
+        </div>
   </div>
+  </aside>
+  </main>
+  </div>
+
+  <!-- Bootstrap JavaScript (after content, before plugin JS) -->
+  <script src="vendor/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
 
   <!-- Internationalization support files -->
   <script type="text/javascript" src="js/i18n-manager.js"></script>

@@ -11,6 +11,7 @@ class I18nManager {
     this.retryCount = 0;
     this.maxRetries = 5;
     this.initPromise = null;
+    this.translations = {}; // Store loaded translations
   }
 
   // Detect current language
@@ -59,27 +60,28 @@ class I18nManager {
     return this.currentLanguage;
   }
 
-  // Wait for i18next to load
-  async waitForI18next() {
-    console.log('Waiting for i18next library to load...');
-    return new Promise((resolve, reject) => {
-      const checkI18next = () => {
-        if (typeof i18next !== 'undefined') {
-          console.log('i18next library loaded successfully');
-          // Check if translation data exists
-          const testTranslation = i18next.t('ui.buttons.preview');
-          console.log('Test translation result:', testTranslation);
-          resolve(true);
-        } else if (this.retryCount >= this.maxRetries) {
-          reject(new Error('i18next loading timeout'));
-        } else {
-          this.retryCount++;
-          console.log(`Waiting for i18next loading... (${this.retryCount}/${this.maxRetries})`);
-          setTimeout(checkI18next, 200);
-        }
-      };
-      checkI18next();
-    });
+  // Load translation file for current language
+  async loadTranslations() {
+    console.log('Loading translations for language:', this.currentLanguage);
+    try {
+      const response = await fetch(`_locales/${this.currentLanguage}.json`);
+      if (!response.ok) {
+        throw new Error(`Failed to load translation file: ${response.status}`);
+      }
+      const data = await response.json();
+      this.translations = data;
+      console.log('Translations loaded successfully:', Object.keys(data));
+      return true;
+    } catch (error) {
+      console.error('Failed to load translations:', error);
+      // Fallback to English if current language fails
+      if (this.currentLanguage !== this.fallbackLanguage) {
+        console.log(`Falling back to ${this.fallbackLanguage} language`);
+        this.currentLanguage = this.fallbackLanguage;
+        return this.loadTranslations();
+      }
+      throw error;
+    }
   }
 
   // Initialize multilingual
@@ -99,8 +101,8 @@ class I18nManager {
       // Detect language
       this.detectLanguage();
 
-      // Wait for i18next to load
-      await this.waitForI18next();
+      // Load translation files
+      await this.loadTranslations();
 
       // Set initialization flag (before applying translations)
       this.isInitialized = true;
@@ -120,8 +122,8 @@ class I18nManager {
 
   // Apply translations to page elements
   applyTranslations() {
-    if (typeof i18next === 'undefined') {
-      console.warn('i18next not loaded, skipping translation application');
+    if (!this.translations || Object.keys(this.translations).length === 0) {
+      console.warn('No translations loaded, skipping translation application');
       return;
     }
 
@@ -157,27 +159,36 @@ class I18nManager {
         if (match) {
           const attribute = match[1];
           const translationKey = match[2];
-          const translation = i18next.t(translationKey);
+          const translation = this.t(translationKey);
           element.setAttribute(attribute, translation);
         }
       } else {
         // Regular text translation
-        const translation = i18next.t(key);
+        const translation = this.t(key);
         if (translation && translation !== key) {
-          element.textContent = translation;
+          // Only update textContent if element doesn't have child elements
+          // This prevents overwriting button icons/structure
+          if (element.children.length === 0) {
+            element.textContent = translation;
+          } else {
+            // For elements with children (like buttons with icon+text spans),
+            // only update if it's a .button-text span or similar
+            if (element.classList.contains('button-text') ||
+              element.tagName === 'SPAN' && element.parentElement.tagName === 'BUTTON') {
+              element.textContent = translation;
+            }
+          }
         }
       }
     } catch (error) {
       console.warn('Element translation failed:', key, error);
     }
-  }
-
-  // Update current language
+  }  // Update current language
   updateDynamicElements() {
     try {
       console.log('Updating dynamic elements...');
 
-      // Update buttons
+      // Update buttons - find .button-text spans instead of replacing entire button
       const buttons = {
         'previewButton': 'ui.buttons.preview',
         'saveButton': 'ui.buttons.save'
@@ -188,7 +199,17 @@ class I18nManager {
         if (button) {
           const translation = this.t(key);
           console.log(`Updated button ${id}: ${key} -> ${translation}`);
-          button.textContent = translation;
+
+          // Update the .button-text span instead of entire button
+          const textSpan = button.querySelector('.button-text');
+          if (textSpan) {
+            textSpan.textContent = translation;
+          } else {
+            // Fallback: update button textContent (old behavior)
+            button.textContent = translation;
+          }
+
+          // Update aria-label for accessibility
           button.setAttribute('aria-label', translation);
         } else {
           console.warn(`Button element not found: ${id}`);
@@ -239,19 +260,35 @@ class I18nManager {
 
   // Safe translation function
   t(key, options = {}) {
-    // Try to translate as long as i18next is available, no need to wait for complete initialization
-    if (typeof i18next === 'undefined') {
-      console.warn('i18next not loaded, returning key:', key);
+    // Check if translations are loaded
+    if (!this.translations || Object.keys(this.translations).length === 0) {
+      console.warn('Translations not loaded, returning key:', key);
       return key;
     }
 
     try {
-      const result = i18next.t(key, options);
-      // If translation result is same as key, it means translation doesn't exist
-      if (result === key) {
-        console.warn('Translation key not found:', key);
+      // Navigate nested object path (e.g., "ui.buttons.preview" -> translations.ui.buttons.preview)
+      const keys = key.split('.');
+      let result = this.translations;
+
+      for (const k of keys) {
+        if (result && typeof result === 'object' && k in result) {
+          result = result[k];
+        } else {
+          console.warn('Translation key not found:', key);
+          return key;
+        }
       }
-      return result !== key ? result : key;
+
+      // Handle interpolation if options provided
+      if (typeof result === 'string' && options && Object.keys(options).length > 0) {
+        Object.keys(options).forEach(optKey => {
+          const placeholder = new RegExp(`{{\\s*${optKey}\\s*}}`, 'g');
+          result = result.replace(placeholder, options[optKey]);
+        });
+      }
+
+      return typeof result === 'string' ? result : key;
     } catch (error) {
       console.warn('Translation failed:', key, error);
       return key;
@@ -279,9 +316,10 @@ class I18nManager {
       currentLanguage: this.currentLanguage,
       fallbackLanguage: this.fallbackLanguage,
       retryCount: this.retryCount,
-      i18nextAvailable: typeof i18next !== 'undefined',
+      translationsLoaded: Object.keys(this.translations).length > 0,
+      translationKeys: Object.keys(this.translations),
       eagleLocale: eagle?.app?.locale,
-      supportedLanguages: ['en', 'zh_CN', 'zh_TW'],
+      supportedLanguages: ['en', 'zh_CN', 'zh_TW', 'ja_JP', 'es_ES', 'de_DE', 'ko_KR', 'ru_RU'],
       translatedElementsCount: document.querySelectorAll('[data-i18n]').length
     };
   }
