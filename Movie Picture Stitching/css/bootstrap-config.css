@@ -1,0 +1,191 @@
+/**
+ * Bootstrap Configuration & Design Tokens
+ * Single source of truth for CSS custom properties
+ * Merged from: variables.css + bootstrap-overrides.css CSS variables
+ *
+ * @version 2.0.0
+ * @date 2025-10-30
+ */
+
+/* ==========================================================================
+   Design Tokens - Color System
+   ========================================================================== */
+
+:root {
+  /* Backgrounds - Dark theme */
+  --color-bg-primary: #0d1117;
+  --color-bg-secondary: #2c3037;
+  --color-bg-tertiary: #21262d;
+  --color-bg-quaternary: #30363d;
+  --color-bg-card: #1c2128;
+  --color-bg-hover: #262c36;
+
+  /* Text colors */
+  --color-text-primary: #f0f6fc;
+  --color-text-secondary: #c9d1d9;
+  --color-text-tertiary: #8b949e;
+  --color-text-muted: #7c8590;
+
+  /* Borders */
+  --color-border: #30363d;
+  --color-border-subtle: #21262d;
+  --color-border-glass: rgba(240, 246, 252, 0.15);
+  --color-border-error: #f85149;
+  --color-border-success: #3fb950;
+
+  /* Accent colors */
+  --color-accent-primary: #238636;
+  --color-accent-primary-hover: #2ea043;
+  --color-accent-secondary: #1f6feb;
+  --color-accent-secondary-hover: #388bfd;
+  --color-accent-warning: #d29922;
+  --color-accent-danger: #da3633;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #238636, #2ea043);
+  --gradient-secondary: linear-gradient(135deg, #1f6feb, #388bfd);
+  --gradient-surface: linear-gradient(135deg, #21262d, #30363d);
+  --gradient-header: linear-gradient(135deg, #161b22, #21262d);
+  --gradient-card: linear-gradient(135deg, rgba(232, 233, 235, 0.05) 0%, rgba(48, 54, 60, 0.95) 100%);
+  --gradient-navbar: linear-gradient(180deg, rgba(22, 27, 34, 0.98) 0%, rgba(17, 21, 27, 0.95) 100%);
+  --gradient-button-success: linear-gradient(135deg, #2ea043 0%, #238636 50%, #1a6929 100%);
+  --gradient-button-primary: linear-gradient(135deg, #1f6feb 0%, #0969da 50%, #0550ae 100%);
+  --gradient-form-control: linear-gradient(135deg, rgba(30, 36, 43, 0.95) 0%, rgba(40, 46, 53, 0.9) 100%);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(70, 72, 74, 0.9);
+  --glass-bg-light: rgba(48, 54, 61, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --backdrop-blur: blur(20px);
+  --backdrop-blur-light: blur(10px);
+
+  /* ==========================================================================
+     Spacing & Sizing
+     ========================================================================== */
+
+  --header-height: 64px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+
+  /* Border radius */
+  --border-radius-xs: 4px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-2xl: 20px;
+
+  /* ==========================================================================
+     Shadows
+     ========================================================================== */
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+  --shadow-2xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-glow-success: 0 0 20px rgba(35, 134, 54, 0.3);
+  --shadow-glow-primary: 0 0 20px rgba(31, 111, 235, 0.3);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-card-hover: 0 12px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --shadow-navbar: 0 4px 24px rgba(0, 0, 0, 0.3);
+
+  /* ==========================================================================
+     Transitions
+     ========================================================================== */
+
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ==========================================================================
+     Bootstrap CSS Variable Overrides
+     ========================================================================== */
+
+  /* Body & Background */
+  --bs-body-bg: var(--color-bg-primary);
+  --bs-body-color: var(--color-text-primary);
+
+  /* Borders */
+  --bs-border-color: rgba(48, 54, 61, 0.3);
+  --bs-border-radius: var(--border-radius-lg);
+  --bs-border-radius-sm: var(--border-radius-sm);
+  --bs-border-radius-lg: var(--border-radius-xl);
+  --bs-border-radius-xl: var(--border-radius-2xl);
+
+  /* Cards */
+  --bs-card-bg: var(--glass-bg);
+  --bs-card-border-color: var(--glass-border);
+  --bs-card-cap-bg: rgba(48, 54, 61, 0.95);
+
+  /* Forms */
+  --bs-form-control-bg: rgba(48, 54, 61, 0.95);
+  --bs-form-control-color: var(--color-text-primary);
+  --bs-form-select-bg: rgba(48, 54, 61, 0.95);
+
+  /* Buttons */
+  --bs-btn-border-radius: var(--border-radius-lg);
+  --bs-btn-border-radius-lg: 14px;
+
+  /* Colors - Bootstrap theme */
+  --bs-primary: var(--color-accent-secondary);
+  --bs-success: var(--color-accent-primary);
+  --bs-warning: var(--color-accent-warning);
+  --bs-danger: var(--color-accent-danger);
+  --bs-secondary: rgba(110, 118, 129, 0.6);
+  --bs-dark: var(--color-bg-primary);
+}
+
+/* ==========================================================================
+   Global Resets & Base Styles
+   ========================================================================== */
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  -webkit-app-region: no-drag;
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+.form-control:focus-visible,
+.form-select:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

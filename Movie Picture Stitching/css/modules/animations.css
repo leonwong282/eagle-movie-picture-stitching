@@ -49,8 +49,8 @@
   }
 }
 
-/* Apply animations */
-.container {
+/* Apply animations to legacy class names and Bootstrap elements */
+.container-fluid {
   animation: fadeIn 0.5s ease-out;
 }
 
@@ -81,7 +81,7 @@
   }
 }
 
-.button:active {
+.btn:active {
   animation: buttonPulse 0.15s ease-out;
 }
 

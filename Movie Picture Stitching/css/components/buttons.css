@@ -1,0 +1,253 @@
+/**
+ * Button Components - Bootstrap Overrides
+ * Gradient buttons with shimmer effects
+ *
+ * @version 2.0.0
+ * @date 2025-10-30
+ */
+
+/* ==========================================================================
+   Base Button Styling
+   ========================================================================== */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--transition-normal);
+}
+
+/* ==========================================================================
+   Button Shimmer Effect
+   ========================================================================== */
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-normal);
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* ==========================================================================
+   Success Button (Save to Eagle)
+   ========================================================================== */
+
+.btn-success {
+  background: var(--gradient-button-success);
+  border: none;
+  box-shadow:
+    0 4px 16px rgba(35, 134, 54, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-success::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s;
+}
+
+.btn-success:hover::after {
+  left: 100%;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background: linear-gradient(135deg, #3fb950 0%, #2ea043 50%, #238636 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 28px rgba(35, 134, 54, 0.5),
+    0 4px 12px rgba(35, 134, 54, 0.3),
+    0 0 0 4px rgba(35, 134, 54, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-success:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 16px rgba(35, 134, 54, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Primary Button (Preview)
+   ========================================================================== */
+
+.btn-primary {
+  background: var(--gradient-button-primary);
+  border: none;
+  box-shadow:
+    0 4px 16px rgba(31, 111, 235, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s;
+}
+
+.btn-primary:hover::after {
+  left: 100%;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(135deg, #388bfd 0%, #1f6feb 50%, #0969da 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 28px rgba(31, 111, 235, 0.5),
+    0 4px 12px rgba(31, 111, 235, 0.3),
+    0 0 0 4px rgba(31, 111, 235, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 16px rgba(31, 111, 235, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Outline Buttons (Header Icons)
+   ========================================================================== */
+
+.btn-outline-warning {
+  color: var(--color-text-primary);
+  border-color: rgba(210, 153, 34, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: var(--backdrop-blur-light);
+}
+
+.btn-outline-warning:hover {
+  color: var(--color-text-primary);
+  background: rgba(210, 153, 34, 0.2);
+  border-color: var(--bs-warning);
+  box-shadow: 0 0 15px rgba(210, 153, 34, 0.3);
+}
+
+.btn-outline-danger {
+  color: var(--color-text-primary);
+  border-color: rgba(218, 54, 51, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: var(--backdrop-blur-light);
+}
+
+.btn-outline-danger:hover {
+  color: var(--color-text-primary);
+  background: rgba(218, 54, 51, 0.2);
+  border-color: var(--bs-danger);
+  box-shadow: 0 0 15px rgba(218, 54, 51, 0.3);
+}
+
+/* ==========================================================================
+   Disabled State
+   ========================================================================== */
+
+.btn:disabled {
+  background: linear-gradient(135deg, rgba(110, 118, 129, 0.3), rgba(110, 118, 129, 0.2));
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   Button Content Layout
+   ========================================================================== */
+
+.button-icon {
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.button-text {
+  display: inline-block;
+  line-height: 1.2;
+}
+
+/* Prevent text collapse during i18n loading */
+.button-text:empty::before {
+  content: '\00A0';
+  visibility: hidden;
+}
+
+/* ==========================================================================
+   Header Icon Buttons (Pin & Close)
+   ========================================================================== */
+
+.header-icon-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-normal);
+  border-width: 2px;
+}
+
+.header-icon-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.header-icon-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Pin button */
+#pinButton {
+  background: rgba(210, 153, 34, 0.15);
+}
+
+#pinButton:hover {
+  background: rgba(210, 153, 34, 0.25);
+  border-color: var(--color-accent-warning);
+  box-shadow: 0 4px 12px rgba(210, 153, 34, 0.4);
+}
+
+/* Close button */
+#closeButton {
+  background: rgba(218, 54, 51, 0.15);
+}
+
+#closeButton:hover {
+  background: rgba(218, 54, 51, 0.25);
+  border-color: var(--color-accent-danger);
+  box-shadow: 0 4px 12px rgba(218, 54, 51, 0.4);
+}

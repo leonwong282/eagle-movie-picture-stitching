@@ -1,0 +1,155 @@
+/**
+ * Layout Utilities
+ * Only utilities that Bootstrap doesn't provide
+ * Use Bootstrap utilities (d-flex, gap-*, p-*, etc.) for everything else
+ *
+ * @version 2.0.0
+ * @date 2025-10-30
+ */
+
+/* ==========================================================================
+   Eagle-Specific Utilities (Not in Bootstrap)
+   ========================================================================== */
+
+/* Drag region for macOS window dragging */
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Flex utilities Bootstrap doesn't cover */
+.flex-1-0 {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+/* ==========================================================================
+   Layout Constraints for Flexbox Scroll
+   ========================================================================== */
+
+/* Prevent flexbox children from overflowing parent */
+.col-md-3,
+.col-md-6 {
+  min-height: 0;
+}
+
+/* Ensure main content area fills remaining space */
+main.row {
+  flex: 1 1 0;
+  min-height: 0;
+  max-height: 100%;
+}
+
+/* ==========================================================================
+   Main Container & Layout
+   ========================================================================== */
+
+.plugin-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.plugin-main {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Panel Layouts (3-Column Grid)
+   ========================================================================== */
+
+.plugin-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* ==========================================================================
+   Responsive Panel Sizes
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .plugin-panel {
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+/* ==========================================================================
+   Utility Classes for Inline Style Replacement
+   ========================================================================== */
+
+/* Flexbox utilities */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1 1 0;
+}
+
+.min-h-0 {
+  min-height: 0;
+}
+
+/* Drag region utilities */
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Overflow utilities */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+/* ==========================================================================
+   Text Utilities
+   ========================================================================== */
+
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* ==========================================================================
+   Border Utilities
+   ========================================================================== */
+
+.border-secondary {
+  border-color: rgba(48, 54, 61, 0.5) !important;
+}
+
+/* ==========================================================================
+   Shadow Utilities
+   ========================================================================== */
+
+.shadow-sm {
+  box-shadow: var(--shadow-md) !important;
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-2xl) !important;
+}
+
+/* ==========================================================================
+   Background Utilities
+   ========================================================================== */
+
+.bg-dark {
+  background: var(--color-bg-quaternary);
+}

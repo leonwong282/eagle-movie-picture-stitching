@@ -1,0 +1,138 @@
+/**
+ * Visual Effects Utilities
+ * Glassmorphism, shadows, and scrollbar styling
+ * Merged from: bootstrap-overrides.css effects + scrollbar.css
+ *
+ * @version 2.0.0
+ * @date 2025-10-30
+ */
+
+/* ==========================================================================
+   Glassmorphism Effects
+   ========================================================================== */
+
+.glass-effect {
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-effect-light {
+  backdrop-filter: var(--backdrop-blur-light);
+  -webkit-backdrop-filter: var(--backdrop-blur-light);
+  background: var(--glass-bg-light);
+}
+
+/* ==========================================================================
+   Gradient Backgrounds
+   ========================================================================== */
+
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-secondary {
+  background: var(--gradient-secondary);
+}
+
+.gradient-surface {
+  background: var(--gradient-surface);
+}
+
+/* ==========================================================================
+   Custom Scrollbars - Webkit Browsers
+   ========================================================================== */
+
+/* Generic scrollbar for all scrollable elements */
+.list::-webkit-scrollbar,
+.preview::-webkit-scrollbar,
+.property::-webkit-scrollbar,
+.property-controls::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.list::-webkit-scrollbar-track,
+.preview::-webkit-scrollbar-track,
+.property::-webkit-scrollbar-track,
+.property-controls::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-xs);
+}
+
+.list::-webkit-scrollbar-thumb,
+.preview::-webkit-scrollbar-thumb,
+.property::-webkit-scrollbar-thumb,
+.property-controls::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius-xs);
+  transition: background var(--transition-normal);
+}
+
+.list::-webkit-scrollbar-thumb:hover,
+.preview::-webkit-scrollbar-thumb:hover,
+.property::-webkit-scrollbar-thumb:hover,
+.property-controls::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ==========================================================================
+   Custom Scrollbars - Firefox
+   ========================================================================== */
+
+.list,
+.preview,
+.property,
+.property-controls {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: 0.5rem !important;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .navbar-brand img {
+    width: 32px;
+    height: 32px;
+  }
+
+  main.row {
+    gap: 0.5rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .form-label {
+    font-size: 11px;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 13px;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+/* ==========================================================================
+   Layout Constraints
+   ========================================================================== */
+
+/* Prevent row from growing beyond container */
+main.row {
+  max-height: 100%;
+}

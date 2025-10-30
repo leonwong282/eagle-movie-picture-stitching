@@ -1,0 +1,77 @@
+/**
+ * Navbar Component - Bootstrap Overrides
+ * Dark glassmorphism header
+ *
+ * @version 2.0.0
+ * @date 2025-10-30
+ */
+
+/* ==========================================================================
+   Base Navbar Styling
+   ========================================================================== */
+
+.navbar {
+  backdrop-filter: var(--backdrop-blur) saturate(180%);
+  -webkit-backdrop-filter: var(--backdrop-blur) saturate(180%);
+  background: var(--gradient-navbar);
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-navbar);
+}
+
+/* ==========================================================================
+   Navbar Brand
+   ========================================================================== */
+
+.navbar-dark .navbar-brand {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.navbar-dark .navbar-brand:hover {
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   Logo Image
+   ========================================================================== */
+
+.navbar-brand img {
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-normal);
+}
+
+.navbar-brand img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   Semantic Plugin Header
+   ========================================================================== */
+
+.plugin-header {
+  backdrop-filter: var(--backdrop-blur) saturate(180%);
+  -webkit-backdrop-filter: var(--backdrop-blur) saturate(180%);
+  background: var(--gradient-navbar);
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-navbar);
+  -webkit-app-region: drag;
+}
+
+.plugin-header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: 0;
+}
+
+.plugin-header__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  -webkit-app-region: no-drag;
+}

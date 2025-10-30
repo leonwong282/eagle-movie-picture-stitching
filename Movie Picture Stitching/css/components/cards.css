@@ -1,0 +1,67 @@
+/**
+ * Card Components - Bootstrap Overrides
+ * Glassmorphism cards with hover effects
+ * Overrides Bootstrap's .card and .card-body classes only
+ *
+ * @version 2.0.0
+ * @date 2025-10-30
+ */
+
+/* ==========================================================================
+   Bootstrap Card Overrides
+   ========================================================================== */
+
+.card {
+  backdrop-filter: var(--backdrop-blur) saturate(180%);
+  -webkit-backdrop-filter: var(--backdrop-blur) saturate(180%);
+  background: var(--gradient-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Card Body Overrides
+   ========================================================================== */
+
+.card-body {
+  padding: 1rem !important;
+}
+
+/* ==========================================================================
+   Card Body Scrollbar Styling
+   ========================================================================== */
+
+.card-body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.card-body::-webkit-scrollbar-track {
+  background: rgba(48, 54, 61, 0.3);
+  border-radius: var(--border-radius-xs);
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background: rgba(110, 118, 129, 0.6);
+  border-radius: var(--border-radius-xs);
+  transition: background var(--transition-normal);
+}
+
+.card-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(110, 118, 129, 0.8);
+}
+
+/* Firefox scrollbar */
+.card-body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(110, 118, 129, 0.6) rgba(48, 54, 61, 0.3);
+}
