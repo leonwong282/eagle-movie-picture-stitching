@@ -48,7 +48,7 @@ class MoviePictureStitchingApp {
       this.fileManager.initialize();
       this.lightboxManager.initialize();
 
-      // Make lightbox globally accessible for UIManager
+      // Make lightbox manager globally available
       window.lightboxManager = this.lightboxManager;
 
       // Setup event listeners

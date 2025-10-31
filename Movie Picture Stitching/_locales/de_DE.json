@@ -8,7 +8,6 @@
   "ui": {
     "header": {
       "title": "Film-Untertitel Langbild-Zusammenfügung",
-      "close": "关闭",
       "pinWindow": "Fenster Anheften",
       "closeWindow": "Fenster Schließen",
       "helpButton": "Hilfedokumentation"
@@ -82,11 +81,14 @@
       "unknownError": "Unbekannter Fehler"
     },
     "lightbox": {
-      "title": "Vorschaubild",
       "close": "Schließen",
-      "clickToEnlarge": "Klicken zum Vergrößern",
+      "zoomIn": "Vergrößern",
+      "zoomOut": "Verkleinern",
+      "resetZoom": "An Bildschirm Anpassen",
       "dimensions": "{{width}}×{{height}}px",
-      "instructions": "Scrollen zum Zoomen, Ziehen zum Verschieben, ESC zum Schließen"
+      "zoomLevel": "Zoom: {{zoom}}%",
+      "clickToEnlarge": "Klicken Sie zum Vergrößern in voller Größe",
+      "instructions": "Scrollen zum Zoomen, Ziehen zum Verschieben, ESC oder Klick zum Schließen"
     }
   }
 }

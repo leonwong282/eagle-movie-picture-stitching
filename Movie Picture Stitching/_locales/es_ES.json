@@ -8,7 +8,6 @@
   "ui": {
     "header": {
       "title": "Unión de Imágenes Largas de Subtítulos de Películas",
-      "close": "关闭",
       "pinWindow": "Fijar Ventana",
       "closeWindow": "Cerrar Ventana",
       "helpButton": "Documentación de Ayuda"
@@ -82,11 +81,14 @@
       "unknownError": "Error desconocido"
     },
     "lightbox": {
-      "title": "Vista Previa",
       "close": "Cerrar",
-      "clickToEnlarge": "Clic para ampliar",
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "resetZoom": "Ajustar a Pantalla",
       "dimensions": "{{width}}×{{height}}px",
-      "instructions": "Desplazar para zoom, arrastrar para mover, ESC para cerrar"
+      "zoomLevel": "Zoom: {{zoom}}%",
+      "clickToEnlarge": "Haga clic para ampliar y ver tamaño completo",
+      "instructions": "Desplazar para zoom, arrastrar para mover, ESC o clic para cerrar"
     }
   }
 }

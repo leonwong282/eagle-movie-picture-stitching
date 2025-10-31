@@ -81,11 +81,14 @@
       "unknownError": "Unknown error"
     },
     "lightbox": {
-      "title": "Preview Image",
       "close": "Close",
-      "clickToEnlarge": "Click to enlarge",
+      "zoomIn": "Zoom In",
+      "zoomOut": "Zoom Out",
+      "resetZoom": "Fit to Screen",
       "dimensions": "{{width}}×{{height}}px",
-      "instructions": "Scroll to zoom, drag to pan, ESC to close"
+      "zoomLevel": "Zoom: {{zoom}}%",
+      "clickToEnlarge": "Click to enlarge and view full size",
+      "instructions": "Scroll to zoom, drag to pan, ESC or click to close"
     }
   }
 }

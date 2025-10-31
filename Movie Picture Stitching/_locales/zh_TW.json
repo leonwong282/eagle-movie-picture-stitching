@@ -8,7 +8,6 @@
   "ui": {
     "header": {
       "title": "電影台詞長圖拼接",
-      "close": "关闭",
       "pinWindow": "視窗置頂",
       "closeWindow": "關閉視窗",
       "helpButton": "說明文件"
@@ -82,11 +81,14 @@
       "unknownError": "未知錯誤"
     },
     "lightbox": {
-      "title": "預覽圖片",
       "close": "關閉",
-      "clickToEnlarge": "點擊放大",
-      "dimensions": "{{width}}×{{height}}px",
-      "instructions": "滾動縮放，拖動平移，ESC 關閉"
+      "zoomIn": "放大",
+      "zoomOut": "縮小",
+      "resetZoom": "符合螢幕",
+      "dimensions": "{{width}}×{{height}}像素",
+      "zoomLevel": "縮放: {{zoom}}%",
+      "clickToEnlarge": "點擊放大檢視完整尺寸",
+      "instructions": "滾輪縮放，拖曳平移，ESC 或點擊關閉"
     }
   }
 }
