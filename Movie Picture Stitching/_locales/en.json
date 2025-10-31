@@ -37,7 +37,8 @@
       "preview": "Preview",
       "save": "Save",
       "processing": "Processing...",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "close": "Close"
     },
     "status": {
       "ready": "Ready",
@@ -83,6 +84,20 @@
       "unpinTitle": "Unpin Window",
       "imageName": "Image {{index}}",
       "unknownError": "Unknown error"
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts",
+      "actionColumn": "Action",
+      "shortcutColumn": "Shortcut",
+      "preview": "Preview",
+      "save": "Save to Eagle",
+      "help": "Help",
+      "pin": "Pin Window",
+      "close": "Close Window",
+      "focusCropTop": "Focus Top Crop",
+      "focusCropBottom": "Focus Bottom Crop",
+      "cycleFormat": "Cycle Export Format",
+      "firstUseHint": "Tip: Use {preview} to preview, {save} to save. Press F1 for all shortcuts."
     }
   }
 }

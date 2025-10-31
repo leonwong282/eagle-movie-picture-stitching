@@ -37,7 +37,8 @@
       "preview": "預覽",
       "save": "儲存",
       "processing": "處理中...",
-      "saving": "儲存中..."
+      "saving": "儲存中...",
+      "close": "關閉"
     },
     "status": {
       "ready": "就緒",
@@ -83,6 +84,20 @@
       "unpinTitle": "取消置頂",
       "imageName": "圖片 {{index}}",
       "unknownError": "未知錯誤"
+    },
+    "shortcuts": {
+      "title": "鍵盤快捷鍵",
+      "actionColumn": "操作",
+      "shortcutColumn": "快捷鍵",
+      "preview": "預覽",
+      "save": "儲存到 Eagle",
+      "help": "幫助",
+      "pin": "視窗置頂",
+      "close": "關閉視窗",
+      "focusCropTop": "聚焦頂部裁剪",
+      "focusCropBottom": "聚焦底部裁剪",
+      "cycleFormat": "切換匯出格式",
+      "firstUseHint": "提示：使用 {preview} 預覽，{save} 儲存。按 F1 查看所有快捷鍵。"
     }
   }
 }

@@ -37,7 +37,8 @@
       "preview": "Vista Previa",
       "save": "Guardar",
       "processing": "Procesando...",
-      "saving": "Guardando..."
+      "saving": "Guardando...",
+      "close": "Cerrar"
     },
     "status": {
       "ready": "Listo",
@@ -83,6 +84,20 @@
       "unpinTitle": "Desfijar Ventana",
       "imageName": "Imagen {{index}}",
       "unknownError": "Error desconocido"
+    },
+    "shortcuts": {
+      "title": "Atajos de Teclado",
+      "actionColumn": "Acción",
+      "shortcutColumn": "Atajo",
+      "preview": "Vista Previa",
+      "save": "Guardar en Eagle",
+      "help": "Ayuda",
+      "pin": "Fijar Ventana",
+      "close": "Cerrar Ventana",
+      "focusCropTop": "Enfocar Recorte Superior",
+      "focusCropBottom": "Enfocar Recorte Inferior",
+      "cycleFormat": "Cambiar Formato de Exportación",
+      "firstUseHint": "Consejo: Usa {preview} para vista previa, {save} para guardar. Presiona F1 para todos los atajos."
     }
   }
 }

@@ -37,7 +37,8 @@
       "preview": "Vorschau",
       "save": "Speichern",
       "processing": "Verarbeitung...",
-      "saving": "Speichern..."
+      "saving": "Speichern...",
+      "close": "Schließen"
     },
     "status": {
       "ready": "Bereit",
@@ -83,6 +84,20 @@
       "unpinTitle": "Fenster Lösen",
       "imageName": "Bild {{index}}",
       "unknownError": "Unbekannter Fehler"
+    },
+    "shortcuts": {
+      "title": "Tastaturkürzel",
+      "actionColumn": "Aktion",
+      "shortcutColumn": "Tastaturkürzel",
+      "preview": "Vorschau",
+      "save": "In Eagle Speichern",
+      "help": "Hilfe",
+      "pin": "Fenster Anheften",
+      "close": "Fenster Schließen",
+      "focusCropTop": "Oberen Zuschnitt Fokussieren",
+      "focusCropBottom": "Unteren Zuschnitt Fokussieren",
+      "cycleFormat": "Exportformat Wechseln",
+      "firstUseHint": "Tipp: Verwenden Sie {preview} für Vorschau, {save} zum Speichern. Drücken Sie F1 für alle Tastaturkürzel."
     }
   }
 }

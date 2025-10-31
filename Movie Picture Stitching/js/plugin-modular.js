@@ -14,6 +14,7 @@ class MoviePictureStitchingApp {
     this.canvasRenderer = new CanvasRenderer();
     this.uiManager = new UIManager(i18nManager);
     this.fileManager = new FileManager();
+    this.keyboardManager = new KeyboardShortcutManager();
 
     // Application state
     this.isAlwaysOnTop = false;
@@ -45,6 +46,7 @@ class MoviePictureStitchingApp {
       this.canvasRenderer.initialize();
       this.uiManager.initialize();
       this.fileManager.initialize();
+      this.keyboardManager.initialize();
 
       // Setup event listeners
       this.setupEventListeners();
@@ -55,6 +57,9 @@ class MoviePictureStitchingApp {
 
       // Initially disable save button until preview is generated
       this.uiManager.setSaveButtonDisabledState(true);
+
+      // Show keyboard shortcut hint on first use
+      this.showFirstUseHint();
 
       console.log('✅ Application initialization completed');
     } catch (error) {
@@ -80,6 +85,22 @@ class MoviePictureStitchingApp {
     // Auto-preview requests (real-time preview)
     window.addEventListener('ui:autoPreviewRequested', (event) => {
       this.handleAutoPreviewRequest(event.detail);
+    });
+
+    // Keyboard shortcut events
+    window.addEventListener('keyboard:previewRequested', () => {
+      console.log('[App] Keyboard shortcut: Preview requested');
+      this.handlePreviewClick();
+    });
+
+    window.addEventListener('keyboard:saveRequested', () => {
+      console.log('[App] Keyboard shortcut: Save requested');
+      this.handleSaveClick();
+    });
+
+    window.addEventListener('keyboard:pinRequested', () => {
+      console.log('[App] Keyboard shortcut: Pin requested');
+      this.handlePinClick();
     });
 
     // Button clicks
@@ -279,19 +300,24 @@ class MoviePictureStitchingApp {
    * Handle help button click
    */
   handleHelpClick() {
-    try {
-      const helpUrl = 'https://github.com/leonwong282/eagle-movie-picture-stitching';
-      if (typeof eagle !== 'undefined' && eagle.app) {
-        // Use Eagle's API to open external URL if available
-        eagle.app.openURL(helpUrl);
-      } else {
-        // Fallback to window.open for non-Eagle environments
-        window.open(helpUrl, '_blank');
+    console.log('[App] Help requested');
+
+    // Show keyboard shortcuts modal
+    if (this.keyboardManager) {
+      this.keyboardManager.showHelpModal();
+    } else {
+      // Fallback: open GitHub if keyboard manager not initialized
+      try {
+        const helpUrl = 'https://github.com/leonwong282/eagle-movie-picture-stitching';
+        if (typeof eagle !== 'undefined' && eagle.app) {
+          eagle.app.openURL(helpUrl);
+        } else {
+          window.open(helpUrl, '_blank');
+        }
+      } catch (error) {
+        console.error('Failed to open help:', error);
+        this.uiManager.showMessage('ui.messages.helpNotAvailable', {}, 'warning', 3000);
       }
-    } catch (error) {
-      console.error('Failed to open help documentation:', error);
-      // Last resort fallback
-      window.open('https://github.com/leonwong282/eagle-movie-picture-stitching', '_blank');
     }
   }
 
@@ -317,6 +343,30 @@ class MoviePictureStitchingApp {
       window.close();
     } catch (error) {
       console.error('Failed to close application:', error);
+    }
+  }
+
+  /**
+   * Show first-use keyboard shortcut hint
+   */
+  showFirstUseHint() {
+    // Check if hint has been shown before
+    if (!localStorage.getItem('eagle-movie-stitching:shortcutHintShown')) {
+      setTimeout(() => {
+        const previewKey = this.keyboardManager.getShortcutNotation('preview');
+        const saveKey = this.keyboardManager.getShortcutNotation('save');
+
+        const message = window.i18nManager ?
+          window.i18nManager.t('ui.shortcuts.firstUseHint', {
+            preview: previewKey,
+            save: saveKey
+          }) :
+          `Tip: Use ${previewKey} to preview, ${saveKey} to save. Press F1 for all shortcuts.`;
+
+        this.uiManager.showToast(message, 'info', 8000);
+
+        localStorage.setItem('eagle-movie-stitching:shortcutHintShown', 'true');
+      }, 2000);
     }
   }
 
@@ -520,6 +570,11 @@ class MoviePictureStitchingApp {
       this.canvasRenderer.cleanup();
       this.uiManager.cleanup();
       this.fileManager.cleanup();
+
+      // Cleanup keyboard manager
+      if (this.keyboardManager) {
+        this.keyboardManager.cleanup();
+      }
 
       console.log('✅ Cleanup completed');
     } catch (error) {

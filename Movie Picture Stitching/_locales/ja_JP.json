@@ -37,7 +37,8 @@
       "preview": "プレビュー",
       "save": "保存",
       "processing": "処理中...",
-      "saving": "保存中..."
+      "saving": "保存中...",
+      "close": "閉じる"
     },
     "status": {
       "ready": "準備完了",
@@ -83,6 +84,20 @@
       "unpinTitle": "ウィンドウ固定を解除",
       "imageName": "画像 {{index}}",
       "unknownError": "不明なエラー"
+    },
+    "shortcuts": {
+      "title": "キーボードショートカット",
+      "actionColumn": "操作",
+      "shortcutColumn": "ショートカット",
+      "preview": "プレビュー",
+      "save": "Eagle に保存",
+      "help": "ヘルプ",
+      "pin": "ウィンドウを固定",
+      "close": "ウィンドウを閉じる",
+      "focusCropTop": "上部トリミングにフォーカス",
+      "focusCropBottom": "下部トリミングにフォーカス",
+      "cycleFormat": "エクスポート形式を切り替え",
+      "firstUseHint": "ヒント：{preview} でプレビュー、{save} で保存できます。F1 キーで全てのショートカットを表示します。"
     }
   }
 }

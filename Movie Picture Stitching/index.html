@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="css/components/cards.css">
   <link rel="stylesheet" href="css/components/navbar.css">
   <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/modal.css">
 
   <!-- Utilities & Effects -->
   <link rel="stylesheet" href="css/utilities/layout.css">
@@ -47,9 +48,12 @@
 
         <!-- Right: Action Buttons -->
         <div class="d-flex gap-2 no-drag">
-          <button class="btn btn-sm btn-outline-info header-icon-btn" id="helpButton" type="button"
+          <button class="btn btn-sm btn-outline-info header-icon-btn position-relative" id="helpButton" type="button"
             data-i18n="[aria-label]ui.header.helpButton" data-i18n-title="ui.header.helpButton"
-            aria-label="Help Documentation" title="Help Documentation">❓</button>
+            aria-label="Help Documentation" title="Help Documentation">
+            ❓
+            <span class="keyboard-hint-tooltip" id="help-shortcut-hint"></span>
+          </button>
           <button class="btn btn-sm btn-outline-warning header-icon-btn" id="pinButton" type="button"
             data-i18n="[aria-label]ui.header.pinWindow" data-i18n-title="ui.header.pinWindow" aria-label="Pin Window"
             title="Pin Window">📌</button>
@@ -194,10 +198,12 @@
             <button id="previewButton" class="btn btn-primary shadow-sm" type="button" style="min-width: 250px;"
               aria-label="Preview Stitched Image">
               <span class="button-text" data-i18n="ui.buttons.preview">Preview</span>
+              <span class="keyboard-hint text-muted ms-2" id="preview-shortcut-hint"></span>
             </button>
             <button id="saveButton" class="btn btn-success shadow-sm" type="button" style="min-width: 250px;"
               aria-label="Save Image to Eagle">
               <span class="button-text" data-i18n="ui.buttons.save">Save to Eagle</span>
+              <span class="keyboard-hint text-muted ms-2" id="save-shortcut-hint"></span>
             </button>
           </div>
         </div>
@@ -207,6 +213,38 @@
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+  <!-- Keyboard Shortcuts Help Modal -->
+  <div id="shortcuts-modal" class="modal fade" tabindex="-1" aria-labelledby="shortcuts-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-secondary">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="shortcuts-modal-title" data-i18n="ui.shortcuts.title">
+            Keyboard Shortcuts
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-dark table-sm">
+            <thead>
+              <tr>
+                <th data-i18n="ui.shortcuts.actionColumn">Action</th>
+                <th data-i18n="ui.shortcuts.shortcutColumn">Shortcut</th>
+              </tr>
+            </thead>
+            <tbody id="shortcuts-table-body">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="ui.buttons.close">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap JavaScript (after content, before plugin JS) -->
   <script src="vendor/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
@@ -222,6 +260,7 @@
   <script type="text/javascript" src="js/modules/canvas-renderer.js"></script>
   <script type="text/javascript" src="js/modules/ui-manager.js"></script>
   <script type="text/javascript" src="js/modules/file-manager.js"></script>
+  <script type="text/javascript" src="js/modules/keyboard-shortcut-manager.js"></script>
 
   <!-- Main application -->
   <script type="text/javascript" src="js/plugin-modular.js"></script>
