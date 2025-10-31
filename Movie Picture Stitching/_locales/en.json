@@ -9,7 +9,8 @@
     "header": {
       "title": "Movie Subtitle Long Image Stitching",
       "pinWindow": "Pin Window",
-      "closeWindow": "Close Window"
+      "closeWindow": "Close Window",
+      "helpButton": "Help Documentation"
     },
     "panels": {
       "imageList": "Selected Images List",

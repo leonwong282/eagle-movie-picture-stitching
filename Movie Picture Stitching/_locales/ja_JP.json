@@ -9,7 +9,8 @@
     "header": {
       "title": "映画字幕長画像結合",
       "pinWindow": "ウィンドウを固定",
-      "closeWindow": "ウィンドウを閉じる"
+      "closeWindow": "ウィンドウを閉じる",
+      "helpButton": "ヘルプドキュメント"
     },
     "panels": {
       "imageList": "選択された画像リスト",

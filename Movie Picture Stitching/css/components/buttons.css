@@ -142,6 +142,20 @@
    Outline Buttons (Header Icons)
    ========================================================================== */
 
+.btn-outline-info {
+  color: var(--color-text-primary);
+  border-color: rgba(31, 111, 235, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: var(--backdrop-blur-light);
+}
+
+.btn-outline-info:hover {
+  color: var(--color-text-primary);
+  background: rgba(31, 111, 235, 0.2);
+  border-color: var(--bs-info);
+  box-shadow: 0 0 15px rgba(31, 111, 235, 0.3);
+}
+
 .btn-outline-warning {
   color: var(--color-text-primary);
   border-color: rgba(210, 153, 34, 0.5);

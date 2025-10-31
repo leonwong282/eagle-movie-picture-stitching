@@ -9,7 +9,8 @@
     "header": {
       "title": "電影台詞長圖拼接",
       "pinWindow": "視窗置頂",
-      "closeWindow": "關閉視窗"
+      "closeWindow": "關閉視窗",
+      "helpButton": "說明文件"
     },
     "panels": {
       "imageList": "選中的圖片清單",

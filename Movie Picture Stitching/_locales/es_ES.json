@@ -7,9 +7,10 @@
   },
   "ui": {
     "header": {
-      "title": "Unión de Imágenes Largas de Subtítulos",
+      "title": "Unión de Imágenes Largas de Subtítulos de Películas",
       "pinWindow": "Fijar Ventana",
-      "closeWindow": "Cerrar Ventana"
+      "closeWindow": "Cerrar Ventana",
+      "helpButton": "Documentación de Ayuda"
     },
     "panels": {
       "imageList": "Lista de Imágenes Seleccionadas",

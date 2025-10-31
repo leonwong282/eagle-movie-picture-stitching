@@ -9,7 +9,8 @@
     "header": {
       "title": "Film-Untertitel Langbild-Zusammenfügung",
       "pinWindow": "Fenster Anheften",
-      "closeWindow": "Fenster Schließen"
+      "closeWindow": "Fenster Schließen",
+      "helpButton": "Hilfedokumentation"
     },
     "panels": {
       "imageList": "Ausgewählte Bilderliste",

@@ -9,7 +9,8 @@
     "header": {
       "title": "영화 자막 긴 이미지 연결",
       "pinWindow": "창 고정",
-      "closeWindow": "창 닫기"
+      "closeWindow": "창 닫기",
+      "helpButton": "도움말 문서"
     },
     "panels": {
       "imageList": "선택된 이미지 목록",

@@ -9,7 +9,8 @@
     "header": {
       "title": "电影台词长图拼接",
       "pinWindow": "窗口置顶",
-      "closeWindow": "关闭窗口"
+      "closeWindow": "关闭窗口",
+      "helpButton": "帮助文档"
     },
     "panels": {
       "imageList": "选中的图片列表",

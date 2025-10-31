@@ -105,6 +105,12 @@ class MoviePictureStitchingApp {
       saveButton.addEventListener('click', () => this.handleSaveClick());
     }
 
+    // Help button
+    const helpButton = document.getElementById('helpButton');
+    if (helpButton) {
+      helpButton.addEventListener('click', () => this.handleHelpClick());
+    }
+
     // Pin button
     const pinButton = document.getElementById('pinButton');
     if (pinButton) {
@@ -266,6 +272,26 @@ class MoviePictureStitchingApp {
     } finally {
       this.isProcessing = false;
       this.uiManager.setButtonState('saveButton', true, 'ui.buttons.save', false);
+    }
+  }
+
+  /**
+   * Handle help button click
+   */
+  handleHelpClick() {
+    try {
+      const helpUrl = 'https://github.com/leonwong282/eagle-movie-picture-stitching';
+      if (typeof eagle !== 'undefined' && eagle.app) {
+        // Use Eagle's API to open external URL if available
+        eagle.app.openURL(helpUrl);
+      } else {
+        // Fallback to window.open for non-Eagle environments
+        window.open(helpUrl, '_blank');
+      }
+    } catch (error) {
+      console.error('Failed to open help documentation:', error);
+      // Last resort fallback
+      window.open('https://github.com/leonwong282/eagle-movie-picture-stitching', '_blank');
     }
   }
 
