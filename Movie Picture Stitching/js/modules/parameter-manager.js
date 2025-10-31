@@ -152,11 +152,18 @@ class ParameterManager {
         }
       }
 
-      // Apply export format
+      // Apply export format (radio button group)
       if (this.savedParams.exportFormat !== undefined) {
-        const exportFormatSelect = document.getElementById('exportFormat');
-        if (exportFormatSelect) {
-          exportFormatSelect.value = this.savedParams.exportFormat;
+        const formatRadio = document.getElementById(`format-${this.savedParams.exportFormat}`);
+        if (formatRadio) {
+          formatRadio.checked = true;
+
+          // Trigger format description update and quality state
+          // Need to dispatch after a tick to ensure UI manager is ready
+          setTimeout(() => {
+            const event = new Event('change', { bubbles: true });
+            formatRadio.dispatchEvent(event);
+          }, 0);
         }
       }
 
@@ -243,7 +250,7 @@ class ParameterManager {
     const elements = {
       cropTop: document.getElementById('cropTopPercent'),
       cropBottom: document.getElementById('cropBottomPercent'),
-      exportFormat: document.getElementById('exportFormat'),
+      exportFormat: document.querySelector('input[name="exportFormat"]:checked'),
       exportQuality: document.getElementById('exportQuality'),
     };
 

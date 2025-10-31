@@ -25,6 +25,7 @@
       "maxSettingTop": "Max setting:",
       "maxSettingBottom": "Max setting:",
       "qualityHelp": "Higher value = better quality, larger file",
+      "qualityNotApplicable": "PNG is lossless - quality setting not applicable",
       "cropHelp": "Top and bottom crop total cannot exceed 99%",
       "formatOptions": {
         "jpg": "JPG - Suitable for photos, smaller file size",
@@ -60,6 +61,9 @@
       "cropBottom": "Set the height percentage to crop from the bottom of images",
       "exportQuality": "Set the quality of exported image, range 0.1-1.0",
       "exportFormat": "Choose the format for exported image",
+      "formatJpg": "JPEG format - good compression, smaller files",
+      "formatWebp": "WebP format - best compression, modern browsers",
+      "formatPng": "PNG format - lossless, larger files",
       "preview": "Generate a preview of the stitched image",
       "save": "Save the stitched image to Eagle current folder"
     },

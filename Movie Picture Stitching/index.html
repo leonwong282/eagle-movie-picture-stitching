@@ -141,16 +141,38 @@
 
             <!-- Export Image Format -->
             <div class="mb-3">
-              <label for="exportFormat" class="form-label fw-bold text-white mb-1" data-i18n="ui.settings.exportFormat">
+              <label class="form-label fw-bold text-white mb-2" data-i18n="ui.settings.exportFormat">
                 Export Format:
               </label>
-              <select id="exportFormat" class="form-select bg-dark text-white border-secondary"
-                data-i18n="[title]ui.tooltips.exportFormat" aria-label="Export Image Format"
-                aria-describedby="format-help">
-                <option value="jpg" selected>JPG</option>
-                <option value="webp">WEBP</option>
-                <option value="png">PNG</option>
-              </select>
+              <!-- Format Button Group (Radio Buttons Styled as Badges) -->
+              <div class="btn-group w-100" role="group" aria-label="Export Format Selection">
+                <input type="radio" class="btn-check" name="exportFormat" id="format-jpg" value="jpg" checked
+                  autocomplete="off">
+                <label class="btn btn-outline-success format-btn" for="format-jpg"
+                  data-i18n="[title]ui.tooltips.formatJpg" title="JPEG format - good compression, smaller files">
+                  <span class="format-icon">📷</span>
+                  <span class="format-label">JPG</span>
+                </label>
+
+                <input type="radio" class="btn-check" name="exportFormat" id="format-webp" value="webp"
+                  autocomplete="off">
+                <label class="btn btn-outline-success format-btn" for="format-webp"
+                  data-i18n="[title]ui.tooltips.formatWebp" title="WebP format - best compression, modern browsers">
+                  <span class="format-icon">🌐</span>
+                  <span class="format-label">WEBP</span>
+                </label>
+
+                <input type="radio" class="btn-check" name="exportFormat" id="format-png" value="png"
+                  autocomplete="off">
+                <label class="btn btn-outline-success format-btn" for="format-png"
+                  data-i18n="[title]ui.tooltips.formatPng" title="PNG format - lossless, larger files">
+                  <span class="format-icon">🖼️</span>
+                  <span class="format-label">PNG</span>
+                </label>
+              </div>
+              <small class="form-text text-muted d-block mt-2">
+                <span id="format-description">Good compression, smaller files</span>
+              </small>
             </div>
 
             <!-- Export Image Quality -->

@@ -25,7 +25,8 @@
       "maxSettingTop": "最大設定値:",
       "maxSettingBottom": "最大設定値:",
       "qualityHelp": "値が高いほど品質が良く、ファイルサイズが大きくなります",
-      "cropHelp": "上部と下部のトリミングの合計は99%を超えることはできません",
+      "qualityNotApplicable": "PNGはロスレス形式 - 品質設定は適用されません",
+      "cropHelp": "上部と下部のトリミング合計は99%を超えてはいけません",
       "formatOptions": {
         "jpg": "JPG - 写真に適しており、ファイルサイズが小さい",
         "png": "PNG - 可逆圧縮、透明度をサポート",
@@ -60,6 +61,9 @@
       "cropBottom": "画像の下部からトリミングする高さの割合を設定",
       "exportQuality": "エクスポート画像の品質を設定、範囲0.1-1.0",
       "exportFormat": "エクスポート画像の形式を選択",
+      "formatJpg": "JPEG形式 - 高圧縮率、ファイルサイズ小",
+      "formatWebp": "WebP形式 - 最高圧縮率、モダンブラウザ対応",
+      "formatPng": "PNG形式 - ロスレス品質、ファイルサイズ大",
       "preview": "結合画像のプレビューを生成",
       "save": "結合画像をEagle現在フォルダに保存"
     },
