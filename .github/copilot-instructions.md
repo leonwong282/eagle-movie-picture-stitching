@@ -478,6 +478,52 @@ css/
 /* ❌ DON'T create new file for single button variant */
 ```
 
+## Toast Notification System
+
+### Architecture
+Non-blocking toast notifications replace `alert()` for better UX. Located in `css/components/toast.css` and `js/modules/ui-manager.js`.
+
+### Usage Pattern
+```javascript
+// Show toast with type and duration
+this.uiManager.showMessage(messageKey, variables, type, duration);
+
+// Types: 'success', 'error', 'warning', 'info'
+// Duration: milliseconds (default: 4000, 0 = no auto-dismiss)
+```
+
+### Examples
+```javascript
+// Success message (green, auto-dismiss in 4s)
+this.uiManager.showMessage('ui.messages.success', {}, 'success');
+
+// Error message (red, stays visible)
+this.uiManager.showMessage('ui.messages.saveError', { error: err.message }, 'error', 0);
+
+// Warning message (yellow, custom duration)
+this.uiManager.showMessage('ui.messages.generatePreview', {}, 'warning', 3000);
+
+// Info message (blue, default duration)
+this.uiManager.showMessage('ui.messages.processing', {}, 'info');
+```
+
+### Toast Features
+- **Auto-dismiss** with progress bar
+- **Stackable** - multiple toasts can show simultaneously
+- **Closeable** - manual dismiss with × button
+- **Animated** - slide-in from right, slide-out on dismiss
+- **Accessible** - ARIA live regions, keyboard navigable
+- **Responsive** - adapts to mobile screens
+- **i18n** - fully internationalized messages
+
+### Toast Variants
+| Type | Color | Icon | Use Case |
+|------|-------|------|----------|
+| `success` | Green | ✓ | Save successful, operation complete |
+| `error` | Red | ✕ | Save failed, validation error |
+| `warning` | Yellow | ⚠ | Preview required, parameter warning |
+| `info` | Blue | ℹ | Processing status, general info |
+
 ## Error Handling
 
 ### Global Error Recovery
@@ -494,14 +540,20 @@ window.addEventListener('error', (event) => {
 });
 ```
 
-### User-Facing Error Messages
-**Always** show localized errors with context:
+### User-Facing Messages
+**Always** use toast notifications with appropriate type:
 ```javascript
-// Wrong:
+// ❌ Wrong: Blocking alert
 alert('Error');
 
-// Correct:
-this.uiManager.showMessage('ui.messages.saveError', { error: error.message });
+// ✅ Correct: Non-blocking toast with type
+this.uiManager.showMessage('ui.messages.saveError', { error: error.message }, 'error');
+
+// ✅ Success toast
+this.uiManager.showMessage('ui.messages.success', {}, 'success');
+
+// ✅ Warning toast
+this.uiManager.showMessage('ui.messages.generatePreview', {}, 'warning');
 ```
 
 ## Development Workflows
@@ -643,10 +695,10 @@ if (width > 32767 || height > 32767) {
 ### Styling (Bootstrap 5 + Modular CSS v3.0 - Hybrid Approach)
 - **Bootstrap:** `vendor/bootstrap-5.3.8/css/bootstrap.min.css` (framework base)
 - **Config:** `css/bootstrap-config.css` (design tokens, Bootstrap variable overrides, 170 lines)
-- **Components:** `css/components/{buttons,forms,cards,navbar}.css` (theme-only overrides: gradients, glassmorphism, focus states)
+- **Components:** `css/components/{buttons,forms,cards,navbar,toast}.css` (theme-only overrides: gradients, glassmorphism, focus states, toast notifications)
 - **Utilities:** `css/utilities/layout.css` (Eagle-specific ONLY: .drag-region, .flex-1-0, 40 lines)
 - **Effects:** `css/utilities/effects.css` (glassmorphism, custom scrollbars, 130 lines)
-- **Animations:** `css/modules/animations.css` (keyframes, transitions, 200 lines)
+- **Animations:** `css/modules/animations.css` (keyframes, transitions, button states, 300+ lines)
 - **Deprecated:** `css/modules/{variables,bootstrap-overrides,base,scrollbar}.css` - DELETED, merged into new structure
 
 ### Documentation

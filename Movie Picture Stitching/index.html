@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/components/buttons.css">
   <link rel="stylesheet" href="css/components/cards.css">
   <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/toast.css">
 
   <!-- Utilities & Effects -->
   <link rel="stylesheet" href="css/utilities/layout.css">
@@ -61,6 +62,12 @@
       <aside class="col-12 col-md-3 col-lg-3 d-flex flex-column">
         <div class="card bg-dark text-white border-secondary h-100 shadow-lg d-flex flex-column" role="complementary"
           data-i18n="[aria-label]ui.panels.imageList" aria-label="Selected Images List">
+          <!-- Card Header: Image Count -->
+          <div class="card-header bg-transparent border-secondary">
+            <h6 class="mb-0 text-center" id="image-count-display">
+              <span data-i18n="ui.interface.imagesSelected" data-i18n-options='{"count": 0}'>0 images selected</span>
+            </h6>
+          </div>
           <div class="card-body list" style="overflow-y: auto; overflow-x: hidden; flex: 1 1 0; min-height: 0;">
             <!-- Image list will be populated by JavaScript -->
           </div>
@@ -158,6 +165,9 @@
       </aside>
     </main>
   </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
 
   <!-- Bootstrap JavaScript (after content, before plugin JS) -->
   <script src="vendor/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>

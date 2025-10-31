@@ -59,7 +59,7 @@ class MoviePictureStitchingApp {
       console.log('✅ Application initialization completed');
     } catch (error) {
       console.error('❌ Application initialization failed:', error);
-      this.uiManager.showMessage('ui.messages.initError', { error: error.message });
+      this.uiManager.showMessage('ui.messages.initError', { error: error.message }, 'error', 0);
     }
   }
 
@@ -246,7 +246,7 @@ class MoviePictureStitchingApp {
       // Show shake animation for visual feedback
       this.uiManager.showSaveButtonShake();
       // Show alert message
-      this.uiManager.showMessage('ui.messages.generatePreview');
+      this.uiManager.showMessage('ui.messages.generatePreview', {}, 'warning');
       return;
     }
 
@@ -262,7 +262,7 @@ class MoviePictureStitchingApp {
       await this.saveImage();
     } catch (error) {
       console.error('Save operation failed:', error);
-      this.uiManager.showMessage('ui.messages.saveError', { error: error.message });
+      this.uiManager.showMessage('ui.messages.saveError', { error: error.message }, 'error');
     } finally {
       this.isProcessing = false;
       this.uiManager.setButtonState('saveButton', true, 'ui.buttons.save', false);
@@ -463,7 +463,7 @@ class MoviePictureStitchingApp {
       this.fileManager.scheduleCleanup(filePath, 1000);
 
       // Show success message
-      this.uiManager.showMessage('ui.messages.success');
+      this.uiManager.showMessage('ui.messages.success', {}, 'success');
 
       console.log('Image saved successfully:', filename);
 

@@ -1,0 +1,266 @@
+/**
+ * Toast Notifications - Bootstrap-like toasts
+ * Non-blocking notifications with auto-dismiss
+ *
+ * NOTE: Uses .app-toast namespace instead of .toast to avoid conflicts
+ * with Bootstrap 5.3.8's built-in toast component.
+ *
+ * @version 1.0.1
+ * @date 2025-10-31
+ */
+
+/* ==========================================================================
+   Toast Container
+   ========================================================================== */
+
+.toast-container {
+  position: fixed !important;
+  top: 70px !important;
+  right: 20px !important;
+  z-index: 99999 !important;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+/* ==========================================================================
+   Toast Base Styles
+   ========================================================================== */
+
+.app-toast {
+  pointer-events: auto !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(30, 36, 43, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  min-width: 300px !important;
+  display: flex !important;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.app-toast:hover {
+  transform: translateX(-4px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Toast Icon
+   ========================================================================== */
+
+.app-toast-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Toast Content
+   ========================================================================== */
+
+.app-toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.app-toast-message {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+/* ==========================================================================
+   Toast Close Button
+   ========================================================================== */
+
+.app-toast-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.app-toast-close:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* ==========================================================================
+   Toast Variants
+   ========================================================================== */
+
+/* Success Toast */
+.app-toast-success {
+  border-left: 4px solid var(--bs-success, #238636);
+  background: linear-gradient(135deg,
+      rgba(35, 134, 54, 0.15) 0%,
+      rgba(30, 36, 43, 0.95) 100%);
+}
+
+.app-toast-success .app-toast-icon {
+  color: var(--bs-success, #238636);
+}
+
+/* Error Toast */
+.app-toast-error {
+  border-left: 4px solid var(--bs-danger, #da3633);
+  background: linear-gradient(135deg,
+      rgba(218, 54, 51, 0.15) 0%,
+      rgba(30, 36, 43, 0.95) 100%);
+}
+
+.app-toast-error .app-toast-icon {
+  color: var(--bs-danger, #da3633);
+}
+
+/* Warning Toast */
+.app-toast-warning {
+  border-left: 4px solid var(--bs-warning, #ffc107);
+  background: linear-gradient(135deg,
+      rgba(255, 193, 7, 0.15) 0%,
+      rgba(30, 36, 43, 0.95) 100%);
+}
+
+.app-toast-warning .app-toast-icon {
+  color: var(--bs-warning, #ffc107);
+}
+
+/* Info Toast */
+.app-toast-info {
+  border-left: 4px solid var(--bs-info, #1f6feb);
+  background: linear-gradient(135deg,
+      rgba(31, 111, 235, 0.15) 0%,
+      rgba(30, 36, 43, 0.95) 100%);
+}
+
+.app-toast-info .app-toast-icon {
+  color: var(--bs-info, #1f6feb);
+}
+
+/* ==========================================================================
+   Toast Animations
+   ========================================================================== */
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
+
+.app-toast-slide-in {
+  animation: toastSlideIn 0.3s ease-out forwards;
+}
+
+.app-toast-slide-out {
+  animation: toastSlideOut 0.3s ease-in forwards;
+}
+
+/* ==========================================================================
+   Toast Progress Bar
+   ========================================================================== */
+
+.app-toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 0 12px;
+  transition: width linear;
+}
+
+.app-toast-success .app-toast-progress {
+  background: var(--bs-success, #238636);
+}
+
+.app-toast-error .app-toast-progress {
+  background: var(--bs-danger, #da3633);
+}
+
+.app-toast-warning .app-toast-progress {
+  background: var(--bs-warning, #ffc107);
+}
+
+.app-toast-info .app-toast-progress {
+  background: var(--bs-info, #1f6feb);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 576px) {
+  .toast-container {
+    left: 12px;
+    right: 12px;
+    top: 60px;
+    max-width: none;
+  }
+
+  .app-toast {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Accessibility - Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .app-toast {
+    transition: none;
+  }
+
+  .app-toast-slide-in,
+  .app-toast-slide-out {
+    animation: none;
+  }
+
+  .app-toast-progress {
+    transition: none;
+  }
+}

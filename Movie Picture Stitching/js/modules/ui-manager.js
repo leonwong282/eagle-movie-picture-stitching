@@ -15,6 +15,12 @@ class UIManager {
   initialize() {
     this.setupEventListeners();
     console.log('UI manager initialized');
+
+    // Test toast on initialization (DEBUG - remove in production)
+    console.log('Testing toast system...');
+    setTimeout(() => {
+      this.showToast('Toast system initialized!', 'success', 3000);
+    }, 1000);
   }
 
   /**
@@ -72,18 +78,142 @@ class UIManager {
   }
 
   /**
-   * Show message to user
+   * Show message to user using Toast notifications
    * @param {string} messageKey - i18n key for message
    * @param {Object} variables - Variables for message interpolation
+   * @param {string} type - Toast type: 'success', 'error', 'warning', 'info' (default: 'info')
+   * @param {number} duration - Auto-dismiss duration in ms (default: 4000, 0 = no auto-dismiss)
    */
-  showMessage(messageKey, variables = {}) {
+  showMessage(messageKey, variables = {}, type = 'info', duration = 4000) {
     if (!this.i18n) {
+      // Fallback to alert if i18n not available
       alert(messageKey);
       return;
     }
 
     const message = this.i18n.t(messageKey, variables);
-    alert(message);
+    this.showToast(message, type, duration);
+  }
+
+  /**
+   * Show toast notification
+   * @param {string} message - Message to display
+   * @param {string} type - Toast type: 'success', 'error', 'warning', 'info'
+   * @param {number} duration - Auto-dismiss duration in ms (0 = no auto-dismiss)
+   */
+  showToast(message, type = 'info', duration = 4000) {
+    console.log('showToast called:', { message, type, duration }); // DEBUG
+
+    const container = document.getElementById('toast-container');
+    console.log('Toast container found:', !!container); // DEBUG
+
+    if (!container) {
+      console.warn('Toast container not found, falling back to alert');
+      alert(message);
+      return;
+    }
+
+    // Create toast element
+    const toast = this.createToastElement(message, type);
+    console.log('Toast element created:', toast); // DEBUG
+
+    // Add to container
+    container.appendChild(toast);
+    console.log('Toast appended to container'); // DEBUG
+
+    // Trigger slide-in animation
+    requestAnimationFrame(() => {
+      toast.classList.add('app-toast-slide-in');
+      console.log('Slide-in animation triggered'); // DEBUG
+    });
+
+    // Auto-dismiss after duration
+    if (duration > 0) {
+      const progressBar = toast.querySelector('.app-toast-progress');
+      if (progressBar) {
+        progressBar.style.width = '100%';
+        progressBar.style.transition = `width ${duration}ms linear`;
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            progressBar.style.width = '0%';
+          });
+        });
+      }
+
+      setTimeout(() => {
+        this.dismissToast(toast);
+      }, duration);
+    }
+  }
+
+  /**
+   * Create toast element
+   * @param {string} message - Toast message
+   * @param {string} type - Toast type
+   * @returns {HTMLElement} Toast element
+   */
+  createToastElement(message, type) {
+    const toast = document.createElement('div');
+    toast.className = `app-toast app-toast-${type}`;
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'assertive');
+    toast.setAttribute('aria-atomic', 'true');
+
+    // Icon mapping
+    const icons = {
+      success: '✓',
+      error: '✕',
+      warning: '⚠',
+      info: 'ℹ'
+    };
+
+    toast.innerHTML = `
+      <div class="app-toast-icon">${icons[type] || icons.info}</div>
+      <div class="app-toast-content">
+        <p class="app-toast-message">${this.escapeHtml(message)}</p>
+      </div>
+      <button class="app-toast-close" type="button" aria-label="Close">×</button>
+      <div class="app-toast-progress"></div>
+    `;
+
+    // Add close button handler
+    const closeBtn = toast.querySelector('.app-toast-close');
+    closeBtn.addEventListener('click', () => {
+      this.dismissToast(toast);
+    });
+
+    return toast;
+  }
+
+  /**
+ * Dismiss a toast notification
+ * @param {HTMLElement} toast - Toast element to dismiss
+ */
+  dismissToast(toast) {
+    if (!toast || !toast.parentElement) return;
+
+    // Add slide-out animation
+    toast.classList.remove('app-toast-slide-in');
+    toast.classList.add('app-toast-slide-out');
+
+    // Remove element after animation completes
+    setTimeout(() => {
+      if (toast.parentElement) {
+        toast.remove();
+      }
+    }, 300);
+  }
+
+  /**
+   * Escape HTML to prevent XSS
+   * @param {string} text - Text to escape
+   * @returns {string} Escaped text
+   */
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   }
 
   /**
@@ -186,6 +316,9 @@ class UIManager {
 
     list.innerHTML = '';
 
+    // Update image count display in header
+    this.updateImageCount(images ? images.length : 0);
+
     if (!images || images.length === 0) {
       const noImagesText = this.i18n ? this.i18n.t('ui.interface.noImagesSelected') : 'No images selected';
       list.innerHTML = `<div style="text-align: center; padding: 20px; color: #999; font-size: 14px;">${noImagesText}</div>`;
@@ -243,6 +376,21 @@ class UIManager {
     imgWrapper.appendChild(info);
 
     return imgWrapper;
+  }
+
+  /**
+   * Update image count display in the left panel header
+   * @param {number} count - Number of selected images
+   */
+  updateImageCount(count) {
+    const countDisplay = document.getElementById('image-count-display');
+    if (!countDisplay) return;
+
+    const countText = this.i18n ?
+      this.i18n.t('ui.interface.imagesSelected', { count }) :
+      `${count} images selected`;
+
+    countDisplay.innerHTML = `<span>${this.escapeHtml(countText)}</span>`;
   }
 
   /**
@@ -364,6 +512,21 @@ class UIManager {
   cleanup() {
     // Remove any dynamic event listeners if needed
     console.log('UI manager cleaned up');
+  }
+
+  /**
+   * Test toast notifications (DEBUG - for console testing)
+   * Usage: window.app.uiManager.testToast('success')
+   */
+  testToast(type = 'info') {
+    const messages = {
+      success: 'This is a success message!',
+      error: 'This is an error message!',
+      warning: 'This is a warning message!',
+      info: 'This is an info message!'
+    };
+    this.showToast(messages[type] || messages.info, type, 5000);
+    console.log(`Test toast triggered: ${type}`);
   }
 }
 
