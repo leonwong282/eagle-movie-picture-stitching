@@ -19,6 +19,7 @@ class MoviePictureStitchingApp {
     this.isAlwaysOnTop = false;
     this.isProcessing = false;
     this.isAutoPreview = false;
+    this.hasPreviewGenerated = false; // Track if preview has been generated
 
     // Image caching for auto-preview performance
     this.lastImageData = null;
@@ -51,6 +52,9 @@ class MoviePictureStitchingApp {
       // Initial UI render
       await this.renderImageList();
       this.parameterManager.updateRemainingValues();
+
+      // Initially disable save button until preview is generated
+      this.uiManager.setSaveButtonDisabledState(true);
 
       console.log('✅ Application initialization completed');
     } catch (error) {
@@ -217,12 +221,19 @@ class MoviePictureStitchingApp {
       this.uiManager.disableButtons();
 
       await this.renderPreview();
+
+      // Enable save button after first successful preview
+      if (!this.hasPreviewGenerated) {
+        this.hasPreviewGenerated = true;
+        this.uiManager.setSaveButtonDisabledState(false);
+      }
     } catch (error) {
       console.error('Preview generation failed:', error);
       this.uiManager.showPreviewError('ui.messages.saveError', { error: error.message });
     } finally {
       this.isProcessing = false;
-      this.uiManager.enableButtons();
+      // Pass hasPreviewGenerated to control whether save button should be enabled
+      this.uiManager.enableButtons(this.hasPreviewGenerated);
     }
   }
 
@@ -230,6 +241,15 @@ class MoviePictureStitchingApp {
    * Handle save button click
    */
   async handleSaveClick() {
+    // Check if preview has been generated
+    if (!this.hasPreviewGenerated) {
+      // Show shake animation for visual feedback
+      this.uiManager.showSaveButtonShake();
+      // Show alert message
+      this.uiManager.showMessage('ui.messages.generatePreview');
+      return;
+    }
+
     if (this.isProcessing) {
       console.warn('Already processing, ignoring save click');
       return;
@@ -237,7 +257,7 @@ class MoviePictureStitchingApp {
 
     try {
       this.isProcessing = true;
-      this.uiManager.setButtonState('saveButton', false, 'ui.buttons.saving');
+      this.uiManager.setButtonState('saveButton', false, 'ui.buttons.saving', true);
 
       await this.saveImage();
     } catch (error) {
@@ -245,7 +265,7 @@ class MoviePictureStitchingApp {
       this.uiManager.showMessage('ui.messages.saveError', { error: error.message });
     } finally {
       this.isProcessing = false;
-      this.uiManager.setButtonState('saveButton', true, 'ui.buttons.save');
+      this.uiManager.setButtonState('saveButton', true, 'ui.buttons.save', false);
     }
   }
 

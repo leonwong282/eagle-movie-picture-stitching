@@ -105,6 +105,94 @@
   animation: shimmer 1.5s ease-in-out infinite;
 }
 
+/* Button loading spinner animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.btn-loading .button-text {
+  opacity: 0.7;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 12px;
+  margin-top: -8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Disabled button pulse animation */
+@keyframes disabledPulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 0 rgba(108, 117, 125, 0.4);
+  }
+
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 4px rgba(108, 117, 125, 0);
+  }
+}
+
+.btn-disabled-animated {
+  cursor: not-allowed;
+  animation: disabledPulse 2s ease-in-out infinite;
+  position: relative;
+  opacity: 0.5;
+}
+
+.btn-disabled-animated::before {
+  content: '🔒';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* Shake animation for disabled button click feedback */
+@keyframes shakeButton {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-8px);
+  }
+
+  75% {
+    transform: translateX(8px);
+  }
+}
+
+.btn-disabled-shake {
+  animation: shakeButton 0.4s ease-in-out;
+}
+
 /* Success state animation */
 @keyframes checkmark {
   0% {
@@ -216,6 +304,23 @@
 
   .float-animation,
   .animated-gradient {
+    animation: none;
+  }
+
+  /* Still show loading state but without animation */
+  .btn-loading::after {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  /* Disable button pulse animation */
+  .btn-disabled-animated {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  /* Disable shake animation */
+  .btn-disabled-shake {
     animation: none;
   }
 }

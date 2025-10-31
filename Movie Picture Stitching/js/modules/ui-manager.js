@@ -91,15 +91,31 @@ class UIManager {
    * @param {string} buttonId - Button element ID
    * @param {boolean} enabled - Whether button should be enabled
    * @param {string} textKey - i18n key for button text
+   * @param {boolean} showLoading - Whether to show loading animation
    */
-  setButtonState(buttonId, enabled, textKey = null) {
+  setButtonState(buttonId, enabled, textKey = null, showLoading = false) {
     const button = document.getElementById(buttonId);
     if (!button) return;
 
     button.disabled = !enabled;
 
+    // Add or remove loading class
+    if (showLoading) {
+      button.classList.add('btn-loading');
+    } else {
+      button.classList.remove('btn-loading');
+    }
+
+    // Update button text
     if (textKey && this.i18n) {
-      button.textContent = this.i18n.t(textKey);
+      const buttonTextSpan = button.querySelector('.button-text');
+      const translatedText = this.i18n.t(textKey);
+
+      if (buttonTextSpan) {
+        buttonTextSpan.textContent = translatedText;
+      } else {
+        button.textContent = translatedText;
+      }
     }
   }
 
@@ -108,17 +124,56 @@ class UIManager {
    */
   disableButtons() {
     this.isButtonsDisabled = true;
-    this.setButtonState('previewButton', false, 'ui.buttons.processing');
+    this.setButtonState('previewButton', false, 'ui.buttons.processing', true);
     this.setButtonState('saveButton', false);
   }
 
   /**
    * Enable all main action buttons
+   * @param {boolean} enableSaveButton - Whether to enable the save button (default: true)
    */
-  enableButtons() {
+  enableButtons(enableSaveButton = true) {
     this.isButtonsDisabled = false;
-    this.setButtonState('previewButton', true, 'ui.buttons.preview');
-    this.setButtonState('saveButton', true, 'ui.buttons.save');
+    this.setButtonState('previewButton', true, 'ui.buttons.preview', false);
+
+    // Only enable save button if explicitly allowed
+    if (enableSaveButton) {
+      this.setButtonState('saveButton', true, 'ui.buttons.save', false);
+    }
+  }
+
+  /**
+   * Set save button disabled state with animation
+   * @param {boolean} disabled - Whether the save button should be disabled
+   */
+  setSaveButtonDisabledState(disabled) {
+    const saveButton = document.getElementById('saveButton');
+    if (!saveButton) return;
+
+    // Don't actually disable the button - use class for visual state
+    // This allows click events to still fire for showing the alert
+    if (disabled) {
+      saveButton.classList.add('btn-disabled-animated');
+      saveButton.setAttribute('aria-disabled', 'true');
+    } else {
+      saveButton.classList.remove('btn-disabled-animated');
+      saveButton.removeAttribute('aria-disabled');
+    }
+  }
+
+  /**
+   * Show shake animation on disabled save button
+   */
+  showSaveButtonShake() {
+    const saveButton = document.getElementById('saveButton');
+    if (!saveButton) return;
+
+    saveButton.classList.add('btn-disabled-shake');
+
+    // Remove class after animation completes
+    setTimeout(() => {
+      saveButton.classList.remove('btn-disabled-shake');
+    }, 400);
   }
 
   /**
