@@ -25,6 +25,9 @@ class MoviePictureStitchingApp {
     this.lastImageData = null;
     this.lastValidImages = null;
 
+    // Reordered images state (null = use Eagle order, array = custom order)
+    this.reorderedImages = null;
+
     // Performance tracking
     this.performanceMonitor = {
       lastRenderTime: 0,
@@ -80,6 +83,11 @@ class MoviePictureStitchingApp {
     // Auto-preview requests (real-time preview)
     window.addEventListener('ui:autoPreviewRequested', (event) => {
       this.handleAutoPreviewRequest(event.detail);
+    });
+
+    // Image reordering (drag-and-drop)
+    window.addEventListener('ui:imagesReordered', (event) => {
+      this.handleImagesReordered(event.detail);
     });
 
     // Button clicks
@@ -154,6 +162,9 @@ class MoviePictureStitchingApp {
       this.lastImageData = null;
       this.lastValidImages = null;
 
+      // Reset reordered images state (use Eagle's new order)
+      this.reorderedImages = null;
+
       await this.renderImageList();
     } catch (error) {
       console.error('Failed to handle selection change:', error);
@@ -210,6 +221,48 @@ class MoviePictureStitchingApp {
       // Don't show error for auto-preview failures
     } finally {
       this.isAutoPreview = false;
+    }
+  }
+
+  /**
+   * Handle images reordered via drag-and-drop
+   * @param {Object} details - Reorder event details {oldIndex, newIndex}
+   */
+  async handleImagesReordered(details) {
+    try {
+      const { oldIndex, newIndex } = details;
+      console.log(`🔄 Images reordered: ${oldIndex} → ${newIndex}`);
+
+      // Get current images (from Eagle or reordered state)
+      const currentImages = this.reorderedImages || await this.eagleAPI.getSelectedImages();
+
+      // Perform array reordering
+      const reorderedArray = [...currentImages];
+      const [movedItem] = reorderedArray.splice(oldIndex, 1);
+      reorderedArray.splice(newIndex, 0, movedItem);
+
+      // Store reordered state
+      this.reorderedImages = reorderedArray;
+
+      // Clear image cache (order changed)
+      this.lastImageData = null;
+      this.lastValidImages = null;
+
+      // Re-render list with updated indices
+      await this.uiManager.renderImageList(reorderedArray);
+
+      // Show success notification
+      this.uiManager.showMessage('ui.messages.imagesReordered', {}, 'success', 3000);
+
+      // Trigger auto-preview if preview exists (debounced via timeout)
+      if (this.canvasRenderer.getPreviewCanvas()) {
+        setTimeout(() => {
+          this.handleAutoPreviewRequest({ trigger: 'reorder' });
+        }, 500);
+      }
+    } catch (error) {
+      console.error('Failed to handle image reordering:', error);
+      this.uiManager.showMessage('ui.messages.reorderError', { error: error.message }, 'error', 4000);
     }
   }
 
@@ -341,8 +394,9 @@ class MoviePictureStitchingApp {
    */
   async renderImageList() {
     try {
-      const selected = await this.eagleAPI.getSelectedImages();
-      await this.uiManager.renderImageList(selected);
+      // Use reordered images if available, otherwise get from Eagle
+      const images = this.reorderedImages || await this.eagleAPI.getSelectedImages();
+      await this.uiManager.renderImageList(images);
     } catch (error) {
       console.error('Failed to render image list:', error);
       await this.uiManager.renderImageList([]);
@@ -362,8 +416,8 @@ class MoviePictureStitchingApp {
         this.uiManager.showPreviewLoading();
       }
 
-      // Get and validate selected images
-      const selected = await this.eagleAPI.getSelectedImages();
+      // Get and validate selected images (use reordered if available)
+      const selected = this.reorderedImages || await this.eagleAPI.getSelectedImages();
       const selectionValidation = this.eagleAPI.validateSelection(selected);
 
       if (!selectionValidation.isValid) {

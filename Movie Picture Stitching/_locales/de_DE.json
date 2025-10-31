@@ -53,7 +53,9 @@
       "saving": "Speichern...",
       "success": "Bild erfolgreich gespeichert!",
       "error": "Fehler beim Verarbeiten aufgetreten",
-      "saveError": "Fehler beim Speichern des Bildes: {{error}}"
+      "saveError": "Fehler beim Speichern des Bildes: {{error}}",
+      "imagesReordered": "Bildreihenfolge aktualisiert. Die Vorschau wird automatisch aktualisiert.",
+      "reorderError": "Fehler beim Neuordnen der Bilder: {{error}}"
     },
     "tooltips": {
       "cropTop": "Prozentsatz der Höhe festlegen, die vom oberen Bildrand zugeschnitten werden soll",

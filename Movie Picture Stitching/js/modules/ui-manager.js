@@ -7,6 +7,7 @@ class UIManager {
   constructor(i18nManager) {
     this.i18n = i18nManager;
     this.isButtonsDisabled = false;
+    this.sortableInstance = null; // Sortable.js instance
   }
 
   /**
@@ -316,6 +317,12 @@ class UIManager {
 
     list.innerHTML = '';
 
+    // Destroy existing Sortable instance
+    if (this.sortableInstance) {
+      this.sortableInstance.destroy();
+      this.sortableInstance = null;
+    }
+
     // Update image count display in header
     this.updateImageCount(images ? images.length : 0);
 
@@ -329,6 +336,7 @@ class UIManager {
       // Create container for images
       const imagesContainer = document.createElement('div');
       imagesContainer.style.cssText = 'display: flex; flex-direction: column; gap: 8px; padding: 8px;';
+      imagesContainer.id = 'sortable-image-list';
 
       images.forEach((item, index) => {
         const imgWrapper = this.createImageListItem(item, index);
@@ -336,11 +344,66 @@ class UIManager {
       });
 
       list.appendChild(imagesContainer);
+
+      // Initialize Sortable.js for drag-and-drop reordering
+      this.initializeSortable(imagesContainer, images);
+
     } catch (error) {
       console.error('Error rendering image list:', error);
       const loadFailedText = this.i18n ? this.i18n.t('ui.interface.loadFailed') : 'Load failed';
       list.innerHTML = `<div style="text-align: center; padding: 20px; color: #f44;">${loadFailedText}</div>`;
     }
+  }
+
+  /**
+   * Initialize Sortable.js for drag-and-drop reordering
+   * @param {HTMLElement} container - Container element
+   * @param {Array} images - Images array
+   */
+  initializeSortable(container, images) {
+    if (typeof Sortable === 'undefined') {
+      console.warn('Sortable.js not loaded, drag-and-drop disabled');
+      return;
+    }
+
+    this.sortableInstance = Sortable.create(container, {
+      animation: 200,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      ghostClass: 'sortable-ghost',
+      chosenClass: 'sortable-chosen',
+      dragClass: 'sortable-drag',
+
+      // Disable during processing
+      disabled: window.app?.isProcessing || false,
+
+      // Handle drag start
+      onStart: () => {
+        document.body.style.cursor = 'grabbing';
+      },
+
+      // Handle drag end - dispatch reorder event
+      onEnd: (evt) => {
+        document.body.style.cursor = '';
+
+        const oldIndex = evt.oldIndex;
+        const newIndex = evt.newIndex;
+
+        // Only dispatch if order actually changed
+        if (oldIndex !== newIndex) {
+          console.log(`Image reordered: ${oldIndex} → ${newIndex}`);
+
+          // Dispatch custom event for main app to handle
+          window.dispatchEvent(new CustomEvent('ui:imagesReordered', {
+            detail: {
+              oldIndex: oldIndex,
+              newIndex: newIndex
+            }
+          }));
+        }
+      }
+    });
+
+    console.log('✅ Sortable.js initialized for image list');
   }
 
   /**
@@ -351,7 +414,9 @@ class UIManager {
    */
   createImageListItem(item, index) {
     const imgWrapper = document.createElement('div');
-    imgWrapper.style.cssText = 'display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; min-height: 60px;';
+    imgWrapper.className = 'sortable-item';
+    imgWrapper.style.cssText = 'display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; min-height: 60px; cursor: grab;';
+    imgWrapper.setAttribute('data-image-index', index);
 
     // Create image thumbnail
     const img = document.createElement('img');
@@ -510,6 +575,13 @@ class UIManager {
    * Cleanup UI resources
    */
   cleanup() {
+    // Destroy Sortable instance
+    if (this.sortableInstance) {
+      this.sortableInstance.destroy();
+      this.sortableInstance = null;
+      console.log('Sortable.js instance destroyed');
+    }
+
     // Remove any dynamic event listeners if needed
     console.log('UI manager cleaned up');
   }

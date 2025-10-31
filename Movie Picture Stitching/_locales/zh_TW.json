@@ -53,7 +53,9 @@
       "saving": "儲存中...",
       "success": "圖片儲存成功！",
       "error": "處理過程中出現錯誤",
-      "saveError": "儲存圖片失敗: {{error}}"
+      "saveError": "儲存圖片失敗: {{error}}",
+      "imagesReordered": "圖片順序已更新。預覽將自動刷新。",
+      "reorderError": "調整圖片順序失敗: {{error}}"
     },
     "tooltips": {
       "cropTop": "設定從圖片頂部裁剪的高度百分比",

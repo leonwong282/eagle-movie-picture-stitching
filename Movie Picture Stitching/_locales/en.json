@@ -53,7 +53,9 @@
       "saving": "Saving...",
       "success": "Image saved successfully!",
       "error": "Error occurred while processing",
-      "saveError": "Failed to save image: {{error}}"
+      "saveError": "Failed to save image: {{error}}",
+      "imagesReordered": "Image order updated. Preview will refresh automatically.",
+      "reorderError": "Failed to reorder images: {{error}}"
     },
     "tooltips": {
       "cropTop": "Set the height percentage to crop from the top of images",
