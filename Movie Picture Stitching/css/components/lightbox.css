@@ -1,0 +1,32 @@
+/**
+ * Simple Lightbox Styles
+ * Minimal overlay for preview image enlargement
+ * @version 1.0.0
+ * @date 2025-10-31
+ */
+
+/* ==========================================================================
+   Lightbox Overlay - Inline styles in JS for simplicity
+   All styling is handled in lightbox-manager.js for better control
+   This file is kept for future extensions or overrides
+   ========================================================================== */
+
+/* Optional: Smooth fade-in animation */
+.lightbox-overlay {
+  animation: lightbox-fade-in 0.2s ease-out;
+}
+
+@keyframes lightbox-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Optional: Close button hover state (additional to inline styles) */
+.lightbox-close:active {
+  transform: scale(0.95) !important;
+}

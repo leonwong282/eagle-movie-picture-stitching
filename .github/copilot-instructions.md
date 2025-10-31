@@ -1,13 +1,36 @@
 ````instructions
 # Eagle Movie Picture Stitching Plugin - AI Coding Instructions
 
+## Quick Reference
+
+**What is this?** An Eagle desktop plugin that vertically stitches movie screenshots into panoramic images  
+**Version:** v1.0.1  
+**Stack:** Vanilla JS ES6+, Bootstrap 5.3.8, HTML5 Canvas, Eagle Plugin API v4.0+  
+**Architecture:** Event-driven modules communicating via `window.dispatchEvent(new CustomEvent(...))`  
+**No Build Required:** Pure client-side - edit and reload (`Cmd+R` in Eagle)
+
+### 🚀 Quick Start
+1. **Test in Eagle:** Copy `Movie Picture Stitching/` to `~/Library/Application Support/Eagle/plugins/`
+2. **Debug:** Open plugin → `Cmd+Option+I` for DevTools
+3. **Reload:** `Cmd+R` after changes (aggressive cache - disable/re-enable if needed)
+
+### ⚡ Critical Patterns
+- **CSS:** Bootstrap utilities in HTML, custom CSS ONLY for theme (gradients/glassmorphism)
+- **i18n:** ALL text uses `data-i18n="ui.messages.key"` - never hardcode strings
+- **Eagle API:** Polling-based (500ms intervals) - check `typeof eagle !== 'undefined'` first
+- **Events:** Modules never call each other directly - use CustomEvents on `window`
+- **Storage:** Auto-saves to localStorage with validation - sync load, async apply to DOM
+
 ## Project Overview
 
 An Eagle desktop plugin for vertically stitching multiple movie screenshot images into panoramic compositions. Built with **vanilla JavaScript ES6+**, **Bootstrap 5.3.8**, **modular class-based architecture**, and **8-language i18n system**.
 
-**Current Branch:** `reconstruct/bootstrap5` - UI fully migrated to Bootstrap 5  
+**Current Version:** v1.0.1 (Parameter Persistence Update)  
 **Tech Stack:** Bootstrap 5.3.8, HTML5 Canvas API, vanilla JavaScript, Eagle Plugin API v4.0+, Node.js fs/path, localStorage  
-**Key Feature:** Auto-saves user parameters (crop %, format, quality) using localStorage with validation
+**Key Features:** 
+- Auto-saves user parameters (crop %, format, quality) using localStorage with validation
+- 8-language internationalization (en, zh_CN, zh_TW, ja_JP, es_ES, de_DE, ko_KR, ru_RU)
+- Event-driven modular architecture with zero inter-module dependencies
 
 ## Bootstrap 5 Architecture (v3.0.0 - Hybrid Approach)
 

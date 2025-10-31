@@ -8,6 +8,7 @@
   "ui": {
     "header": {
       "title": "영화 자막 긴 이미지 연결",
+      "close": "关闭",
       "pinWindow": "창 고정",
       "closeWindow": "창 닫기",
       "helpButton": "도움말 문서"
@@ -79,6 +80,13 @@
       "unpinTitle": "창 고정 해제",
       "imageName": "이미지 {{index}}",
       "unknownError": "알 수 없는 오류"
+    },
+    "lightbox": {
+      "title": "미리보기 이미지",
+      "close": "닫기",
+      "clickToEnlarge": "클릭하여 확대",
+      "dimensions": "{{width}}×{{height}}px",
+      "instructions": "스크롤하여 확대/축소, 드래그하여 이동, ESC로 닫기"
     }
   }
 }

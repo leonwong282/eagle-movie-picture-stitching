@@ -8,6 +8,7 @@
   "ui": {
     "header": {
       "title": "Unión de Imágenes Largas de Subtítulos de Películas",
+      "close": "关闭",
       "pinWindow": "Fijar Ventana",
       "closeWindow": "Cerrar Ventana",
       "helpButton": "Documentación de Ayuda"
@@ -79,6 +80,13 @@
       "unpinTitle": "Desfijar Ventana",
       "imageName": "Imagen {{index}}",
       "unknownError": "Error desconocido"
+    },
+    "lightbox": {
+      "title": "Vista Previa",
+      "close": "Cerrar",
+      "clickToEnlarge": "Clic para ampliar",
+      "dimensions": "{{width}}×{{height}}px",
+      "instructions": "Desplazar para zoom, arrastrar para mover, ESC para cerrar"
     }
   }
 }

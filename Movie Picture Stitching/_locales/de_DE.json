@@ -8,6 +8,7 @@
   "ui": {
     "header": {
       "title": "Film-Untertitel Langbild-Zusammenfügung",
+      "close": "关闭",
       "pinWindow": "Fenster Anheften",
       "closeWindow": "Fenster Schließen",
       "helpButton": "Hilfedokumentation"
@@ -79,6 +80,13 @@
       "unpinTitle": "Fenster Lösen",
       "imageName": "Bild {{index}}",
       "unknownError": "Unbekannter Fehler"
+    },
+    "lightbox": {
+      "title": "Vorschaubild",
+      "close": "Schließen",
+      "clickToEnlarge": "Klicken zum Vergrößern",
+      "dimensions": "{{width}}×{{height}}px",
+      "instructions": "Scrollen zum Zoomen, Ziehen zum Verschieben, ESC zum Schließen"
     }
   }
 }

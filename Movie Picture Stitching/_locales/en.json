@@ -79,6 +79,13 @@
       "unpinTitle": "Unpin Window",
       "imageName": "Image {{index}}",
       "unknownError": "Unknown error"
+    },
+    "lightbox": {
+      "title": "Preview Image",
+      "close": "Close",
+      "clickToEnlarge": "Click to enlarge",
+      "dimensions": "{{width}}×{{height}}px",
+      "instructions": "Scroll to zoom, drag to pan, ESC to close"
     }
   }
 }

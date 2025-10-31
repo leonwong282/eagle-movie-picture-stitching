@@ -8,6 +8,7 @@
   "ui": {
     "header": {
       "title": "电影台词长图拼接",
+      "close": "关闭",
       "pinWindow": "窗口置顶",
       "closeWindow": "关闭窗口",
       "helpButton": "帮助文档"
@@ -79,6 +80,13 @@
       "unpinTitle": "取消置顶",
       "imageName": "图片 {{index}}",
       "unknownError": "未知错误"
+    },
+    "lightbox": {
+      "title": "预览图片",
+      "close": "关闭",
+      "clickToEnlarge": "点击放大",
+      "dimensions": "{{width}}×{{height}}px",
+      "instructions": "滚动缩放，拖动平移，ESC 关闭"
     }
   }
 }
