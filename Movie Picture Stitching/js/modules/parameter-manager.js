@@ -44,6 +44,65 @@ class ParameterManager {
 
     // Setup quality slider badge update
     this.setupQualityBadge();
+
+    // Setup progress fill for all sliders
+    this.setupProgressFill();
+  }
+
+  /**
+   * Setup progress fill visualization for sliders
+   * Updates the visual fill bar as sliders are moved
+   */
+  setupProgressFill() {
+    // Crop Top Progress
+    const cropTopSlider = document.getElementById('cropTopSlider');
+    const cropTopProgress = document.getElementById('cropTopProgress');
+    if (cropTopSlider && cropTopProgress) {
+      this.updateTopProgress = () => {
+        const value = parseFloat(cropTopSlider.value);
+        const max = parseFloat(cropTopSlider.max);
+        const min = parseFloat(cropTopSlider.min);
+        const percentage = ((value - min) / (max - min)) * 100;
+        cropTopProgress.style.width = `${percentage}%`;
+      };
+
+      cropTopSlider.addEventListener('input', this.updateTopProgress);
+      this.updateTopProgress(); // Set initial value
+    }
+
+    // Crop Bottom Progress
+    const cropBottomSlider = document.getElementById('cropBottomSlider');
+    const cropBottomProgress = document.getElementById('cropBottomProgress');
+    if (cropBottomSlider && cropBottomProgress) {
+      this.updateBottomProgress = () => {
+        const value = parseFloat(cropBottomSlider.value);
+        const max = parseFloat(cropBottomSlider.max);
+        const min = parseFloat(cropBottomSlider.min);
+        const percentage = ((value - min) / (max - min)) * 100;
+        cropBottomProgress.style.width = `${percentage}%`;
+      };
+
+      cropBottomSlider.addEventListener('input', this.updateBottomProgress);
+      this.updateBottomProgress(); // Set initial value
+    }
+
+    // Quality Progress
+    const qualitySlider = document.getElementById('exportQuality');
+    const qualityProgress = document.getElementById('qualityProgress');
+    if (qualitySlider && qualityProgress) {
+      this.updateQualityProgress = () => {
+        const value = parseFloat(qualitySlider.value);
+        const max = parseFloat(qualitySlider.max);
+        const min = parseFloat(qualitySlider.min);
+        const percentage = ((value - min) / (max - min)) * 100;
+        qualityProgress.style.width = `${percentage}%`;
+      };
+
+      qualitySlider.addEventListener('input', this.updateQualityProgress);
+      this.updateQualityProgress(); // Set initial value
+    }
+
+    console.log('[ParameterManager] Progress fill setup complete');
   }
 
   /**
@@ -368,6 +427,14 @@ class ParameterManager {
     }
     if (bottomSlider) {
       bottomSlider.max = remainingForBottom;
+    }
+
+    // Update progress fills after max change (CRITICAL FIX)
+    if (this.updateTopProgress) {
+      this.updateTopProgress();
+    }
+    if (this.updateBottomProgress) {
+      this.updateBottomProgress();
     }
 
     // Visual feedback on number inputs
