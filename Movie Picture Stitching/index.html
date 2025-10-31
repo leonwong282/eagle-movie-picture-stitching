@@ -18,6 +18,7 @@
 
   <!-- Bootstrap Component Overrides -->
   <link rel="stylesheet" href="css/components/forms.css">
+  <link rel="stylesheet" href="css/components/sliders.css">
   <link rel="stylesheet" href="css/components/buttons.css">
   <link rel="stylesheet" href="css/components/cards.css">
   <link rel="stylesheet" href="css/components/navbar.css">
@@ -96,13 +97,20 @@
             style="display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; flex: 1 1 0; min-height: 0;">
             <!-- Top Cropping Percentage -->
             <div class="mb-3">
-              <label for="cropTopPercent" class="form-label fw-bold text-white mb-1">
+              <label for="cropTopSlider" class="form-label fw-bold text-white mb-2">
                 <span data-i18n="ui.settings.cropTop">Top Crop Height (%):</span>
               </label>
-              <input type="number" id="cropTopPercent" class="form-control bg-dark text-white border-secondary"
-                value="0" min="0" max="99" data-i18n="[title]ui.tooltips.cropTop"
-                title="Set the height percentage to crop from the top of images" aria-label="Top Cropping Percentage"
-                aria-describedby="crop-top-help">
+              <!-- Slider + Number Input (Hybrid Control) -->
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <input type="range" id="cropTopSlider" class="form-range flex-grow-1" value="0" min="0" max="99"
+                  step="1" data-i18n="[aria-label]ui.tooltips.cropTop" aria-label="Top Cropping Percentage Slider"
+                  aria-describedby="crop-top-help">
+                <input type="number" id="cropTopPercent"
+                  class="form-control form-control-sm bg-dark text-white border-secondary text-center"
+                  style="width: 70px;" value="0" min="0" max="99" step="1" data-i18n="[title]ui.tooltips.cropTop"
+                  title="Set the height percentage to crop from the top of images"
+                  aria-label="Top Cropping Percentage Value" aria-describedby="crop-top-help">
+              </div>
               <small id="crop-top-help" class="form-text text-muted">
                 <span data-i18n="ui.settings.maxSettingTop">Max setting:</span>
                 <span id="remaining-top">99</span>%
@@ -111,13 +119,20 @@
 
             <!-- Bottom Cropping Percentage -->
             <div class="mb-3">
-              <label for="cropBottomPercent" class="form-label fw-bold text-white mb-1">
+              <label for="cropBottomSlider" class="form-label fw-bold text-white mb-2">
                 <span data-i18n="ui.settings.cropBottom">Bottom Crop Height (%):</span>
               </label>
-              <input type="number" id="cropBottomPercent" class="form-control bg-dark text-white border-secondary"
-                value="15" min="0" max="99" data-i18n="[title]ui.tooltips.cropBottom"
-                title="Set the height percentage to crop from the bottom of images"
-                aria-label="Bottom Cropping Percentage" aria-describedby="crop-bottom-help">
+              <!-- Slider + Number Input (Hybrid Control) -->
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <input type="range" id="cropBottomSlider" class="form-range flex-grow-1" value="15" min="0" max="99"
+                  step="1" data-i18n="[aria-label]ui.tooltips.cropBottom" aria-label="Bottom Cropping Percentage Slider"
+                  aria-describedby="crop-bottom-help">
+                <input type="number" id="cropBottomPercent"
+                  class="form-control form-control-sm bg-dark text-white border-secondary text-center"
+                  style="width: 70px;" value="15" min="0" max="99" step="1" data-i18n="[title]ui.tooltips.cropBottom"
+                  title="Set the height percentage to crop from the bottom of images"
+                  aria-label="Bottom Cropping Percentage Value" aria-describedby="crop-bottom-help">
+              </div>
               <small id="crop-bottom-help" class="form-text text-muted">
                 <span data-i18n="ui.settings.maxSettingBottom">Max setting:</span>
                 <span id="remaining-bottom">84</span>%
@@ -140,14 +155,13 @@
 
             <!-- Export Image Quality -->
             <div class="mb-3">
-              <label for="exportQuality" class="form-label fw-bold text-white mb-1"
-                data-i18n="ui.settings.exportQuality">
-                Export Quality (0.1-1.0):
+              <label for="exportQuality" class="form-label fw-bold text-white mb-1">
+                <span data-i18n="ui.settings.exportQuality">Export Quality:</span>
+                <span class="badge bg-success ms-2" id="qualityValue">0.92</span>
               </label>
-              <input type="number" id="exportQuality" class="form-control bg-dark text-white border-secondary"
-                value="0.92" min="0.1" max="1" step="0.01" data-i18n="[title]ui.tooltips.exportQuality"
-                title="Set the quality of exported image, range 0.1-1.0" aria-label="Export Image Quality"
-                aria-describedby="quality-help">
+              <input type="range" id="exportQuality" class="form-range" value="0.92" min="0.1" max="1.0" step="0.01"
+                data-i18n="[title]ui.tooltips.exportQuality" title="Set the quality of exported image, range 0.1-1.0"
+                aria-label="Export Image Quality" aria-describedby="quality-help">
               <small id="quality-help" class="form-text text-muted" data-i18n="ui.settings.qualityHelp">Higher value =
                 better quality, larger file</small>
             </div>
