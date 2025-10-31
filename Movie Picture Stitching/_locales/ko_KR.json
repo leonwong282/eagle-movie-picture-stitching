@@ -97,7 +97,7 @@
       "focusCropTop": "상단 자르기 포커스",
       "focusCropBottom": "하단 자르기 포커스",
       "cycleFormat": "내보내기 형식 전환",
-      "firstUseHint": "팁: {preview}로 미리보기, {save}로 저장. F1을 눌러 모든 단축키 확인."
+      "firstUseHint": "팁: {preview}로 미리보기, {save}로 저장. 도움말 버튼(?)을 클릭하면 모든 단축키를 확인할 수 있습니다."
     }
   }
 }

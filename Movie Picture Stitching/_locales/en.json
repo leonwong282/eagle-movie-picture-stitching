@@ -97,7 +97,7 @@
       "focusCropTop": "Focus Top Crop",
       "focusCropBottom": "Focus Bottom Crop",
       "cycleFormat": "Cycle Export Format",
-      "firstUseHint": "Tip: Use {preview} to preview, {save} to save. Press F1 for all shortcuts."
+      "firstUseHint": "Tip: Use {preview} to preview, {save} to save. Click Help button (?) for all shortcuts."
     }
   }
 }

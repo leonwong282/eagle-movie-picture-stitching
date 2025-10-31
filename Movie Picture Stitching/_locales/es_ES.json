@@ -97,7 +97,7 @@
       "focusCropTop": "Enfocar Recorte Superior",
       "focusCropBottom": "Enfocar Recorte Inferior",
       "cycleFormat": "Cambiar Formato de Exportación",
-      "firstUseHint": "Consejo: Usa {preview} para vista previa, {save} para guardar. Presiona F1 para todos los atajos."
+      "firstUseHint": "Consejo: Usa {preview} para vista previa, {save} para guardar. Haz clic en el botón de ayuda (?) para ver todos los atajos."
     }
   }
 }

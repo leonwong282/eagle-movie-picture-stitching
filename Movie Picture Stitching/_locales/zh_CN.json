@@ -97,7 +97,7 @@
       "focusCropTop": "聚焦顶部裁剪",
       "focusCropBottom": "聚焦底部裁剪",
       "cycleFormat": "切换导出格式",
-      "firstUseHint": "提示：使用 {preview} 预览，{save} 保存。按 F1 查看所有快捷键。"
+      "firstUseHint": "提示：使用 {preview} 预览，{save} 保存。点击帮助按钮（？）查看所有快捷键。"
     }
   }
 }

@@ -97,7 +97,7 @@
       "focusCropTop": "上部トリミングにフォーカス",
       "focusCropBottom": "下部トリミングにフォーカス",
       "cycleFormat": "エクスポート形式を切り替え",
-      "firstUseHint": "ヒント：{preview} でプレビュー、{save} で保存できます。F1 キーで全てのショートカットを表示します。"
+      "firstUseHint": "ヒント：{preview} でプレビュー、{save} で保存できます。ヘルプボタン（？）をクリックすると全てのショートカットが表示されます。"
     }
   }
 }

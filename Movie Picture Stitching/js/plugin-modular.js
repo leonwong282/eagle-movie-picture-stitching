@@ -361,7 +361,7 @@ class MoviePictureStitchingApp {
             preview: previewKey,
             save: saveKey
           }) :
-          `Tip: Use ${previewKey} to preview, ${saveKey} to save. Press F1 for all shortcuts.`;
+          `Tip: Use ${previewKey} to preview, ${saveKey} to save. Click Help button (?) for all shortcuts.`;
 
         this.uiManager.showToast(message, 'info', 8000);
 

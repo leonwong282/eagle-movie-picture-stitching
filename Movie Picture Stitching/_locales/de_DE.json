@@ -97,7 +97,7 @@
       "focusCropTop": "Oberen Zuschnitt Fokussieren",
       "focusCropBottom": "Unteren Zuschnitt Fokussieren",
       "cycleFormat": "Exportformat Wechseln",
-      "firstUseHint": "Tipp: Verwenden Sie {preview} für Vorschau, {save} zum Speichern. Drücken Sie F1 für alle Tastaturkürzel."
+      "firstUseHint": "Tipp: Verwenden Sie {preview} für Vorschau, {save} zum Speichern. Klicken Sie auf die Hilfeschaltfläche (?) für alle Tastaturkürzel."
     }
   }
 }
