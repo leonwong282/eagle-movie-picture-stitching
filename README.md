@@ -8,8 +8,10 @@
 
 > A modern, internationalized Eagle image management plugin for vertically stitching multiple movie images into panoramic compositions with full multilingual support
 
+**BREAKING CHANGES (v2.0.0):** The UI has been fully rewritten to use Bootstrap 5 and a modular CSS/token system. This is a breaking release: customization that targets previous DOM selectors or CSS tokens will need migration. See `CHANGELOG.md`. Stability is being tested. If it is stable, it is planned to replace the old UI with a new UI.
+
 ![Eagle Plugin](https://img.shields.io/badge/Eagle-Plugin-blue?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-1.0.0-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-2.0.0-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-GPL--3.0-red?style=for-the-badge)
 ![Internationalization](https://img.shields.io/badge/i18n-8_Languages-orange?style=for-the-badge)
 
@@ -43,11 +45,12 @@
 - **Real-time Switching**: Dynamic language switching without restart
 - **Localized Interface**: All UI elements fully translated
 
-### 🎨 Modern Interface
-- **Dark Theme**: Eagle-style modern dark interface
-- **Glass Effects**: Frosted glass backgrounds and refined visual effects
-- **Smooth Animations**: Fluid page loading and interaction animations
-- **Responsive Design**: Perfect adaptation to various screen sizes
+### 🎨 Modern Interface (Bootstrap 5)
+- **Bootstrap 5**: UI rebuilt using Bootstrap 5 utilities and design tokens (`css/bootstrap-config.css`). Layout uses Bootstrap-first classes (`d-flex`, `col-*`, etc.)
+- **Dark Theme**: Eagle-style modern dark interface implemented via CSS design tokens
+- **Glass Effects**: Frosted glass backgrounds and refined visual effects in `css/components/*`
+- **Smooth Animations**: Fluid interactions in `css/modules/animations.css`
+- **Responsive Design**: Uses Bootstrap grid and utilities for responsive layouts
 
 ### 🚀 Advanced Features
 - **Parameter Persistence**: Automatically remembers your last settings (NEW!)
@@ -150,7 +153,7 @@ The plugin automatically detects your Eagle language settings and switches to th
 - Modern web browser with Canvas API support
 - Basic understanding of HTML/CSS/JavaScript
 
-### Project Structure
+### Project Structure (updated for Bootstrap 5)
 ```
 eagle-movie-picture-stitching/
 ├── LICENSE                                    # GPL-3.0 license
@@ -159,33 +162,21 @@ eagle-movie-picture-stitching/
 ├── CHANGELOG.md                               # Version history
 ├── Movie Picture Stitching/                  # Plugin main folder
 │   ├── Movie Picture Stitching.eagleplugin  # Installable plugin package
-│   ├── index.html                           # Main plugin interface
+│   ├── index.html                           # Main plugin interface (loads Bootstrap -> design tokens -> components -> modules)
 │   ├── manifest.json                        # Plugin configuration and metadata
 │   ├── logo.png                             # Plugin icon
-│   ├── _locales/                            # Internationalization resources
-│   │   ├── en.json                         # English translations
-│   │   ├── zh_CN.json                      # Simplified Chinese translations
-│   │   ├── zh_TW.json                      # Traditional Chinese translations
-│   │   ├── ja_JP.json                      # Japanese translations
-│   │   ├── es_ES.json                      # Spanish translations
-│   │   ├── de_DE.json                      # German translations
-│   │   ├── ko_KR.json                      # Korean translations
-│   │   └── ru_RU.json                      # Russian translations
-│   ├── css/                                 # Modular stylesheets
-│   │   ├── index.css                       # Main stylesheet entry
-│   │   └── modules/                        # CSS component modules
-│   │       ├── variables.css               # CSS custom properties
-│   │       ├── base.css                    # Base styles and resets
-│   │       ├── layout.css                  # Layout and grid systems
-│   │       ├── components.css              # UI component styles
-│   │       ├── buttons.css                 # Button variations
-│   │       ├── forms.css                   # Form element styles
-│   │       ├── header.css                  # Header component styles
-│   │       ├── animations.css              # Transition animations
-│   │       ├── responsive.css              # Media queries
-│   │       └── scrollbar.css               # Custom scrollbar styles
-│   └── js/                                  # JavaScript modules
-│       └── plugin.js                       # Core business logic with i18n support
+│   ├── _locales/                            # Internationalization resources (8 languages)
+│   ├── css/                                 # Modular stylesheets (Bootstrap-first)
+│   │   ├── bootstrap-config.css             # Design tokens & Bootstrap overrides
+│   │   ├── components/                      # Theme overrides only (buttons, forms, cards, navbar, toast)
+│   │   ├── utilities/                       # Eagle-specific utilities (layout fixes, effects)
+│   │   └── modules/                         # Animations and keyframes
+│   ├── js/                                  # JavaScript modules (modular classes)
+│   │   ├── plugin-modular.js                # App orchestrator (creates `window.app`)
+│   │   ├── i18n-manager.js                  # i18n wrapper
+│   │   └── modules/                         # Core modules: storage, params, eagle-api, canvas, file, ui
+│   └── vendor/                              # Third-party assets (Bootstrap)
+│       └── bootstrap-5.3.8/
 ├── image/                                   # Project documentation assets
 │   ├── cover.png                           # Project cover image
 │   └── feature.png                         # Feature showcase image
