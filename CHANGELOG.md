@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-11-01 🚧 BREAKING
+
+### Merged: `reconstruct/bootstrap5` → `main`
+
+#### ✨ Added
+- Bootstrap 5 UI rewrite: plugin UI rebuilt using Bootstrap 5 utilities and a design-token-based `css/bootstrap-config.css`.
+- `vendor/bootstrap-5.3.8/` assets added to the repository for offline usage.
+- `js/plugin-modular.js` introduced as the main orchestrator (replaces older `plugin.js` entry in the UI flow).
+
+#### 🚚 Changed
+- Modularized CSS layout: theme overrides moved to `css/components/*`, utilities to `css/utilities/*`, animations to `css/modules/`.
+- `index.html` load order updated to: Bootstrap → `bootstrap-config.css` → component CSS → utilities → modules.
+- Event-driven module wiring: modules communicate via window CustomEvents (eg. `eagle:selectionChanged`, `ui:parameterChanged`).
+- Storage & parameter persistence retained and integrated with new UI (namespaced keys: `eagle-movie-stitching:<name>`).
+
+#### 🧭 Developer notes / migration
+- BREAKING: UI DOM structure and CSS tokens changed. Update any custom themes or automations that reference old selectors.
+- ALWAYS check `typeof eagle !== 'undefined'` before using Eagle API (polling pattern remains 500ms in `js/modules/eagle-api-manager.js`).
+- Canvas hard limit unchanged: validate canvas dimensions against 32767px before rendering.
+- Dev workflow unchanged: copy `Movie Picture Stitching` folder to Eagle plugins dir to test; no build step required.
+- Key files to inspect after the merge: `index.html`, `css/bootstrap-config.css`, `css/components/*`, `js/plugin-modular.js`, `js/modules/*`, `_locales/*`.
+
+#### 📝 Documentation
+- README updated to reflect Bootstrap 5 migration and the new CSS/module layout.
+
+
 ## [1.0.1] - 2025-10-30 💾
 
 ### ✨ Added
