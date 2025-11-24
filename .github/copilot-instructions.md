@@ -10,40 +10,16 @@ cp -R "Movie Picture Stitching" ~/Library/Application\ Support/Eagle/plugins/
 ```
 
 Read these files first
-- `Movie Picture Stitching/index.html` — load order, eagle lifecycle hooks (eagle.onPluginCreate / onPluginBeforeExit)
-- `js/plugin-modular.js` — orchestration, global `window.app`
-- `js/modules/` — `storage-manager.js`, `parameter-manager.js`, `eagle-api-manager.js`, `canvas-renderer.js`, `file-manager.js`, `ui-manager.js`
-- `css/bootstrap-config.css` and `css/components/*` — theme tokens and overrides
-- `_locales/*.json` and `js/i18n-manager.js` — translation keys and language detection
 
 Important, project-specific rules (do this)
-- Bootstrap-first layout: use Bootstrap utilities in HTML classes (e.g. `d-flex`, `col-*`). Custom CSS only for theme/effects in `css/components/*`.
-- Modules communicate via window CustomEvents. Do not import modules and call them directly. Key events: `eagle:selectionChanged`, `ui:parameterChanged`, `ui:autoPreviewRequested`.
-- Eagle API is pull-based: always check `typeof eagle !== 'undefined'` and respect polling patterns (500ms in `eagle-api-manager`).
-- Parameter persistence: keys use prefix `eagle-movie-stitching:<name>`; saves are debounced (~300ms) and validated via `storage-manager`.
-- Canvas limit: maximum dimension is 32767px — always validate before creating a canvas.
-- Temp files: `file-manager` creates temp images, calls `eagle.item.addFromPath`, then schedules cleanup. Track and cleanup temp files; do not leak them.
-- i18n: use `data-i18n` attributes in HTML and `i18nManager.t()` in code. Languages live in `_locales/`.
 
 Common pitfalls to avoid
-- NEVER wait for DOM in constructors. Load parameters synchronously in constructor; apply to DOM inside `initialize()`.
-- Don’t use `innerHTML` for user content — use `textContent` or `createElement()`.
-- Avoid adding layout CSS; change design tokens in `bootstrap-config.css` and component CSS in `css/components/`.
 
 Quick runtime checks
-- Use DevTools inside Eagle (Cmd+Option+I). `window.app` is available.
-- Useful globals: `storageDebug`, `i18nManager`, `eagle` (only in Eagle runtime).
 
 Numeric/time constraints (search and use these constants)
-- Polling: 500ms
-- Auto-save debounce: 300ms
-- Auto-preview debounce: ~500ms
-- Image load timeout: ~10s per image
-- Canvas MAX size: 32767px
 
 What to test after changes
-- Manual: open plugin in Eagle, change crop params, request preview, export result.
-- Sanity test with 2, 10, and 50 images. Verify parameter persistence, i18n, and no temp-file leaks.
 
 Need more detail? Tell me which area to expand (CSS tokens, storage, canvas, Eagle API, i18n) and I will add short, example-focused snippets referencing the exact lines/files.
 ````instructions
