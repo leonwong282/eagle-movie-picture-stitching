@@ -81,6 +81,16 @@
       "unpinTitle": "Открепить Окно",
       "imageName": "Изображение {{index}}",
       "unknownError": "Неизвестная ошибка"
+    },
+    "lightbox": {
+      "close": "Закрыть",
+      "zoomIn": "Увеличить",
+      "zoomOut": "Уменьшить",
+      "resetZoom": "По Размеру Экрана",
+      "dimensions": "{{width}}×{{height}}px",
+      "zoomLevel": "Масштаб: {{zoom}}%",
+      "clickToEnlarge": "Нажмите для увеличения в полный размер",
+      "instructions": "Прокрутка для масштаба, перетаскивание для перемещения, ESC или клик для закрытия"
     }
   }
 }

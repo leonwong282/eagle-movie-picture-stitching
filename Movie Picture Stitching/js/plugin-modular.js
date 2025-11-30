@@ -14,6 +14,7 @@ class MoviePictureStitchingApp {
     this.canvasRenderer = new CanvasRenderer();
     this.uiManager = new UIManager(i18nManager);
     this.fileManager = new FileManager();
+    this.lightboxManager = new LightboxManager(i18nManager);
 
     // Application state
     this.isAlwaysOnTop = false;
@@ -48,6 +49,10 @@ class MoviePictureStitchingApp {
       this.canvasRenderer.initialize();
       this.uiManager.initialize();
       this.fileManager.initialize();
+      this.lightboxManager.initialize();
+
+      // Make lightbox manager globally available
+      window.lightboxManager = this.lightboxManager;
 
       // Setup event listeners
       this.setupEventListeners();
@@ -567,6 +572,7 @@ class MoviePictureStitchingApp {
       // Clean up global references
       if (typeof window !== 'undefined') {
         window.parameterManager = null;
+        window.lightboxManager = null;
       }
 
       // Cleanup all modules
@@ -574,6 +580,7 @@ class MoviePictureStitchingApp {
       this.canvasRenderer.cleanup();
       this.uiManager.cleanup();
       this.fileManager.cleanup();
+      this.lightboxManager.cleanup();
 
       console.log('✅ Cleanup completed');
     } catch (error) {

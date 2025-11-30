@@ -494,6 +494,19 @@ class UIManager {
     // Clear container
     previewContainer.innerHTML = '';
 
+    // Add click-to-zoom functionality
+    canvas.style.cursor = 'zoom-in';
+    canvas.setAttribute('title', this.i18n ?
+      this.i18n.t('ui.lightbox.clickToEnlarge') :
+      'Click to enlarge');
+
+    // Add lightbox click handler
+    canvas.addEventListener('click', () => {
+      if (window.lightboxManager) {
+        window.lightboxManager.open(canvas);
+      }
+    });
+
     // Add canvas
     previewContainer.appendChild(canvas);
 

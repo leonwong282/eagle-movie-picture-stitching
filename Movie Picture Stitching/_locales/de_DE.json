@@ -81,6 +81,16 @@
       "unpinTitle": "Fenster Lösen",
       "imageName": "Bild {{index}}",
       "unknownError": "Unbekannter Fehler"
+    },
+    "lightbox": {
+      "close": "Schließen",
+      "zoomIn": "Vergrößern",
+      "zoomOut": "Verkleinern",
+      "resetZoom": "An Bildschirm Anpassen",
+      "dimensions": "{{width}}×{{height}}px",
+      "zoomLevel": "Zoom: {{zoom}}%",
+      "clickToEnlarge": "Klicken Sie zum Vergrößern in voller Größe",
+      "instructions": "Scrollen zum Zoomen, Ziehen zum Verschieben, ESC oder Klick zum Schließen"
     }
   }
 }

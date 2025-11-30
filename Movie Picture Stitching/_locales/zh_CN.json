@@ -81,6 +81,16 @@
       "unpinTitle": "取消置顶",
       "imageName": "图片 {{index}}",
       "unknownError": "未知错误"
+    },
+    "lightbox": {
+      "close": "关闭",
+      "zoomIn": "放大",
+      "zoomOut": "缩小",
+      "resetZoom": "适应屏幕",
+      "dimensions": "{{width}}×{{height}}像素",
+      "zoomLevel": "缩放: {{zoom}}%",
+      "clickToEnlarge": "点击放大查看完整尺寸",
+      "instructions": "滚轮缩放，拖动平移，ESC 或点击关闭"
     }
   }
 }

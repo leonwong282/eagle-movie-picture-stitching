@@ -81,6 +81,16 @@
       "unpinTitle": "ウィンドウ固定を解除",
       "imageName": "画像 {{index}}",
       "unknownError": "不明なエラー"
+    },
+    "lightbox": {
+      "close": "閉じる",
+      "zoomIn": "拡大",
+      "zoomOut": "縮小",
+      "resetZoom": "画面に合わせる",
+      "dimensions": "{{width}}×{{height}}px",
+      "zoomLevel": "ズーム: {{zoom}}%",
+      "clickToEnlarge": "クリックして拡大表示",
+      "instructions": "スクロールでズーム、ドラッグで移動、ESC またはクリックで閉じる"
     }
   }
 }

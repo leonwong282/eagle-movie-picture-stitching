@@ -81,6 +81,16 @@
       "unpinTitle": "창 고정 해제",
       "imageName": "이미지 {{index}}",
       "unknownError": "알 수 없는 오류"
+    },
+    "lightbox": {
+      "close": "닫기",
+      "zoomIn": "확대",
+      "zoomOut": "축소",
+      "resetZoom": "화면에 맞춤",
+      "dimensions": "{{width}}×{{height}}px",
+      "zoomLevel": "줌: {{zoom}}%",
+      "clickToEnlarge": "클릭하여 전체 크기로 확대",
+      "instructions": "스크롤로 확대/축소, 드래그로 이동, ESC 또는 클릭으로 닫기"
     }
   }
 }

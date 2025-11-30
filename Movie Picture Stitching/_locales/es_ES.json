@@ -81,6 +81,16 @@
       "unpinTitle": "Desfijar Ventana",
       "imageName": "Imagen {{index}}",
       "unknownError": "Error desconocido"
+    },
+    "lightbox": {
+      "close": "Cerrar",
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "resetZoom": "Ajustar a Pantalla",
+      "dimensions": "{{width}}×{{height}}px",
+      "zoomLevel": "Zoom: {{zoom}}%",
+      "clickToEnlarge": "Haga clic para ampliar y ver tamaño completo",
+      "instructions": "Desplazar para zoom, arrastrar para mover, ESC o clic para cerrar"
     }
   }
 }

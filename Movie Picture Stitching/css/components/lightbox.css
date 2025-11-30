@@ -1,0 +1,333 @@
+/**
+ * Lightbox Component Styles
+ * Full-screen image viewer with zoom and pan capabilities
+ */
+
+/* ========================================
+   Lightbox Overlay
+   ======================================== */
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.lightbox-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+/* ========================================
+   Close Button
+   ======================================== */
+
+.lightbox-close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-button-success);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.1) rotate(90deg);
+  background: linear-gradient(135deg, #dc3545 0%, #bd2130 100%);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+.lightbox-close:active {
+  transform: scale(0.95) rotate(90deg);
+}
+
+/* ========================================
+   Content Container
+   ======================================== */
+
+.lightbox-content {
+  position: relative;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* ========================================
+   Image Wrapper
+   ======================================== */
+
+.lightbox-image-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  max-width: 100%;
+  max-height: calc(95vh - 120px);
+  /* Account for controls and info */
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  transition: transform 0.2s ease;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  transform-origin: center center;
+}
+
+.lightbox-image.dragging,
+.lightbox-image:active {
+  cursor: grabbing;
+}
+
+/* ========================================
+   Zoom Controls
+   ======================================== */
+
+.lightbox-controls {
+  position: absolute;
+  bottom: 4rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10000;
+}
+
+.lightbox-controls button {
+  min-width: 44px;
+  height: 44px;
+  font-size: 20px;
+  font-weight: bold;
+  background: var(--gradient-button-success);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.lightbox-controls button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
+  background: linear-gradient(135deg, #2ea043 0%, #238636 100%);
+}
+
+.lightbox-controls button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-controls button span {
+  line-height: 1;
+}
+
+/* ========================================
+   Info Display
+   ======================================== */
+
+.lightbox-info {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1.5rem;
+  background: rgba(48, 54, 61, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-size: 14px;
+  color: #e6edf3;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  white-space: nowrap;
+}
+
+.lightbox-info span {
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  color: #e6edf3 !important;
+  font-weight: 500;
+}
+
+/* ========================================
+   Scrollbar Styling (for image wrapper)
+   ======================================== */
+
+.lightbox-image-wrapper::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.lightbox-image-wrapper::-webkit-scrollbar-track {
+  background: rgba(13, 17, 23, 0.6);
+  border-radius: 6px;
+}
+
+.lightbox-image-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(139, 148, 158, 0.4);
+  border-radius: 6px;
+  border: 2px solid rgba(13, 17, 23, 0.6);
+}
+
+.lightbox-image-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 148, 158, 0.6);
+}
+
+/* Firefox scrollbar */
+.lightbox-image-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 148, 158, 0.4) rgba(13, 17, 23, 0.6);
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.lightbox-content {
+  animation: scaleIn 0.25s ease-out;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+  .lightbox-close {
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .lightbox-controls {
+    bottom: 3rem;
+    right: 1rem;
+  }
+
+  .lightbox-controls button {
+    min-width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .lightbox-info {
+    bottom: 1rem;
+    font-size: 12px;
+    padding: 0.4rem 1rem;
+  }
+
+  .lightbox-content {
+    max-width: 98vw;
+    max-height: 98vh;
+    padding: 0.5rem;
+  }
+
+  .lightbox-image-wrapper {
+    max-height: calc(98vh - 100px);
+  }
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+.lightbox-overlay[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+.lightbox-overlay[aria-hidden="false"] {
+  pointer-events: auto;
+}
+
+/* Focus visible for keyboard navigation */
+.lightbox-close:focus-visible,
+.lightbox-controls button:focus-visible {
+  outline: 3px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Loading State (optional future enhancement)
+   ======================================== */
+
+.lightbox-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  display: none;
+}
+
+.lightbox-image-wrapper.loading .lightbox-loading {
+  display: block;
+}

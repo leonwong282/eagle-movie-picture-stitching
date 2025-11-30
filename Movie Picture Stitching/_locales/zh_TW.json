@@ -81,6 +81,16 @@
       "unpinTitle": "取消置頂",
       "imageName": "圖片 {{index}}",
       "unknownError": "未知錯誤"
+    },
+    "lightbox": {
+      "close": "關閉",
+      "zoomIn": "放大",
+      "zoomOut": "縮小",
+      "resetZoom": "符合螢幕",
+      "dimensions": "{{width}}×{{height}}像素",
+      "zoomLevel": "縮放: {{zoom}}%",
+      "clickToEnlarge": "點擊放大檢視完整尺寸",
+      "instructions": "滾輪縮放，拖曳平移，ESC 或點擊關閉"
     }
   }
 }
