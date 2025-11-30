@@ -98,6 +98,8 @@ class MoviePictureStitchingApp {
     // Image reordering (drag-and-drop)
     window.addEventListener('ui:imagesReordered', (event) => {
       this.handleImagesReordered(event.detail);
+    });
+
     // Keyboard shortcut events
     window.addEventListener('keyboard:previewRequested', () => {
       console.log('[App] Keyboard shortcut: Preview requested');
