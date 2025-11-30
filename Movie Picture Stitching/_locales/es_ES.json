@@ -53,7 +53,9 @@
       "saving": "Guardando...",
       "success": "¡Imagen guardada exitosamente!",
       "error": "Ocurrió un error durante el procesamiento",
-      "saveError": "Error al guardar imagen: {{error}}"
+      "saveError": "Error al guardar imagen: {{error}}",
+      "imagesReordered": "Orden de imágenes actualizado. La vista previa se actualizará automáticamente.",
+      "reorderError": "Error al reordenar imágenes: {{error}}"
     },
     "tooltips": {
       "cropTop": "Establecer el porcentaje de altura a recortar desde la parte superior de las imágenes",

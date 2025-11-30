@@ -29,9 +29,12 @@ Need more detail? Tell me which area to expand (CSS tokens, storage, canvas, Eag
 
 An Eagle desktop plugin for vertically stitching multiple movie screenshot images into panoramic compositions. Built with **vanilla JavaScript ES6+**, **Bootstrap 5.3.8**, **modular class-based architecture**, and **8-language i18n system**.
 
-**Current Branch:** `reconstruct/bootstrap5` - UI fully migrated to Bootstrap 5  
+**Current Branch:** `main` - Stable production version  
 **Tech Stack:** Bootstrap 5.3.8, HTML5 Canvas API, vanilla JavaScript, Eagle Plugin API v4.0+, Node.js fs/path, localStorage  
-**Key Feature:** Auto-saves user parameters (crop %, format, quality) using localStorage with validation
+**Key Features:** 
+- Auto-saves user parameters (crop %, format, quality) using localStorage with validation
+- Toast notification system for non-blocking user feedback
+- Bootstrap 5 modular CSS architecture with glassmorphism design
 
 ## Bootstrap 5 Architecture (v3.0.0 - Hybrid Approach)
 
@@ -54,6 +57,7 @@ An Eagle desktop plugin for vertically stitching multiple movie screenshot image
 <link rel="stylesheet" href="css/components/buttons.css">
 <link rel="stylesheet" href="css/components/cards.css">
 <link rel="stylesheet" href="css/components/navbar.css">
+<link rel="stylesheet" href="css/components/toast.css">
 
 <!-- 4. Utilities & effects (minimal) -->
 <link rel="stylesheet" href="css/utilities/layout.css">
@@ -74,7 +78,8 @@ css/
 │   ├── buttons.css               # Button gradients & shimmer effects (250 lines)
 │   ├── forms.css                 # Form focus states & validation (135 lines)
 │   ├── cards.css                 # Glassmorphism card effects (70 lines)
-│   └── navbar.css                # Header styling (65 lines)
+│   ├── navbar.css                # Header styling (65 lines)
+│   └── toast.css                 # Toast notifications
 ├── utilities/
 │   ├── layout.css                # Eagle-specific utilities ONLY (40 lines)
 │   └── effects.css               # Glassmorphism, scrollbars (130 lines)

@@ -53,7 +53,9 @@
       "saving": "保存中...",
       "success": "画像が正常に保存されました！",
       "error": "処理中にエラーが発生しました",
-      "saveError": "画像の保存に失敗しました: {{error}}"
+      "saveError": "画像の保存に失敗しました: {{error}}",
+      "imagesReordered": "画像の順序が更新されました。プレビューは自動的に更新されます。",
+      "reorderError": "画像の順序変更に失敗しました: {{error}}"
     },
     "tooltips": {
       "cropTop": "画像の上部からトリミングする高さの割合を設定",
