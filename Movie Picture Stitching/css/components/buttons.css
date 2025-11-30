@@ -265,3 +265,45 @@
   border-color: var(--color-accent-danger);
   box-shadow: 0 4px 12px rgba(218, 54, 51, 0.4);
 }
+
+/* ==========================================================================
+   Keyboard Shortcut Hints
+   ========================================================================== */
+
+.keyboard-hint {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  transition: opacity 0.2s ease;
+}
+
+.btn:hover .keyboard-hint {
+  opacity: 0.8;
+}
+
+.keyboard-hint-tooltip {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+}
+
+.header-icon-btn:hover .keyboard-hint-tooltip {
+  opacity: 0.6;
+}
+
+/* Platform-specific symbols */
+.keyboard-hint kbd {
+  padding: 2px 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  font-size: 0.7rem;
+}

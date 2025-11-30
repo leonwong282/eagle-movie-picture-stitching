@@ -22,10 +22,11 @@
       "cropBottom": "Untere Zuschneidehöhe (%):",
       "exportFormat": "Export-Format:",
       "exportQuality": "Export-Qualität (0.1-1.0):",
-      "maxSettingTop": "Max. Einstellung:",
-      "maxSettingBottom": "Max. Einstellung:",
+      "maxSettingTop": "Maximale Einstellung:",
+      "maxSettingBottom": "Maximale Einstellung:",
       "qualityHelp": "Höherer Wert = bessere Qualität, größere Datei",
-      "cropHelp": "Oberer und unterer Zuschnitt insgesamt kann 99% nicht überschreiten",
+      "qualityNotApplicable": "PNG ist verlustfrei - Qualitätseinstellung nicht anwendbar",
+      "cropHelp": "Die Gesamtsumme der oberen und unteren Beschneidung darf 99% nicht überschreiten",
       "formatOptions": {
         "jpg": "JPG - Geeignet für Fotos, kleinere Dateigröße",
         "png": "PNG - Verlustfreie Kompression, unterstützt Transparenz",
@@ -36,7 +37,8 @@
       "preview": "Vorschau",
       "save": "Speichern",
       "processing": "Verarbeitung...",
-      "saving": "Speichern..."
+      "saving": "Speichern...",
+      "close": "Schließen"
     },
     "status": {
       "ready": "Bereit",
@@ -62,6 +64,9 @@
       "cropBottom": "Prozentsatz der Höhe festlegen, die vom unteren Bildrand zugeschnitten werden soll",
       "exportQuality": "Qualität des exportierten Bildes festlegen, Bereich 0.1-1.0",
       "exportFormat": "Format für das exportierte Bild wählen",
+      "formatJpg": "JPEG-Format - gute Kompression, kleinere Dateien",
+      "formatWebp": "WebP-Format - beste Kompression, moderne Browser",
+      "formatPng": "PNG-Format - verlustfreie Qualität, größere Dateien",
       "preview": "Vorschau des zusammengefügten Bildes generieren",
       "save": "Zusammengefügtes Bild im aktuellen Eagle-Ordner speichern"
     },
@@ -91,6 +96,20 @@
       "zoomLevel": "Zoom: {{zoom}}%",
       "clickToEnlarge": "Klicken Sie zum Vergrößern in voller Größe",
       "instructions": "Scrollen zum Zoomen, Ziehen zum Verschieben, ESC oder Klick zum Schließen"
+    },
+    "shortcuts": {
+      "title": "Tastaturkürzel",
+      "actionColumn": "Aktion",
+      "shortcutColumn": "Tastaturkürzel",
+      "preview": "Vorschau",
+      "save": "In Eagle Speichern",
+      "help": "Hilfe",
+      "pin": "Fenster Anheften",
+      "close": "Fenster Schließen",
+      "focusCropTop": "Oberen Zuschnitt Fokussieren",
+      "focusCropBottom": "Unteren Zuschnitt Fokussieren",
+      "cycleFormat": "Exportformat Wechseln",
+      "firstUseHint": "Tipp: Verwenden Sie {preview} für Vorschau, {save} zum Speichern. Klicken Sie auf die Hilfeschaltfläche (?) für alle Tastaturkürzel."
     }
   }
 }

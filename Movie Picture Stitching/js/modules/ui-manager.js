@@ -67,14 +67,98 @@ class UIManager {
       }
     });
 
-    // Export format change listener
-    const exportFormat = document.getElementById('exportFormat');
-    if (exportFormat) {
-      exportFormat.addEventListener('change', () => {
+    // Export format change listener (radio button group)
+    const formatRadios = document.querySelectorAll('input[name="exportFormat"]');
+    formatRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        // Update format description
+        this.updateFormatDescription(radio.value);
+
+        // Dispatch parameter change event
         window.dispatchEvent(new CustomEvent('ui:parameterChanged', {
           detail: { element: 'exportFormat' }
         }));
       });
+    });
+
+    // Initialize format description and quality state based on default selection
+    const checkedFormat = document.querySelector('input[name="exportFormat"]:checked');
+    if (checkedFormat) {
+      this.updateFormatDescription(checkedFormat.value);
+    }
+  }
+
+  /**
+   * Update format description text based on selected format
+   * @param {string} format - Selected format (jpg, webp, png)
+   */
+  updateFormatDescription(format) {
+    const descriptionEl = document.getElementById('format-description');
+    const qualitySlider = document.getElementById('exportQuality');
+    const qualityLabel = document.querySelector('label[for="exportQuality"]');
+    const qualityBadge = document.getElementById('qualityValue');
+    const qualityHelp = document.getElementById('quality-help');
+
+    if (!descriptionEl) return;
+
+    const descriptions = {
+      jpg: 'Good compression, smaller files',
+      webp: 'Best compression, modern browsers',
+      png: 'Lossless quality, larger files'
+    };
+
+    descriptionEl.textContent = descriptions[format] || '';
+
+    // Disable quality slider for PNG (lossless format)
+    const isPNG = format === 'png';
+
+    if (qualitySlider) {
+      qualitySlider.disabled = isPNG;
+
+      // Add visual feedback by reducing opacity
+      if (isPNG) {
+        qualitySlider.style.opacity = '0.5';
+        qualitySlider.style.cursor = 'not-allowed';
+      } else {
+        qualitySlider.style.opacity = '1';
+        qualitySlider.style.cursor = 'pointer';
+      }
+    }
+
+    // Update label and badge opacity
+    if (qualityLabel) {
+      qualityLabel.style.opacity = isPNG ? '0.5' : '1';
+    }
+
+    if (qualityBadge) {
+      qualityBadge.style.opacity = isPNG ? '0.5' : '1';
+      if (isPNG) {
+        qualityBadge.textContent = 'N/A';
+      } else {
+        // Restore numeric value when switching back from PNG
+        if (qualitySlider && !qualitySlider.disabled) {
+          qualityBadge.textContent = parseFloat(qualitySlider.value).toFixed(2);
+        }
+      }
+    }
+
+    if (qualityHelp) {
+      if (isPNG) {
+        // Use i18n for PNG message
+        const message = window.i18nManager ?
+          window.i18nManager.t('ui.settings.qualityNotApplicable') :
+          'PNG is lossless - quality setting not applicable';
+        qualityHelp.textContent = message;
+        qualityHelp.style.color = 'rgba(255, 255, 255, 0.4)';
+        qualityHelp.removeAttribute('data-i18n');
+      } else {
+        qualityHelp.setAttribute('data-i18n', 'ui.settings.qualityHelp');
+        const message = window.i18nManager ?
+          window.i18nManager.t('ui.settings.qualityHelp') :
+          'Higher value = better quality, larger file';
+        qualityHelp.textContent = message;
+        qualityHelp.style.color = '';
+      }
     }
   }
 

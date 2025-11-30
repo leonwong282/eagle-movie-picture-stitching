@@ -18,11 +18,16 @@
 
   <!-- Bootstrap Component Overrides -->
   <link rel="stylesheet" href="css/components/forms.css">
+  <link rel="stylesheet" href="css/components/sliders.css">
   <link rel="stylesheet" href="css/components/buttons.css">
   <link rel="stylesheet" href="css/components/cards.css">
   <link rel="stylesheet" href="css/components/navbar.css">
   <link rel="stylesheet" href="css/components/toast.css">
+<<<<<<< HEAD
   <link rel="stylesheet" href="css/components/lightbox.css">
+=======
+  <link rel="stylesheet" href="css/components/modal.css">
+>>>>>>> feature/settings
 
   <!-- Utilities & Effects -->
   <link rel="stylesheet" href="css/utilities/layout.css">
@@ -97,13 +102,23 @@
             style="display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; flex: 1 1 0; min-height: 0;">
             <!-- Top Cropping Percentage -->
             <div class="mb-3">
-              <label for="cropTopPercent" class="form-label fw-bold text-white mb-1">
+              <label for="cropTopSlider" class="form-label fw-bold text-white mb-2">
                 <span data-i18n="ui.settings.cropTop">Top Crop Height (%):</span>
               </label>
-              <input type="number" id="cropTopPercent" class="form-control bg-dark text-white border-secondary"
-                value="0" min="0" max="99" data-i18n="[title]ui.tooltips.cropTop"
-                title="Set the height percentage to crop from the top of images" aria-label="Top Cropping Percentage"
-                aria-describedby="crop-top-help">
+              <!-- Slider + Number Input (Hybrid Control) -->
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div class="slider-container flex-grow-1">
+                  <div class="slider-progress" id="cropTopProgress" style="width: 0%"></div>
+                  <input type="range" id="cropTopSlider" class="form-range" value="0" min="0" max="99" step="1"
+                    data-i18n="[aria-label]ui.tooltips.cropTop" aria-label="Top Cropping Percentage Slider"
+                    aria-describedby="crop-top-help">
+                </div>
+                <input type="number" id="cropTopPercent"
+                  class="form-control form-control-sm bg-dark text-white border-secondary text-center"
+                  style="width: 70px;" value="0" min="0" max="99" step="1" data-i18n="[title]ui.tooltips.cropTop"
+                  title="Set the height percentage to crop from the top of images"
+                  aria-label="Top Cropping Percentage Value" aria-describedby="crop-top-help">
+              </div>
               <small id="crop-top-help" class="form-text text-muted">
                 <span data-i18n="ui.settings.maxSettingTop">Max setting:</span>
                 <span id="remaining-top">99</span>%
@@ -112,13 +127,23 @@
 
             <!-- Bottom Cropping Percentage -->
             <div class="mb-3">
-              <label for="cropBottomPercent" class="form-label fw-bold text-white mb-1">
+              <label for="cropBottomSlider" class="form-label fw-bold text-white mb-2">
                 <span data-i18n="ui.settings.cropBottom">Bottom Crop Height (%):</span>
               </label>
-              <input type="number" id="cropBottomPercent" class="form-control bg-dark text-white border-secondary"
-                value="15" min="0" max="99" data-i18n="[title]ui.tooltips.cropBottom"
-                title="Set the height percentage to crop from the bottom of images"
-                aria-label="Bottom Cropping Percentage" aria-describedby="crop-bottom-help">
+              <!-- Slider + Number Input (Hybrid Control) -->
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div class="slider-container flex-grow-1">
+                  <div class="slider-progress" id="cropBottomProgress" style="width: 15%"></div>
+                  <input type="range" id="cropBottomSlider" class="form-range" value="15" min="0" max="99" step="1"
+                    data-i18n="[aria-label]ui.tooltips.cropBottom" aria-label="Bottom Cropping Percentage Slider"
+                    aria-describedby="crop-bottom-help">
+                </div>
+                <input type="number" id="cropBottomPercent"
+                  class="form-control form-control-sm bg-dark text-white border-secondary text-center"
+                  style="width: 70px;" value="15" min="0" max="99" step="1" data-i18n="[title]ui.tooltips.cropBottom"
+                  title="Set the height percentage to crop from the bottom of images"
+                  aria-label="Bottom Cropping Percentage Value" aria-describedby="crop-bottom-help">
+              </div>
               <small id="crop-bottom-help" class="form-text text-muted">
                 <span data-i18n="ui.settings.maxSettingBottom">Max setting:</span>
                 <span id="remaining-bottom">84</span>%
@@ -127,28 +152,52 @@
 
             <!-- Export Image Format -->
             <div class="mb-3">
-              <label for="exportFormat" class="form-label fw-bold text-white mb-1" data-i18n="ui.settings.exportFormat">
+              <label class="form-label fw-bold text-white mb-2" data-i18n="ui.settings.exportFormat">
                 Export Format:
               </label>
-              <select id="exportFormat" class="form-select bg-dark text-white border-secondary"
-                data-i18n="[title]ui.tooltips.exportFormat" aria-label="Export Image Format"
-                aria-describedby="format-help">
-                <option value="jpg" selected>JPG</option>
-                <option value="webp">WEBP</option>
-                <option value="png">PNG</option>
-              </select>
+              <!-- Format Button Group (Radio Buttons Styled as Badges) -->
+              <div class="btn-group w-100" role="group" aria-label="Export Format Selection">
+                <input type="radio" class="btn-check" name="exportFormat" id="format-jpg" value="jpg" checked
+                  autocomplete="off">
+                <label class="btn btn-outline-success format-btn" for="format-jpg"
+                  data-i18n="[title]ui.tooltips.formatJpg" title="JPEG format - good compression, smaller files">
+                  <span class="format-icon">📷</span>
+                  <span class="format-label">JPG</span>
+                </label>
+
+                <input type="radio" class="btn-check" name="exportFormat" id="format-webp" value="webp"
+                  autocomplete="off">
+                <label class="btn btn-outline-success format-btn" for="format-webp"
+                  data-i18n="[title]ui.tooltips.formatWebp" title="WebP format - best compression, modern browsers">
+                  <span class="format-icon">🌐</span>
+                  <span class="format-label">WEBP</span>
+                </label>
+
+                <input type="radio" class="btn-check" name="exportFormat" id="format-png" value="png"
+                  autocomplete="off">
+                <label class="btn btn-outline-success format-btn" for="format-png"
+                  data-i18n="[title]ui.tooltips.formatPng" title="PNG format - lossless, larger files">
+                  <span class="format-icon">🖼️</span>
+                  <span class="format-label">PNG</span>
+                </label>
+              </div>
+              <small class="form-text text-muted d-block mt-2">
+                <span id="format-description">Good compression, smaller files</span>
+              </small>
             </div>
 
             <!-- Export Image Quality -->
             <div class="mb-3">
-              <label for="exportQuality" class="form-label fw-bold text-white mb-1"
-                data-i18n="ui.settings.exportQuality">
-                Export Quality (0.1-1.0):
+              <label for="exportQuality" class="form-label fw-bold text-white mb-1">
+                <span data-i18n="ui.settings.exportQuality">Export Quality:</span>
+                <span class="badge bg-success ms-2" id="qualityValue">0.92</span>
               </label>
-              <input type="number" id="exportQuality" class="form-control bg-dark text-white border-secondary"
-                value="0.92" min="0.1" max="1" step="0.01" data-i18n="[title]ui.tooltips.exportQuality"
-                title="Set the quality of exported image, range 0.1-1.0" aria-label="Export Image Quality"
-                aria-describedby="quality-help">
+              <div class="slider-container">
+                <div class="slider-progress" id="qualityProgress" style="width: 91.11%"></div>
+                <input type="range" id="exportQuality" class="form-range" value="0.92" min="0.1" max="1.0" step="0.01"
+                  data-i18n="[title]ui.tooltips.exportQuality" title="Set the quality of exported image, range 0.1-1.0"
+                  aria-label="Export Image Quality" aria-describedby="quality-help">
+              </div>
               <small id="quality-help" class="form-text text-muted" data-i18n="ui.settings.qualityHelp">Higher value =
                 better quality, larger file</small>
             </div>
@@ -173,6 +222,38 @@
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
 
+  <!-- Keyboard Shortcuts Help Modal -->
+  <div id="shortcuts-modal" class="modal fade" tabindex="-1" aria-labelledby="shortcuts-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-secondary">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="shortcuts-modal-title" data-i18n="ui.shortcuts.title">
+            Keyboard Shortcuts
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-dark table-sm">
+            <thead>
+              <tr>
+                <th data-i18n="ui.shortcuts.actionColumn">Action</th>
+                <th data-i18n="ui.shortcuts.shortcutColumn">Shortcut</th>
+              </tr>
+            </thead>
+            <tbody id="shortcuts-table-body">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="ui.buttons.close">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap JavaScript (after content, before plugin JS) -->
   <script src="vendor/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
 
@@ -191,6 +272,7 @@
   <script type="text/javascript" src="js/modules/ui-manager.js"></script>
   <script type="text/javascript" src="js/modules/file-manager.js"></script>
   <script type="text/javascript" src="js/modules/lightbox-manager.js"></script>
+  <script type="text/javascript" src="js/modules/keyboard-shortcut-manager.js"></script>
 
   <!-- Main application -->
   <script type="text/javascript" src="js/plugin-modular.js"></script>

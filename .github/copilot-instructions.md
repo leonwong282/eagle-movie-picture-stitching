@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Copilot instructions — Eagle Movie Picture Stitching (concise)
 
 Purpose: make an AI coding agent productive quickly. This file highlights where to look, hard constraints, and project conventions you must follow.
@@ -23,6 +24,8 @@ What to test after changes
 
 Need more detail? Tell me which area to expand (CSS tokens, storage, canvas, Eagle API, i18n) and I will add short, example-focused snippets referencing the exact lines/files.
 ````instructions
+=======
+>>>>>>> feature/settings
 # Eagle Movie Picture Stitching Plugin - AI Coding Instructions
 
 ## Quick Reference
@@ -49,6 +52,7 @@ Need more detail? Tell me which area to expand (CSS tokens, storage, canvas, Eag
 
 An Eagle desktop plugin for vertically stitching multiple movie screenshot images into panoramic compositions. Built with **vanilla JavaScript ES6+**, **Bootstrap 5.3.8**, **modular class-based architecture**, and **8-language i18n system**.
 
+<<<<<<< HEAD
 **Current Branch:** `main` - Stable production version  
 **Current Version:** v1.0.1 (Parameter Persistence Update)  
 **Tech Stack:** Bootstrap 5.3.8, HTML5 Canvas API, vanilla JavaScript, Eagle Plugin API v4.0+, Node.js fs/path, localStorage  
@@ -60,6 +64,73 @@ An Eagle desktop plugin for vertically stitching multiple movie screenshot image
 - Auto-saves user parameters (crop %, format, quality) using localStorage with validation
 - 8-language internationalization (en, zh_CN, zh_TW, ja_JP, es_ES, de_DE, ko_KR, ru_RU)
 - Event-driven modular architecture with zero inter-module dependencies
+=======
+**Tech Stack:** Bootstrap 5.3.8, HTML5 Canvas API, vanilla JavaScript, Eagle Plugin API v4.0+, Node.js fs/path, localStorage  
+**Version:** 1.0.1 (parameter persistence via localStorage)  
+**Development:** No build step - reload plugin in Eagle after changes (Cmd+R)
+
+---
+
+**📑 Quick Navigation:**
+- [🚀 Quick Start](#-quick-start-for-ai-agents) - Essential workflows, debug commands, critical constraints
+- [🎨 Bootstrap 5 Architecture](#bootstrap-5-architecture-v300---hybrid-approach) - CSS philosophy, design tokens, component patterns
+- [🏗️ Module Architecture](#architecture---event-driven-modular-system) - Event-driven system, Eagle plugin lifecycle
+- [🌍 Internationalization](#internationalization-i18n-system) - i18n patterns, translation API
+- [🎯 Canvas Rendering](#canvas-rendering--image-processing) - Stitching algorithm, browser limits
+- [💾 Parameter Persistence](#parameter-persistence--storage) - localStorage auto-save patterns
+- [🔧 Development Workflows](#development-workflows) - Testing in Eagle, git workflow, debugging
+- [🐛 Troubleshooting](#troubleshooting) - Common issues and solutions
+- [📁 Key Files Reference](#key-files-reference) - File structure guide
+
+---
+
+## 🚀 Quick Start for AI Agents
+
+### Essential Workflows
+
+**Testing Changes:**
+1. Make code changes in workspace
+2. In Eagle: Cmd+R (macOS) / Ctrl+R (Windows) to reload plugin
+3. If changes don't appear: Disable → Re-enable plugin in Eagle Settings
+4. Open DevTools: Cmd+Option+I (macOS) / F12 (Windows)
+5. **No build step required** - changes reflect immediately on reload
+
+**Installing in Eagle (macOS):**
+```bash
+# Copy plugin to Eagle's directory
+cp -r "Movie Picture Stitching/" ~/Library/Application\ Support/Eagle/plugins/
+
+# Or use Eagle UI: Settings → Plugins → Developer → Import Local Project
+```
+
+**Debug Console Commands:**
+```javascript
+window.app                         // Access main app instance
+storageDebug.viewAll()             // View all saved parameters
+storageDebug.clearAll()            // Clear localStorage
+i18nManager.validateTranslations() // Check for missing translation keys
+await eagle.item.getSelected()     // Get currently selected images (Eagle API)
+```
+
+### Critical Architecture Constraints
+
+⚠️ **NEVER:**
+- Use `innerHTML` for user content (XSS risk - use `textContent` or `createElement()`)
+- Wait for DOM in constructor (causes 5s delay - load params sync, apply in `initialize()`)
+- Modify Bootstrap classes directly (override in `css/components/*.css`)
+- Use inline styles for layout (Bootstrap utilities in HTML `class=""`)
+- Keep temp files >1s after Eagle import (schedule cleanup immediately)
+- Exceed 32767px canvas dimensions (hard browser limit)
+- Use `alert()` for messages (use toast notifications via `uiManager.showMessage()`)
+
+✅ **ALWAYS:**
+- Check `typeof eagle !== 'undefined'` before using Eagle API
+- Validate canvas size before rendering: `if (width > 32767 || height > 32767) throw Error`
+- Use `data-i18n` attributes for all UI text (never hardcode strings)
+- Dispatch CustomEvents for module communication (never direct module calls)
+- Clean canvas refs in cleanup: `canvas.width = 0; canvas.height = 0;`
+- Validate parameter constraints: total crop < 100%, quality 0.1-1.0
+>>>>>>> feature/settings
 
 ## Bootstrap 5 Architecture (v3.0.0 - Hybrid Approach)
 
@@ -386,14 +457,41 @@ constructor() {
 
 ## Parameter Validation
 
+### Hybrid Control System (v1.1.0)
+
+**Crop Parameters:** Slider + Number Input (side-by-side)
+- Visual slider for quick experimentation
+- Number input for precise values (e.g., exactly "85%")
+- Real-time synchronization: changing one updates the other
+- Smart constraints: slider max dynamically adjusts based on other parameter
+
+**Quality Parameter:** Slider Only + Badge Display
+- Single slider control (0.1-1.0, step=0.01)
+- Live badge shows current value with 2 decimal precision
+- Simpler UI since precise decimal entry rarely needed
+
 ### Smart Adjustment Pattern
-When users adjust crop parameters, **only adjust the active parameter**:
+When users adjust crop parameters, **slider max dynamically constrains**:
 ```javascript
-// User adjusting top crop → constrain top, keep bottom fixed
-if (adjustingElement === 'cropTopPercent') {
-  const maxTop = 99 - cropBottomPercent;
-  cropTopPercent = Math.min(cropTopPercent, maxTop);
-}
+// In updateRemainingValues():
+const remainingForTop = Math.max(0, 99 - bottomValue);
+topSlider.max = remainingForTop; // Prevents invalid combinations
+
+// Example: If bottom=50, top slider max becomes 49
+```
+
+**Slider-Number Sync:**
+```javascript
+// In setupSliderSync():
+slider.addEventListener('input', (e) => {
+  numberInput.value = e.target.value;
+  this.updateRemainingValues();
+});
+
+numberInput.addEventListener('input', (e) => {
+  slider.value = e.target.value;
+  this.updateRemainingValues();
+});
 ```
 
 **Remaining Value Display:** Update `#remaining-top` and `#remaining-bottom` spans immediately via `window.parameterManager.updateRemainingValues()`.
@@ -634,6 +732,31 @@ this.uiManager.showMessage('ui.messages.generatePreview', {}, 'warning');
 3. Re-enable plugin
 4. Reopen plugin
 
+### Git Workflow
+
+**Feature Branches:**
+```bash
+# Create feature branch
+git switch -c feature/your-feature-name
+
+# Work on changes, then commit
+git add .
+git commit -m "feat: add new feature"
+
+# Push to remote
+git push -u origin feature/your-feature-name
+```
+
+**Commit Convention:** Follow [Conventional Commits](https://www.conventionalcommits.org/)
+- `feat:` New feature
+- `fix:` Bug fix
+- `docs:` Documentation changes
+- `style:` Code style changes (formatting, CSS)
+- `refactor:` Code refactoring
+- `perf:` Performance improvements
+- `test:` Adding tests
+- `chore:` Maintenance tasks
+
 ### Debugging Tools
 
 **Console Access:**
@@ -725,6 +848,37 @@ if (width > 32767 || height > 32767) {
 4. **Validate file paths** to prevent path traversal: reject paths with `..` characters.
 5. **Respect parameter constraints:** Total crop must be < 100%, quality 0.1-1.0.
 6. **NEVER wait for DOM in constructor** - causes 5s+ delay. Load params synchronously, apply in `initialize()`.
+
+## Troubleshooting
+
+### Plugin Won't Load
+- Check Eagle plugin directory path is correct
+- Verify `manifest.json` is valid JSON (use JSONLint)
+- Check DevTools console for errors (Cmd+Option+I)
+- Try disabling/re-enabling plugin in Eagle settings
+
+### Changes Not Reflecting
+- Cmd+R to reload plugin (macOS) or Ctrl+R (Windows)
+- If still not working: disable plugin → re-enable → reopen
+- Clear Eagle cache: close Eagle completely, restart
+
+### i18n Errors
+- Validate all translation keys exist in `_locales/*.json`
+- Run `i18nManager.validateTranslations()` in console
+- Check fallback language (English) has all keys
+- Global error handler will attempt auto-recovery after 1s
+
+### Canvas/Memory Issues
+- Check canvas dimensions don't exceed 32767px
+- Verify images are being released after processing
+- Use Chrome DevTools Memory profiler to check for leaks
+- Reduce batch size (< 50 images recommended)
+
+### Storage/Parameter Issues
+- Check localStorage is enabled in browser
+- Run `storageDebug.viewAll()` to inspect saved values
+- Use `storageDebug.clearAll()` to reset state
+- Verify parameter validation isn't blocking saves
 
 ## Key Files Reference
 

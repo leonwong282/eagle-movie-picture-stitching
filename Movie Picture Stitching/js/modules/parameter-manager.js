@@ -38,6 +38,142 @@ class ParameterManager {
   initialize() {
     // Apply saved parameters to DOM elements
     this.applyParametersToDOMSync();
+
+    // Setup slider synchronization
+    this.setupSliderSync();
+
+    // Setup quality slider badge update
+    this.setupQualityBadge();
+
+    // Setup progress fill for all sliders
+    this.setupProgressFill();
+  }
+
+  /**
+   * Setup progress fill visualization for sliders
+   * Updates the visual fill bar as sliders are moved
+   */
+  setupProgressFill() {
+    // Crop Top Progress
+    const cropTopSlider = document.getElementById('cropTopSlider');
+    const cropTopProgress = document.getElementById('cropTopProgress');
+    if (cropTopSlider && cropTopProgress) {
+      this.updateTopProgress = () => {
+        const value = parseFloat(cropTopSlider.value);
+        const max = parseFloat(cropTopSlider.max);
+        const min = parseFloat(cropTopSlider.min);
+        const percentage = ((value - min) / (max - min)) * 100;
+        cropTopProgress.style.width = `${percentage}%`;
+      };
+
+      cropTopSlider.addEventListener('input', this.updateTopProgress);
+      this.updateTopProgress(); // Set initial value
+    }
+
+    // Crop Bottom Progress
+    const cropBottomSlider = document.getElementById('cropBottomSlider');
+    const cropBottomProgress = document.getElementById('cropBottomProgress');
+    if (cropBottomSlider && cropBottomProgress) {
+      this.updateBottomProgress = () => {
+        const value = parseFloat(cropBottomSlider.value);
+        const max = parseFloat(cropBottomSlider.max);
+        const min = parseFloat(cropBottomSlider.min);
+        const percentage = ((value - min) / (max - min)) * 100;
+        cropBottomProgress.style.width = `${percentage}%`;
+      };
+
+      cropBottomSlider.addEventListener('input', this.updateBottomProgress);
+      this.updateBottomProgress(); // Set initial value
+    }
+
+    // Quality Progress
+    const qualitySlider = document.getElementById('exportQuality');
+    const qualityProgress = document.getElementById('qualityProgress');
+    if (qualitySlider && qualityProgress) {
+      this.updateQualityProgress = () => {
+        const value = parseFloat(qualitySlider.value);
+        const max = parseFloat(qualitySlider.max);
+        const min = parseFloat(qualitySlider.min);
+        const percentage = ((value - min) / (max - min)) * 100;
+        qualityProgress.style.width = `${percentage}%`;
+      };
+
+      qualitySlider.addEventListener('input', this.updateQualityProgress);
+      this.updateQualityProgress(); // Set initial value
+    }
+
+    console.log('[ParameterManager] Progress fill setup complete');
+  }
+
+  /**
+   * Setup synchronization between range sliders and number inputs
+   * Ensures both controls stay in sync when user adjusts either one
+   */
+  setupSliderSync() {
+    // Top Crop: Slider <-> Number Input
+    const cropTopSlider = document.getElementById('cropTopSlider');
+    const cropTopNumber = document.getElementById('cropTopPercent');
+
+    if (cropTopSlider && cropTopNumber) {
+      // Slider updates number input
+      cropTopSlider.addEventListener('input', (e) => {
+        cropTopNumber.value = e.target.value;
+        this.updateRemainingValues();
+
+        // Dispatch input event to trigger UI manager's listeners for real-time preview
+        cropTopNumber.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+
+      // Number input updates slider
+      cropTopNumber.addEventListener('input', (e) => {
+        cropTopSlider.value = e.target.value;
+        this.updateRemainingValues();
+      });
+    }
+
+    // Bottom Crop: Slider <-> Number Input
+    const cropBottomSlider = document.getElementById('cropBottomSlider');
+    const cropBottomNumber = document.getElementById('cropBottomPercent');
+
+    if (cropBottomSlider && cropBottomNumber) {
+      // Slider updates number input
+      cropBottomSlider.addEventListener('input', (e) => {
+        cropBottomNumber.value = e.target.value;
+        this.updateRemainingValues();
+
+        // Dispatch input event to trigger UI manager's listeners for real-time preview
+        cropBottomNumber.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+
+      // Number input updates slider
+      cropBottomNumber.addEventListener('input', (e) => {
+        cropBottomSlider.value = e.target.value;
+        this.updateRemainingValues();
+      });
+    }
+
+    console.log('[ParameterManager] Slider synchronization setup complete');
+  }
+
+  /**
+   * Setup quality slider badge to display current value
+   * Updates badge in real-time as user adjusts the slider
+   */
+  setupQualityBadge() {
+    const qualitySlider = document.getElementById('exportQuality');
+    const qualityBadge = document.getElementById('qualityValue');
+
+    if (qualitySlider && qualityBadge) {
+      // Update badge on slider change
+      qualitySlider.addEventListener('input', (e) => {
+        qualityBadge.textContent = parseFloat(e.target.value).toFixed(2);
+      });
+
+      // Set initial value
+      qualityBadge.textContent = parseFloat(qualitySlider.value).toFixed(2);
+
+      console.log('[ParameterManager] Quality badge setup complete');
+    }
   }
 
   /**
@@ -51,35 +187,54 @@ class ParameterManager {
     }
 
     try {
-      // Apply crop top (using correct element IDs from HTML)
+      // Apply crop top (update both slider and number input)
       if (this.savedParams.cropTopPercent !== undefined) {
+        const cropTopSlider = document.getElementById('cropTopSlider');
         const cropTopInput = document.getElementById('cropTopPercent');
+        if (cropTopSlider) {
+          cropTopSlider.value = this.savedParams.cropTopPercent;
+        }
         if (cropTopInput) {
           cropTopInput.value = this.savedParams.cropTopPercent;
         }
       }
 
-      // Apply crop bottom
+      // Apply crop bottom (update both slider and number input)
       if (this.savedParams.cropBottomPercent !== undefined) {
+        const cropBottomSlider = document.getElementById('cropBottomSlider');
         const cropBottomInput = document.getElementById('cropBottomPercent');
+        if (cropBottomSlider) {
+          cropBottomSlider.value = this.savedParams.cropBottomPercent;
+        }
         if (cropBottomInput) {
           cropBottomInput.value = this.savedParams.cropBottomPercent;
         }
       }
 
-      // Apply export format
+      // Apply export format (radio button group)
       if (this.savedParams.exportFormat !== undefined) {
-        const exportFormatSelect = document.getElementById('exportFormat');
-        if (exportFormatSelect) {
-          exportFormatSelect.value = this.savedParams.exportFormat;
+        const formatRadio = document.getElementById(`format-${this.savedParams.exportFormat}`);
+        if (formatRadio) {
+          formatRadio.checked = true;
+
+          // Trigger format description update and quality state
+          // Need to dispatch after a tick to ensure UI manager is ready
+          setTimeout(() => {
+            const event = new Event('change', { bubbles: true });
+            formatRadio.dispatchEvent(event);
+          }, 0);
         }
       }
 
-      // Apply export quality
+      // Apply export quality (slider only)
       if (this.savedParams.exportQuality !== undefined) {
-        const exportQualityInput = document.getElementById('exportQuality');
-        if (exportQualityInput) {
-          exportQualityInput.value = this.savedParams.exportQuality;
+        const exportQualitySlider = document.getElementById('exportQuality');
+        const qualityBadge = document.getElementById('qualityValue');
+        if (exportQualitySlider) {
+          exportQualitySlider.value = this.savedParams.exportQuality;
+        }
+        if (qualityBadge) {
+          qualityBadge.textContent = parseFloat(this.savedParams.exportQuality).toFixed(2);
         }
       }
 
@@ -154,7 +309,7 @@ class ParameterManager {
     const elements = {
       cropTop: document.getElementById('cropTopPercent'),
       cropBottom: document.getElementById('cropBottomPercent'),
-      exportFormat: document.getElementById('exportFormat'),
+      exportFormat: document.querySelector('input[name="exportFormat"]:checked'),
       exportQuality: document.getElementById('exportQuality'),
     };
 
@@ -247,7 +402,9 @@ class ParameterManager {
    * Updates UI to show remaining crop percentages and visual feedback
    */
   updateRemainingValues() {
+    const topSlider = document.getElementById('cropTopSlider');
     const topElement = document.getElementById('cropTopPercent');
+    const bottomSlider = document.getElementById('cropBottomSlider');
     const bottomElement = document.getElementById('cropBottomPercent');
     const remainingTopSpan = document.getElementById('remaining-top');
     const remainingBottomSpan = document.getElementById('remaining-bottom');
@@ -264,7 +421,23 @@ class ParameterManager {
     remainingTopSpan.textContent = remainingForTop;
     remainingBottomSpan.textContent = remainingForBottom;
 
-    // Visual feedback
+    // Update slider max attributes for smart constraint
+    if (topSlider) {
+      topSlider.max = remainingForTop;
+    }
+    if (bottomSlider) {
+      bottomSlider.max = remainingForBottom;
+    }
+
+    // Update progress fills after max change (CRITICAL FIX)
+    if (this.updateTopProgress) {
+      this.updateTopProgress();
+    }
+    if (this.updateBottomProgress) {
+      this.updateBottomProgress();
+    }
+
+    // Visual feedback on number inputs
     if (total >= 100) {
       topElement.style.borderColor = '#f44336';
       bottomElement.style.borderColor = '#f44336';

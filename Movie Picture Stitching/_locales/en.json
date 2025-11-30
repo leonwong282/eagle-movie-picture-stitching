@@ -25,6 +25,7 @@
       "maxSettingTop": "Max setting:",
       "maxSettingBottom": "Max setting:",
       "qualityHelp": "Higher value = better quality, larger file",
+      "qualityNotApplicable": "PNG is lossless - quality setting not applicable",
       "cropHelp": "Top and bottom crop total cannot exceed 99%",
       "formatOptions": {
         "jpg": "JPG - Suitable for photos, smaller file size",
@@ -36,7 +37,8 @@
       "preview": "Preview",
       "save": "Save",
       "processing": "Processing...",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "close": "Close"
     },
     "status": {
       "ready": "Ready",
@@ -62,6 +64,9 @@
       "cropBottom": "Set the height percentage to crop from the bottom of images",
       "exportQuality": "Set the quality of exported image, range 0.1-1.0",
       "exportFormat": "Choose the format for exported image",
+      "formatJpg": "JPEG format - good compression, smaller files",
+      "formatWebp": "WebP format - best compression, modern browsers",
+      "formatPng": "PNG format - lossless, larger files",
       "preview": "Generate a preview of the stitched image",
       "save": "Save the stitched image to Eagle current folder"
     },
@@ -91,6 +96,20 @@
       "zoomLevel": "Zoom: {{zoom}}%",
       "clickToEnlarge": "Click to enlarge and view full size",
       "instructions": "Scroll to zoom, drag to pan, ESC or click to close"
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts",
+      "actionColumn": "Action",
+      "shortcutColumn": "Shortcut",
+      "preview": "Preview",
+      "save": "Save to Eagle",
+      "help": "Help",
+      "pin": "Pin Window",
+      "close": "Close Window",
+      "focusCropTop": "Focus Top Crop",
+      "focusCropBottom": "Focus Bottom Crop",
+      "cycleFormat": "Cycle Export Format",
+      "firstUseHint": "Tip: Use {preview} to preview, {save} to save. Click Help button (?) for all shortcuts."
     }
   }
 }

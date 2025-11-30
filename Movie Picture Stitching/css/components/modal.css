@@ -1,0 +1,50 @@
+/**
+ * Modal Components
+ * Keyboard Shortcuts Modal Styling
+ *
+ * @version 1.0.0
+ * @date 2025-10-31
+ */
+
+/* ==========================================================================
+   Keyboard Shortcuts Modal
+   ========================================================================== */
+
+#shortcuts-modal .modal-content {
+    background: var(--gradient-card);
+    backdrop-filter: var(--backdrop-blur);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#shortcuts-modal .table {
+    margin-bottom: 0;
+}
+
+#shortcuts-modal .table th {
+    color: var(--color-accent-primary);
+    font-weight: 600;
+    border-bottom: 2px solid rgba(35, 134, 54, 0.3);
+}
+
+#shortcuts-modal .table td {
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+#shortcuts-modal kbd {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.85rem;
+    color: var(--color-accent-primary);
+    border: 1px solid rgba(35, 134, 54, 0.3);
+}
+
+#shortcuts-modal .modal-header {
+    background: rgba(35, 134, 54, 0.1);
+}
+
+#shortcuts-modal .modal-title {
+    color: var(--color-accent-primary);
+}

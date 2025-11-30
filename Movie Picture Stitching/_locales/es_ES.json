@@ -22,9 +22,10 @@
       "cropBottom": "Altura de Recorte Inferior (%):",
       "exportFormat": "Formato de Exportación:",
       "exportQuality": "Calidad de Exportación (0.1-1.0):",
-      "maxSettingTop": "Configuración máx:",
-      "maxSettingBottom": "Configuración máx:",
+      "maxSettingTop": "Configuración máxima:",
+      "maxSettingBottom": "Configuración máxima:",
       "qualityHelp": "Valor más alto = mejor calidad, archivo más grande",
+      "qualityNotApplicable": "PNG es sin pérdida - ajuste de calidad no aplicable",
       "cropHelp": "El total de recorte superior e inferior no puede exceder el 99%",
       "formatOptions": {
         "jpg": "JPG - Adecuado para fotos, tamaño de archivo menor",
@@ -36,7 +37,8 @@
       "preview": "Vista Previa",
       "save": "Guardar",
       "processing": "Procesando...",
-      "saving": "Guardando..."
+      "saving": "Guardando...",
+      "close": "Cerrar"
     },
     "status": {
       "ready": "Listo",
@@ -62,6 +64,9 @@
       "cropBottom": "Establecer el porcentaje de altura a recortar desde la parte inferior de las imágenes",
       "exportQuality": "Establecer la calidad de la imagen exportada, rango 0.1-1.0",
       "exportFormat": "Elegir el formato para la imagen exportada",
+      "formatJpg": "Formato JPEG - buena compresión, archivos más pequeños",
+      "formatWebp": "Formato WebP - mejor compresión, navegadores modernos",
+      "formatPng": "Formato PNG - calidad sin pérdida, archivos más grandes",
       "preview": "Generar una vista previa de la imagen unida",
       "save": "Guardar la imagen unida en la carpeta actual de Eagle"
     },
@@ -91,6 +96,20 @@
       "zoomLevel": "Zoom: {{zoom}}%",
       "clickToEnlarge": "Haga clic para ampliar y ver tamaño completo",
       "instructions": "Desplazar para zoom, arrastrar para mover, ESC o clic para cerrar"
+    },
+    "shortcuts": {
+      "title": "Atajos de Teclado",
+      "actionColumn": "Acción",
+      "shortcutColumn": "Atajo",
+      "preview": "Vista Previa",
+      "save": "Guardar en Eagle",
+      "help": "Ayuda",
+      "pin": "Fijar Ventana",
+      "close": "Cerrar Ventana",
+      "focusCropTop": "Enfocar Recorte Superior",
+      "focusCropBottom": "Enfocar Recorte Inferior",
+      "cycleFormat": "Cambiar Formato de Exportación",
+      "firstUseHint": "Consejo: Usa {preview} para vista previa, {save} para guardar. Haz clic en el botón de ayuda (?) para ver todos los atajos."
     }
   }
 }

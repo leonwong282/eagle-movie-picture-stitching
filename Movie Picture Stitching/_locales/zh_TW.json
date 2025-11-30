@@ -25,6 +25,7 @@
       "maxSettingTop": "最大可設定:",
       "maxSettingBottom": "最大可設定:",
       "qualityHelp": "數值越高品質越好，檔案越大",
+      "qualityNotApplicable": "PNG為無損格式 - 品質設定不適用",
       "cropHelp": "頂部和底部裁剪總和不能超過99%",
       "formatOptions": {
         "jpg": "JPG - 適合照片，檔案較小",
@@ -36,7 +37,8 @@
       "preview": "預覽",
       "save": "儲存",
       "processing": "處理中...",
-      "saving": "儲存中..."
+      "saving": "儲存中...",
+      "close": "關閉"
     },
     "status": {
       "ready": "就緒",
@@ -62,6 +64,9 @@
       "cropBottom": "設定從圖片底部裁剪的高度百分比",
       "exportQuality": "設定匯出圖片的品質，範圍0.1-1.0",
       "exportFormat": "選擇匯出圖片的格式",
+      "formatJpg": "JPEG格式 - 壓縮率佳，檔案較小",
+      "formatWebp": "WebP格式 - 壓縮率最佳，現代瀏覽器支援",
+      "formatPng": "PNG格式 - 無損品質，檔案較大",
       "preview": "產生拼接圖片的預覽",
       "save": "將拼接圖片儲存到Eagle目前資料夾"
     },
@@ -91,6 +96,20 @@
       "zoomLevel": "縮放: {{zoom}}%",
       "clickToEnlarge": "點擊放大檢視完整尺寸",
       "instructions": "滾輪縮放，拖曳平移，ESC 或點擊關閉"
+    },
+    "shortcuts": {
+      "title": "鍵盤快捷鍵",
+      "actionColumn": "操作",
+      "shortcutColumn": "快捷鍵",
+      "preview": "預覽",
+      "save": "儲存到 Eagle",
+      "help": "幫助",
+      "pin": "視窗置頂",
+      "close": "關閉視窗",
+      "focusCropTop": "聚焦頂部裁剪",
+      "focusCropBottom": "聚焦底部裁剪",
+      "cycleFormat": "切換匯出格式",
+      "firstUseHint": "提示：使用 {preview} 預覽，{save} 儲存。點擊說明按鈕（？）查看所有快捷鍵。"
     }
   }
 }

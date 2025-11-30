@@ -25,7 +25,8 @@
       "maxSettingTop": "最大設定値:",
       "maxSettingBottom": "最大設定値:",
       "qualityHelp": "値が高いほど品質が良く、ファイルサイズが大きくなります",
-      "cropHelp": "上部と下部のトリミングの合計は99%を超えることはできません",
+      "qualityNotApplicable": "PNGはロスレス形式 - 品質設定は適用されません",
+      "cropHelp": "上部と下部のトリミング合計は99%を超えてはいけません",
       "formatOptions": {
         "jpg": "JPG - 写真に適しており、ファイルサイズが小さい",
         "png": "PNG - 可逆圧縮、透明度をサポート",
@@ -36,7 +37,8 @@
       "preview": "プレビュー",
       "save": "保存",
       "processing": "処理中...",
-      "saving": "保存中..."
+      "saving": "保存中...",
+      "close": "閉じる"
     },
     "status": {
       "ready": "準備完了",
@@ -62,6 +64,9 @@
       "cropBottom": "画像の下部からトリミングする高さの割合を設定",
       "exportQuality": "エクスポート画像の品質を設定、範囲0.1-1.0",
       "exportFormat": "エクスポート画像の形式を選択",
+      "formatJpg": "JPEG形式 - 高圧縮率、ファイルサイズ小",
+      "formatWebp": "WebP形式 - 最高圧縮率、モダンブラウザ対応",
+      "formatPng": "PNG形式 - ロスレス品質、ファイルサイズ大",
       "preview": "結合画像のプレビューを生成",
       "save": "結合画像をEagle現在フォルダに保存"
     },
@@ -91,6 +96,20 @@
       "zoomLevel": "ズーム: {{zoom}}%",
       "clickToEnlarge": "クリックして拡大表示",
       "instructions": "スクロールでズーム、ドラッグで移動、ESC またはクリックで閉じる"
+    },
+    "shortcuts": {
+      "title": "キーボードショートカット",
+      "actionColumn": "操作",
+      "shortcutColumn": "ショートカット",
+      "preview": "プレビュー",
+      "save": "Eagle に保存",
+      "help": "ヘルプ",
+      "pin": "ウィンドウを固定",
+      "close": "ウィンドウを閉じる",
+      "focusCropTop": "上部トリミングにフォーカス",
+      "focusCropBottom": "下部トリミングにフォーカス",
+      "cycleFormat": "エクスポート形式を切り替え",
+      "firstUseHint": "ヒント：{preview} でプレビュー、{save} で保存できます。ヘルプボタン（？）をクリックすると全てのショートカットが表示されます。"
     }
   }
 }

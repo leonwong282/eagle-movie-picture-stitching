@@ -25,6 +25,7 @@
       "maxSettingTop": "최대 설정:",
       "maxSettingBottom": "최대 설정:",
       "qualityHelp": "높은 값 = 더 좋은 품질, 더 큰 파일",
+      "qualityNotApplicable": "PNG는 무손실 형식 - 품질 설정 적용 안 됨",
       "cropHelp": "상단과 하단 자르기의 합계는 99%를 초과할 수 없습니다",
       "formatOptions": {
         "jpg": "JPG - 사진에 적합, 작은 파일 크기",
@@ -36,7 +37,8 @@
       "preview": "미리보기",
       "save": "저장",
       "processing": "처리 중...",
-      "saving": "저장 중..."
+      "saving": "저장 중...",
+      "close": "닫기"
     },
     "status": {
       "ready": "준비",
@@ -62,6 +64,9 @@
       "cropBottom": "이미지 하단에서 자를 높이의 백분율 설정",
       "exportQuality": "내보낸 이미지의 품질 설정, 범위 0.1-1.0",
       "exportFormat": "내보낸 이미지의 형식 선택",
+      "formatJpg": "JPEG 형식 - 좋은 압축률, 작은 파일 크기",
+      "formatWebp": "WebP 형식 - 최고 압축률, 최신 브라우저 지원",
+      "formatPng": "PNG 형식 - 무손실 품질, 큰 파일 크기",
       "preview": "연결된 이미지의 미리보기 생성",
       "save": "연결된 이미지를 Eagle 현재 폴더에 저장"
     },
@@ -91,6 +96,20 @@
       "zoomLevel": "줌: {{zoom}}%",
       "clickToEnlarge": "클릭하여 전체 크기로 확대",
       "instructions": "스크롤로 확대/축소, 드래그로 이동, ESC 또는 클릭으로 닫기"
+    },
+    "shortcuts": {
+      "title": "키보드 단축키",
+      "actionColumn": "작업",
+      "shortcutColumn": "단축키",
+      "preview": "미리보기",
+      "save": "Eagle에 저장",
+      "help": "도움말",
+      "pin": "창 고정",
+      "close": "창 닫기",
+      "focusCropTop": "상단 자르기 포커스",
+      "focusCropBottom": "하단 자르기 포커스",
+      "cycleFormat": "내보내기 형식 전환",
+      "firstUseHint": "팁: {preview}로 미리보기, {save}로 저장. 도움말 버튼(?)을 클릭하면 모든 단축키를 확인할 수 있습니다."
     }
   }
 }
