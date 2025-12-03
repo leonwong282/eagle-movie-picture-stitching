@@ -8,11 +8,13 @@
 
 > A modern, internationalized Eagle image management plugin for vertically stitching multiple movie images into panoramic compositions with full multilingual support
 
-**BREAKING CHANGES (v2.0.0):** The UI has been fully rewritten to use Bootstrap 5 and a modular CSS/token system. This is a breaking release: customization that targets previous DOM selectors or CSS tokens will need migration. See `CHANGELOG.md`. Stability is being tested. If it is stable, it is planned to replace the old UI with a new UI.
+**🚀 MAJOR UPDATE (v3.0.0):** The plugin has been completely rewritten using **React 18 + TypeScript + Tailwind CSS** for a modern, maintainable codebase. This is a major architectural upgrade with improved performance, better developer experience, and enhanced UI components.
 
 ![Eagle Plugin](https://img.shields.io/badge/Eagle-Plugin-blue?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-2.0.0-orange?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-3.0.0-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-GPL--3.0-red?style=for-the-badge)
+![React](https://img.shields.io/badge/React-18.3-blue?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?style=for-the-badge)
 ![Internationalization](https://img.shields.io/badge/i18n-8_Languages-orange?style=for-the-badge)
 
 [🌍 English](README.md) | [🇹🇼 繁體中文](README.zh-TW.md) 
@@ -45,20 +47,26 @@
 - **Real-time Switching**: Dynamic language switching without restart
 - **Localized Interface**: All UI elements fully translated
 
-### 🎨 Modern Interface (Bootstrap 5)
-- **Bootstrap 5**: UI rebuilt using Bootstrap 5 utilities and design tokens (`css/bootstrap-config.css`). Layout uses Bootstrap-first classes (`d-flex`, `col-*`, etc.)
-- **Dark Theme**: Eagle-style modern dark interface implemented via CSS design tokens
-- **Glass Effects**: Frosted glass backgrounds and refined visual effects in `css/components/*`
-- **Smooth Animations**: Fluid interactions in `css/modules/animations.css`
-- **Responsive Design**: Uses Bootstrap grid and utilities for responsive layouts
+### 🎨 Modern React Interface
+- **React 18 + TypeScript**: Fully type-safe component architecture with IntelliSense support
+- **Tailwind CSS**: Utility-first styling with Eagle-specific design tokens and dark mode
+- **Radix UI**: Accessible, unstyled component primitives (Dialog, Slider, Select, etc.)
+- **Lucide Icons**: Beautiful, consistent iconography throughout the interface
+- **Glass Morphism**: Modern frosted glass effects and smooth animations
+- **Responsive Design**: Mobile-friendly layouts with Tailwind's responsive utilities
 
 ### 🚀 Advanced Features
-- **Parameter Persistence**: Automatically remembers your last settings (NEW!)
+- **Auto-Preview**: Automatically updates preview when images are reordered or parameters change
+- **Parameter Persistence**: Automatically remembers your last settings across sessions
+- **Keyboard Shortcuts**: Full keyboard navigation support (Cmd/Ctrl + Enter for preview, etc.)
+- **Lightbox Viewer**: Full-screen image viewer with zoom and pan controls
+- **Drag & Drop Reordering**: Intuitive image order management
 - **Parameter Validation**: Smart parameter adjustment preventing invalid inputs
 - **Error Handling**: Comprehensive error catching with user-friendly messages
 - **Resource Management**: Automatic cleanup of temporary files and memory
 - **Performance Optimization**: Parallel image loading with debounced processing
 - **Always On Top**: Pin window option for better workflow
+- **State Management**: Zustand-powered state management for reliable data flow
 
 ## 🛠 Installation
 
@@ -114,7 +122,15 @@ The plugin automatically detects your Eagle language settings and switches to th
 
 ### 💡 Pro Tips
 
-- **Settings Memory**: Your parameters (crop percentages, format, quality) are automatically saved and restored when you reopen the plugin
+- **Auto-Preview**: Enable auto-preview in settings to automatically update the preview when you reorder images or change parameters
+- **Keyboard Shortcuts**: 
+  - `Cmd/Ctrl + Enter`: Generate preview
+  - `Cmd/Ctrl + S`: Save image
+  - `Cmd/Ctrl + H`: Show keyboard shortcuts help
+  - `Cmd/Ctrl + 1/2`: Focus crop input fields
+- **Settings Memory**: Your parameters (crop percentages, format, quality, auto-preview) are automatically saved and restored when you reopen the plugin
+- **Lightbox Viewer**: Click the preview image to open full-screen viewer with zoom and pan controls
+- **Drag & Drop**: Reorder images by dragging them in the left panel
 - **Cropping Guidelines**: Keep total crop percentage (top + bottom) under 80% for best results
 - **Quality Balance**: Use 0.8-0.9 quality for optimal file size vs image quality balance
 - **Format Selection**: 
@@ -149,39 +165,72 @@ The plugin automatically detects your Eagle language settings and switches to th
 ## 🛠️ Development
 
 ### Prerequisites
-- Eagle 4.0 or higher
-- Modern web browser with Canvas API support
-- Basic understanding of HTML/CSS/JavaScript
+- **Node.js** 18+ and npm/yarn/pnpm
+- **Eagle** 4.0 or higher
+- **Modern web browser** with Canvas API support (for development)
+- Basic understanding of **React**, **TypeScript**, and **Tailwind CSS**
 
-### Project Structure (updated for Bootstrap 5)
+### Project Structure (React + TypeScript)
 ```
 eagle-movie-picture-stitching/
 ├── LICENSE                                    # GPL-3.0 license
 ├── README.md                                  # English documentation
-├── README_CN.md                               # Chinese documentation
+├── README.zh-TW.md                            # Traditional Chinese documentation
 ├── CHANGELOG.md                               # Version history
-├── Movie Picture Stitching/                  # Plugin main folder
-│   ├── Movie Picture Stitching.eagleplugin  # Installable plugin package
-│   ├── index.html                           # Main plugin interface (loads Bootstrap -> design tokens -> components -> modules)
-│   ├── manifest.json                        # Plugin configuration and metadata
-│   ├── logo.png                             # Plugin icon
-│   ├── _locales/                            # Internationalization resources (8 languages)
-│   ├── css/                                 # Modular stylesheets (Bootstrap-first)
-│   │   ├── bootstrap-config.css             # Design tokens & Bootstrap overrides
-│   │   ├── components/                      # Theme overrides only (buttons, forms, cards, navbar, toast)
-│   │   ├── utilities/                       # Eagle-specific utilities (layout fixes, effects)
-│   │   └── modules/                         # Animations and keyframes
-│   ├── js/                                  # JavaScript modules (modular classes)
-│   │   ├── plugin-modular.js                # App orchestrator (creates `window.app`)
-│   │   ├── i18n-manager.js                  # i18n wrapper
-│   │   └── modules/                         # Core modules: storage, params, eagle-api, canvas, file, ui
-│   └── vendor/                              # Third-party assets (Bootstrap)
-│       └── bootstrap-5.3.8/
-├── image/                                   # Project documentation assets
-│   ├── cover.png                           # Project cover image
-│   └── feature.png                         # Feature showcase image
+├── Movie Picture Stitching/                  # Legacy plugin (Bootstrap 5 version)
+│   └── ...                                    # Original implementation
+├── Movie Picture Stitching React/            # ⭐ New React-based plugin
+│   ├── manifest.json                         # Plugin configuration
+│   ├── index.html                            # Entry point
+│   ├── package.json                          # Dependencies and scripts
+│   ├── vite.config.ts                        # Vite build configuration
+│   ├── tailwind.config.js                    # Tailwind CSS configuration
+│   ├── tsconfig.json                         # TypeScript configuration
+│   ├── _locales/                             # Internationalization (8 languages)
+│   │   ├── en.json
+│   │   ├── zh_CN.json
+│   │   ├── zh_TW.json
+│   │   └── ...
+│   ├── src/
+│   │   ├── main.tsx                          # Application entry point
+│   │   ├── App.tsx                           # Root component
+│   │   ├── pages/
+│   │   │   └── StitchingPage.tsx            # Main stitching interface
+│   │   ├── components/
+│   │   │   ├── stitching/                   # Stitching-specific components
+│   │   │   │   ├── ImageQueue.tsx           # Image list with drag-drop
+│   │   │   │   ├── ParameterPanel.tsx      # Settings panel
+│   │   │   │   ├── PreviewCanvas.tsx        # Preview display
+│   │   │   │   ├── LightboxDialog.tsx       # Full-screen viewer
+│   │   │   │   └── ShortcutsDialog.tsx      # Keyboard shortcuts help
+│   │   │   └── ui/                          # Reusable UI components
+│   │   │       ├── Button.tsx
+│   │   │       ├── Dialog.tsx
+│   │   │       ├── Slider.tsx
+│   │   │       └── ...
+│   │   ├── hooks/                           # Custom React hooks
+│   │   │   ├── useEagleSelection.ts         # Track selected items
+│   │   │   ├── useKeyboardShortcuts.ts      # Keyboard shortcuts
+│   │   │   ├── useTheme.ts                  # Theme management
+│   │   │   └── ...
+│   │   ├── stores/                          # Zustand state management
+│   │   │   ├── index.ts                     # Store configuration
+│   │   │   └── slices/                      # Feature slices
+│   │   │       ├── stitching.ts             # Stitching state
+│   │   │       ├── settings.ts              # User settings
+│   │   │       └── ...
+│   │   ├── lib/                             # Core utilities
+│   │   │   ├── eagle-api.ts                 # Eagle API adapter
+│   │   │   ├── stitching-engine.ts          # Image stitching logic
+│   │   │   ├── i18n.ts                      # i18next configuration
+│   │   │   └── ...
+│   │   ├── templates/                       # Layout templates
+│   │   │   └── ThreeColumnTemplate.tsx      # Main layout
+│   │   └── styles/
+│   │       └── globals.css                  # Global styles + Tailwind
+│   └── dist/                                # Built output (deployed to Eagle)
+├── images/                                  # Documentation assets
 └── screenshots/                             # Plugin screenshots
-    ├── main_interface.png                  # Main interface screenshot
 ```
 
 ### 🌍 Internationalization Development
@@ -215,65 +264,160 @@ _locales/
    cd eagle-movie-picture-stitching
    ```
 
-2. **Development Setup**:
-   - Copy the `Movie Picture Stitching` folder to Eagle's plugins directory
-   - Enable developer mode in Eagle
-   - Restart Eagle to load the plugin
+2. **Install Dependencies**:
+   ```bash
+   cd "Movie Picture Stitching React"
+   npm install
+   ```
 
-3. **Testing**:
-   - Test with various image formats and sizes
-   - Verify all 8 language interfaces work correctly
-   - Test edge cases (very large images, extreme crop values)
-   - Validate performance with different batch sizes
+3. **Development Mode** (Browser with mocked API):
+   ```bash
+   npm run dev
+   # Opens browser at http://localhost:5173
+   # Hot reload enabled - edit code and see changes instantly
+   ```
 
-### Core API Reference
-```javascript
-// Get validated parameters
-const params = getParams(adjustingElement);
+4. **Build for Production**:
+   ```bash
+   npm run build
+   # Outputs optimized bundle to dist/ folder
+   ```
 
-// Render preview with i18n support
-await renderPreview();
+5. **Deploy to Eagle**:
+   ```bash
+   npm run deploy
+   # Copies dist/ to Eagle's plugin directory
+   # Or manually copy dist/ contents to Eagle plugin folder
+   ```
 
-// Save image with localized error handling
-await saveImage();
+6. **Testing**:
+   ```bash
+   npm run test          # Run unit tests
+   npm run test:e2e      # Run end-to-end tests
+   npm run test:visual  # Visual regression tests
+   ```
 
-// Resource cleanup
-cleanup();
+7. **Code Quality**:
+   ```bash
+   npm run lint          # Check for linting errors
+   npm run lint:fix      # Auto-fix linting issues
+   npm run format        # Format code with Prettier
+   npm run typecheck     # TypeScript type checking
+   ```
+
+### React Component Examples
+
+**Using Eagle API:**
+```typescript
+import { eagleApi } from '@/lib/eagle-api';
+import { useEagleSelection } from '@/hooks/useEagleSelection';
+
+function MyComponent() {
+  const { selectedItems, isLoading } = useEagleSelection();
+  
+  const handleSave = async () => {
+    const items = await eagleApi.getSelectedItems();
+    // Process items...
+  };
+  
+  return <div>{/* UI */}</div>;
+}
 ```
 
-### 🌍 Internationalization API
-```javascript
-// Language detection and initialization
-i18nManager.init();
+**State Management with Zustand:**
+```typescript
+import { useStitching } from '@/stores';
 
-// Dynamic translation
-i18nManager.translate('key.path');
+function ParameterPanel() {
+  const { cropTop, cropBottom, setCropTop, setCropBottom } = useStitching();
+  
+  return (
+    <Slider
+      value={[cropTop]}
+      onValueChange={([value]) => setCropTop(value)}
+    />
+  );
+}
+```
 
-// Real-time language switching
-i18nManager.setLanguage('en');
+**Internationalization:**
+```typescript
+import { useTranslation } from 'react-i18next';
+
+function MyComponent() {
+  const { t } = useTranslation();
+  
+  return <h1>{t('ui.title', 'Default Title')}</h1>;
+}
+```
+
+**Keyboard Shortcuts:**
+```typescript
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
+
+function MyComponent() {
+  useKeyboardShortcuts({
+    preview: () => handlePreview(),
+    save: () => handleSave(),
+  });
+  
+  return <div>{/* UI */}</div>;
+}
 ```
 
 ### Tech Stack
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript ES6+
-- **Design**: CSS Grid, Flexbox, CSS Custom Properties
-- **Animations**: CSS Transitions, Keyframe Animations
+- **Frontend Framework**: React 18.3 + TypeScript 5.6
+- **Build Tool**: Vite 5 (lightning-fast HMR and optimized builds)
+- **Styling**: Tailwind CSS 3 + CSS Variables (Eagle design tokens)
+- **UI Components**: Radix UI (accessible primitives) + Lucide Icons
+- **State Management**: Zustand 5 (lightweight, performant)
+- **Internationalization**: i18next + react-i18next (8 languages)
 - **Image Processing**: Canvas API with optimized rendering
-- **File Operations**: Node.js fs, path modules
-- **Internationalization**: Custom i18n system with 8 languages
-- **Architecture**: Modular CSS, Component-based JavaScript
+- **File Operations**: Node.js fs, path modules (Eagle environment)
+- **Testing**: Vitest (unit tests) + Playwright (E2E tests)
+- **Code Quality**: ESLint + Prettier + TypeScript strict mode
 
-### CSS Architecture
-The project uses a modular CSS architecture with CSS variable system:
-```css
-/* Main variables */
-:root {
-  --color-bg-primary: #0d1117;
-  --color-accent-primary: #238636;
-  --border-radius-lg: 12px;
-  --spacing-lg: 16px;
-  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
+### Development Workflow
+
+**Browser Development (Hot Reload):**
+```bash
+cd "Movie Picture Stitching React"
+npm install
+npm run dev
+# Opens browser with mocked Eagle API
+# Edit code → See changes instantly
 ```
+
+**Build for Production:**
+```bash
+npm run build
+# Outputs to dist/ folder
+# Deploy to Eagle using deploy script
+```
+
+**Testing:**
+```bash
+npm run test          # Unit tests
+npm run test:e2e      # End-to-end tests
+npm run test:visual  # Visual regression tests
+```
+
+### Architecture Highlights
+
+**Dual Environment Pattern:**
+- Develop in browser with mocked Eagle API (fast iteration)
+- Deploy to Eagle with real API (seamless transition)
+- Same codebase works in both environments
+
+**Component-Based Design:**
+- Reusable UI components with TypeScript types
+- Composition over inheritance
+- Props-based configuration
+
+**State Management:**
+- Zustand slices for feature isolation
+- Type-safe state updates
+- Optimized re-renders with selectors
 
 ## 🐛 Troubleshooting
 
@@ -318,15 +462,38 @@ The project uses a modular CSS architecture with CSS variable system:
 
 ## 📋 Changelog
 
+### v3.0.0 (2025-01-XX) 🚀 React Rewrite
+- **🚀 Complete React Rewrite**: Full migration to React 18 + TypeScript
+  - Modern component architecture with hooks
+  - Type-safe development with full IntelliSense
+  - Improved performance and maintainability
+- **🎨 UI Overhaul**: 
+  - Tailwind CSS utility-first styling
+  - Radix UI accessible components
+  - Lucide icons for consistent iconography
+  - Enhanced dark mode support
+- **✨ New Features**:
+  - Auto-preview on parameter changes
+  - Keyboard shortcuts support (Cmd/Ctrl + H for help, etc.)
+  - Lightbox full-screen viewer with zoom/pan
+  - Drag & drop image reordering
+  - Improved parameter persistence
+- **🛠 Developer Experience**:
+  - Vite for lightning-fast HMR
+  - Browser-based development with mocked API
+  - Comprehensive test suite
+  - Better error handling and debugging
+
+### v2.0.0 (2024-XX-XX) 🎨 Bootstrap 5
+- **🎨 Bootstrap 5 Migration**: UI rebuilt with Bootstrap 5
+- **📦 Modular CSS**: Component-based stylesheet architecture
+
 ### v1.0.0 (2025-09-01) 🌍
 - **🌍 Full Internationalization**: Complete 8-language support system
   - English, 简体中文, 繁體中文, 日本語, Español, Deutsch, 한국어, Русский
   - Automatic Eagle language detection
   - Real-time language switching
   - Localized error messages and UI elements
-- **🔧 Enhanced Error Handling**: Improved multilingual error messages
-- **🎨 UI Improvements**: Better accessibility and language-specific formatting
-- **📚 Code Documentation**: Comprehensive English comments and JSDoc
 
 ## 📄 License
 
