@@ -1,0 +1,43 @@
+{
+  "id": "7af1dd74-0da3-4892-962d-ce5b4a493526",
+  "version": "3.0.0",
+  "platform": "all",
+  "arch": "all",
+  "author": "Leon",
+  "name": "{{manifest.app.name}}",
+  "description": "{{manifest.app.description}}",
+  "website": "https://github.com/leonwong282/eagle-movie-picture-stitching",
+  "logo": "public/logo.png",
+  "category": "image",
+  "keywords": [
+    "movie",
+    "picture",
+    "stitching",
+    "long picture",
+    "vertical",
+    "panorama",
+    "collage",
+    "merge",
+    "modern",
+    "glass effect"
+  ],
+  "fallbackLanguage": "en",
+  "languages": ["en", "zh_TW", "zh_CN", "ja_JP", "es_ES", "ru_RU", "de_DE", "ko_KR"],
+  "devTools": true,
+  "main": {
+    "multiple": false,
+    "frame": false,
+    "url": "dist/index.html",
+    "vibrancy": true,
+    "minWidth": 800,
+    "minHeight": 600,
+    "width": 1024,
+    "height": 720,
+    "maxWidth": 1600,
+    "maxHeight": 1000,
+    "maximizable": true,
+    "minimizable": true,
+    "fullscreenable": true,
+    "opacity": 1
+  }
+}

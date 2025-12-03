@@ -1,0 +1,118 @@
+{
+  "manifest": {
+    "app": {
+      "name": "Unión de Imágenes de Película",
+      "description": "Un plugin moderno para unir verticalmente múltiples imágenes en composiciones panorámicas con interfaz de efecto cristal"
+    }
+  },
+  "ui": {
+    "header": {
+      "title": "Unión de Imágenes Largas de Subtítulos de Películas",
+      "pinWindow": "Fijar Ventana",
+      "closeWindow": "Cerrar Ventana",
+      "helpButton": "Documentación de Ayuda",
+      "lightMode": "Cambiar a Modo Claro",
+      "darkMode": "Cambiar a Modo Oscuro"
+    },
+    "panels": {
+      "imageList": "Lista de Imágenes Seleccionadas",
+      "preview": "Área de Vista Previa",
+      "settings": "Panel de Configuración"
+    },
+    "settings": {
+      "cropTop": "Altura de Recorte Superior (%):",
+      "cropBottom": "Altura de Recorte Inferior (%):",
+      "exportFormat": "Formato de Exportación:",
+      "exportQuality": "Calidad de Exportación (0.1-1.0):",
+      "maxSettingTop": "Configuración máxima:",
+      "maxSettingBottom": "Configuración máxima:",
+      "qualityHelp": "Valor más alto = mejor calidad, archivo más grande",
+      "qualityNotApplicable": "PNG es sin pérdida - ajuste de calidad no aplicable",
+      "cropHelp": "El total de recorte superior e inferior no puede exceder el 99%",
+      "formatOptions": {
+        "jpg": "JPG - Adecuado para fotos, tamaño de archivo menor",
+        "png": "PNG - Compresión sin pérdida, soporta transparencia",
+        "webp": "WEBP - Formato moderno, tamaño de archivo menor"
+      }
+    },
+    "buttons": {
+      "preview": "Vista Previa",
+      "save": "Guardar",
+      "processing": "Procesando...",
+      "saving": "Guardando...",
+      "close": "Cerrar"
+    },
+    "status": {
+      "ready": "Listo",
+      "loading": "Cargando...",
+      "processing": "Procesando...",
+      "success": "Completado",
+      "error": "Error"
+    },
+    "messages": {
+      "selectImages": "Por favor selecciona primero las imágenes a unir",
+      "selectFolder": "Por favor selecciona primero una carpeta en Eagle",
+      "generatePreview": "Por favor haz clic en el botón de vista previa para generar la imagen primero",
+      "processing": "Procesando...",
+      "saving": "Guardando...",
+      "success": "¡Imagen guardada exitosamente!",
+      "error": "Ocurrió un error durante el procesamiento",
+      "saveError": "Error al guardar imagen: {{error}}",
+      "imagesReordered": "Orden de imágenes actualizado. La vista previa se actualizará automáticamente.",
+      "reorderError": "Error al reordenar imágenes: {{error}}"
+    },
+    "tooltips": {
+      "cropTop": "Establecer el porcentaje de altura a recortar desde la parte superior de las imágenes",
+      "cropBottom": "Establecer el porcentaje de altura a recortar desde la parte inferior de las imágenes",
+      "exportQuality": "Establecer la calidad de la imagen exportada, rango 0.1-1.0",
+      "exportFormat": "Elegir el formato para la imagen exportada",
+      "formatJpg": "Formato JPEG - buena compresión, archivos más pequeños",
+      "formatWebp": "Formato WebP - mejor compresión, navegadores modernos",
+      "formatPng": "Formato PNG - calidad sin pérdida, archivos más grandes",
+      "preview": "Generar una vista previa de la imagen unida",
+      "save": "Guardar la imagen unida en la carpeta actual de Eagle"
+    },
+    "interface": {
+      "noImagesSelected": "No hay imágenes seleccionadas<br>Por favor selecciona imágenes para unir en Eagle",
+      "imagesSelected": "{{count}} imágenes seleccionadas",
+      "loadFailed": "Error de carga",
+      "selectImagesFirst": "Por favor selecciona primero las imágenes",
+      "tooManyImages": "Demasiadas imágenes seleccionadas (más de 50), por favor reduce la selección",
+      "cropParameterError": "Error de parámetro de recorte: Recorte superior + inferior no puede exceder el 100%",
+      "allImagesLoadFailed": "Todas las imágenes fallaron al cargar",
+      "imageLoadFailed": "{{count}} imágenes fallaron al cargar, continuando con las imágenes restantes",
+      "imageSizeExceeded": "Tamaño de imagen demasiado grande, por favor reduce el número de imágenes o la resolución",
+      "imagesProcessed": "Procesadas {{count}} imágenes, tamaño: {{width}}×{{height}}px",
+      "previewGenerationFailed": "Error en la generación de vista previa: {{error}}",
+      "pinTitle": "Fijar Ventana",
+      "unpinTitle": "Desfijar Ventana",
+      "imageName": "Imagen {{index}}",
+      "unknownError": "Error desconocido"
+    },
+    "lightbox": {
+      "close": "Cerrar",
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "resetZoom": "Ajustar a Pantalla",
+      "dimensions": "{{width}}×{{height}}px",
+      "zoomLevel": "Zoom: {{zoom}}%",
+      "clickToEnlarge": "Haga clic para ampliar y ver tamaño completo",
+      "instructions": "Desplazar para zoom, arrastrar para mover, ESC o clic para cerrar"
+    },
+    "shortcuts": {
+      "title": "Atajos de Teclado",
+      "description": "Usa estos atajos para acceder rápidamente a las funciones",
+      "actionColumn": "Acción",
+      "shortcutColumn": "Atajo",
+      "preview": "Vista Previa",
+      "save": "Guardar en Eagle",
+      "help": "Ayuda",
+      "pin": "Fijar Ventana",
+      "close": "Cerrar Ventana",
+      "focusCropTop": "Enfocar Recorte Superior",
+      "focusCropBottom": "Enfocar Recorte Inferior",
+      "cycleFormat": "Cambiar Formato de Exportación",
+      "firstUseHint": "Consejo: Usa {preview} para vista previa, {save} para guardar. Haz clic en el botón de ayuda (?) para ver todos los atajos."
+    }
+  }
+}

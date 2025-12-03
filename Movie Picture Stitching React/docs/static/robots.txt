@@ -1,0 +1,22 @@
+# Robots.txt for Awesome Project Template Documentation
+# https://www.robotstxt.org/
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location (update URL when deploying)
+Sitemap: https://your-domain.com/sitemap.xml
+
+# Block build artifacts and asset files
+Disallow: /assets/js/*.js.LICENSE.txt
+
+# Block search index files (if using local search)
+Disallow: /search-index.json
+
+# Allow important pages
+Allow: /docs/
+Allow: /zh-TW/docs/
+
+# Crawl-delay for polite crawling (optional)
+# Crawl-delay: 1

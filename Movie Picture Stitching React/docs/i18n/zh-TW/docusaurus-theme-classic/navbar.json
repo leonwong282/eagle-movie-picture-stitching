@@ -1,0 +1,26 @@
+{
+  "title": {
+    "message": "Eagle React Template",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Eagle React Template 標誌",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "文件",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.API": {
+    "message": "API",
+    "description": "Navbar item with label API"
+  },
+  "item.label.Components": {
+    "message": "元件",
+    "description": "Navbar item with label Components"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

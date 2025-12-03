@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81C784;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="100" cy="530" r="150" fill="#4CAF50" opacity="0.1"/>
+  <circle cx="1100" cy="100" r="200" fill="#4CAF50" opacity="0.1"/>
+
+  <!-- Star icon -->
+  <g transform="translate(100, 215)">
+    <circle cx="100" cy="100" r="90" fill="url(#starGrad)"/>
+    <polygon
+      points="100,30 115,70 160,70 125,95 140,140 100,115 60,140 75,95 40,70 85,70"
+      fill="#ffffff"
+    />
+  </g>
+
+  <!-- Text content -->
+  <text x="320" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#ffffff">
+    Awesome Project Template
+  </text>
+
+  <text x="320" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#a0a0a0">
+    A beautiful, documentation-first open source project template
+  </text>
+
+  <!-- Feature badges -->
+  <g transform="translate(320, 400)">
+    <rect x="0" y="0" width="140" height="40" rx="20" fill="#4CAF50" opacity="0.2"/>
+    <text x="70" y="27" font-family="system-ui, sans-serif" font-size="16" fill="#4CAF50" text-anchor="middle">📚 Documentation</text>
+
+    <rect x="160" y="0" width="140" height="40" rx="20" fill="#4CAF50" opacity="0.2"/>
+    <text x="230" y="27" font-family="system-ui, sans-serif" font-size="16" fill="#4CAF50" text-anchor="middle">🔧 Pre-configured</text>
+
+    <rect x="320" y="0" width="140" height="40" rx="20" fill="#4CAF50" opacity="0.2"/>
+    <text x="390" y="27" font-family="system-ui, sans-serif" font-size="16" fill="#4CAF50" text-anchor="middle">🚀 Ready to Use</text>
+  </g>
+
+  <!-- GitHub branding -->
+  <text x="320" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#666666">
+    github.com/leonwong282/awesome-project-template
+  </text>
+</svg>

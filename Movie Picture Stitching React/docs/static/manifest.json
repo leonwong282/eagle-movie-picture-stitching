@@ -1,0 +1,22 @@
+{
+  "name": "Awesome Project Template",
+  "short_name": "Awesome Template",
+  "description": "A beautiful, documentation-first open source project template",
+  "start_url": "/awesome-project-template/",
+  "scope": "/awesome-project-template/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "icons": [
+    {
+      "src": "/awesome-project-template/img/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/awesome-project-template/img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

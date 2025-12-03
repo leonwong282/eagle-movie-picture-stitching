@@ -1,0 +1,22 @@
+# Build outputs
+dist
+coverage
+
+# Dependencies
+node_modules
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Generated files
+*.min.js
+*.min.css
+
+# Documentation
+*.md
+
+# Config files that shouldn't be formatted
+manifest.json
+_locales/*.json
