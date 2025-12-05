@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Moon, Sun, Settings, X } from 'lucide-react';
+import { Moon, Sun, Monitor, Settings, X, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './Button';
 import { useTheme } from '@/hooks/useTheme';
@@ -9,8 +9,12 @@ import { eagleApi } from '@/lib/eagle-api';
 interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   /** Plugin title */
   title?: string;
-  /** Show theme toggle button */
+  /** Show theme cycle button (cycles through light → dark → auto) */
   showThemeToggle?: boolean;
+  /** Show info/help button */
+  showInfo?: boolean;
+  /** Info button click handler */
+  onInfoClick?: () => void;
   /** Show settings button */
   showSettings?: boolean;
   /** Settings click handler */
@@ -19,13 +23,15 @@ interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   showClose?: boolean;
   /** Close click handler */
   onCloseClick?: () => void;
-  /** Custom actions to render on the right */
+  /** Custom actions to render on the right. Note: Tooltips require TooltipProvider wrapper. */
   actions?: React.ReactNode;
 }
 
 export function Header({
   title,
   showThemeToggle = false,
+  showInfo = false,
+  onInfoClick,
   showSettings = false,
   onSettingsClick,
   showClose = true,
@@ -35,7 +41,9 @@ export function Header({
   ...props
 }: HeaderProps) {
   const { t } = useTranslation();
-  const { isDarkMode, toggleTheme } = useTheme();
+  const { theme, cycleTheme } = useTheme();
+
+  const ThemeIcon = theme === 'light' ? Sun : theme === 'dark' ? Moon : Monitor;
 
   const handleClose = () => {
     if (onCloseClick) {
@@ -82,22 +90,28 @@ export function Header({
           <Button
             variant="ghost"
             size="icon"
-            onClick={toggleTheme}
-            title={isDarkMode ? t('ui.header.lightMode') : t('ui.header.darkMode')}
+            onClick={cycleTheme}
+            title={`${t('app.theme')}: ${theme}`}
           >
-            {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            <ThemeIcon className="w-4 h-4" />
+          </Button>
+        )}
+
+        {showInfo && (
+          <Button variant="ghost" size="icon" onClick={onInfoClick} title={t('app.info')}>
+            <Info className="w-4 h-4" />
           </Button>
         )}
 
         {showSettings && (
-          <Button variant="ghost" size="icon" onClick={onSettingsClick} title={t('ui.header.settings', 'Settings')}>
-            <Settings className="w-5 h-5" />
+          <Button variant="ghost" size="icon" onClick={onSettingsClick} title={t('app.settings')}>
+            <Settings className="w-4 h-4" />
           </Button>
         )}
 
         {showClose && (
-          <Button variant="ghost" size="icon" onClick={handleClose} title={t('ui.header.closeWindow')}>
-            <X className="w-5 h-5" />
+          <Button variant="ghost" size="icon" onClick={handleClose} title={t('app.close')}>
+            <X className="w-4 h-4" />
           </Button>
         )}
       </div>

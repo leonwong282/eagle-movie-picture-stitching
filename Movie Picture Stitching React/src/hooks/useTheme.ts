@@ -12,6 +12,8 @@ interface UseThemeReturn {
   setTheme: (theme: Theme) => void;
   /** Toggle between light and dark */
   toggleTheme: () => void;
+  /** Cycle through light → dark → auto */
+  cycleTheme: () => void;
 }
 
 /**
@@ -69,6 +71,14 @@ export function useTheme(): UseThemeReturn {
     setTheme(isDarkMode ? 'light' : 'dark');
   }, [isDarkMode, setTheme]);
 
+  // Cycle through light → dark → auto
+  const cycleTheme = useCallback(() => {
+    const themes = ['light', 'dark', 'auto'] as const;
+    const currentIndex = themes.indexOf(theme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    setTheme(themes[nextIndex]);
+  }, [theme, setTheme]);
+
   // Initialize theme on mount
   useEffect(() => {
     const dark = computeIsDark(theme);
@@ -110,6 +120,7 @@ export function useTheme(): UseThemeReturn {
     isDarkMode,
     setTheme,
     toggleTheme,
+    cycleTheme,
   };
 }
 
