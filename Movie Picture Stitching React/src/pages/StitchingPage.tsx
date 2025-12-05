@@ -11,7 +11,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HelpCircle, Pin, PinOff } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 import { ThreeColumnTemplate, ThreeColumnFooter } from '@/templates';
 import { Button } from '@/components/ui/Button';
 import { useToast } from '@/components/ui/Toast';
@@ -194,17 +194,17 @@ export function StitchingPage() {
     if (!autoPreview || !hasPreviewGenerated) return;
 
     const currentImageIds = (reorderedImages || selectedItems).map((i) => i.id).join(',');
-    
+
     // Only trigger if the order actually changed (not just on mount)
     if (reorderedImagesRef.current && reorderedImagesRef.current !== currentImageIds) {
       // Debounce the preview update
       const timeoutId = setTimeout(() => {
         handlePreview();
       }, 300);
-      
+
       return () => clearTimeout(timeoutId);
     }
-    
+
     reorderedImagesRef.current = currentImageIds;
   }, [reorderedImages, selectedItems, autoPreview, hasPreviewGenerated, handlePreview]);
 
@@ -357,19 +357,6 @@ export function StitchingPage() {
         className="h-8 w-8"
       >
         <HelpCircle className="h-4 w-4" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={handlePinToggle}
-        title={isAlwaysOnTop ? t('ui.interface.unpinTitle') : t('ui.interface.pinTitle')}
-        className="h-8 w-8"
-      >
-        {isAlwaysOnTop ? (
-          <PinOff className="h-4 w-4" />
-        ) : (
-          <Pin className="h-4 w-4" />
-        )}
       </Button>
     </>
   );

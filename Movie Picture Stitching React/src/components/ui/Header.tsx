@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Moon, Sun, Monitor, Settings, X, Info } from 'lucide-react';
+import { Moon, Sun, Monitor, Settings, X, Info, Pin, PinOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './Button';
 import { useTheme } from '@/hooks/useTheme';
@@ -19,6 +19,10 @@ interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   showSettings?: boolean;
   /** Settings click handler */
   onSettingsClick?: () => void;
+  /** Show pin/always-on-top button */
+  showPin?: boolean;
+  /** Pin state change handler (isPinned: boolean) */
+  onPinChange?: (isPinned: boolean) => void;
   /** Show close button */
   showClose?: boolean;
   /** Close click handler */
@@ -34,6 +38,8 @@ export function Header({
   onInfoClick,
   showSettings = false,
   onSettingsClick,
+  showPin = true,
+  onPinChange,
   showClose = true,
   onCloseClick,
   actions,
@@ -42,8 +48,19 @@ export function Header({
 }: HeaderProps) {
   const { t } = useTranslation();
   const { theme, cycleTheme } = useTheme();
+  const [isPinned, setIsPinned] = React.useState(false);
 
   const ThemeIcon = theme === 'light' ? Sun : theme === 'dark' ? Moon : Monitor;
+
+    const handlePinToggle = () => {
+    const newPinnedState = !isPinned;
+    setIsPinned(newPinnedState);
+    onPinChange?.(newPinnedState);
+    // Call Eagle API to set always on top
+    if (!eagleApi.isMock) {
+      eagleApi.raw.window?.setAlwaysOnTop?.(newPinnedState);
+    }
+  };
 
   const handleClose = () => {
     if (onCloseClick) {
@@ -106,6 +123,18 @@ export function Header({
         {showSettings && (
           <Button variant="ghost" size="icon" onClick={onSettingsClick} title={t('app.settings')}>
             <Settings className="w-4 h-4" />
+          </Button>
+        )}
+
+        {showPin && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handlePinToggle}
+            title={isPinned ? t('app.unpin') : t('app.pin')}
+            className={cn(isPinned && 'text-primary')}
+          >
+            {isPinned ? <Pin className="w-4 h-4" /> : <PinOff className="w-4 h-4" />}
           </Button>
         )}
 
