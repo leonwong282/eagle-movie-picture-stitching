@@ -7,6 +7,138 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2025-01-XX 🚀 MAJOR REWRITE
+
+### Complete React + TypeScript Migration
+
+#### ✨ Added
+- 🚀 **Complete React Rewrite**: Full migration to React 18.3 + TypeScript 5.6
+  - Modern component-based architecture with hooks
+  - Type-safe development with full IntelliSense support
+  - Improved code maintainability and developer experience
+- 🎨 **Modern UI Stack**:
+  - **Tailwind CSS 3**: Utility-first styling with Eagle-specific design tokens
+  - **Radix UI**: Accessible, unstyled component primitives (Dialog, Slider, Select, etc.)
+  - **Lucide Icons**: Beautiful, consistent iconography throughout the interface
+  - **class-variance-authority (CVA)**: Type-safe component variants
+- 🛠️ **Build System**:
+  - **Vite 5**: Lightning-fast HMR and optimized production builds
+  - Browser-based development with mocked Eagle API
+  - Hot module replacement for instant feedback
+- 📦 **State Management**:
+  - **Zustand 5**: Lightweight, performant state management
+  - Feature-based state slices for better organization
+  - Optimized re-renders with selectors
+- ✨ **New Features**:
+  - **Auto-Preview**: Automatically updates preview when images are reordered or parameters change
+  - **Keyboard Shortcuts**: Full keyboard navigation support
+    - `Cmd/Ctrl + Enter`: Generate preview
+    - `Cmd/Ctrl + S`: Save image
+    - `Cmd/Ctrl + H`: Show keyboard shortcuts help
+    - `Cmd/Ctrl + 1/2`: Focus crop input fields
+  - **Lightbox Viewer**: Full-screen image viewer with zoom and pan controls
+  - **Drag & Drop Reordering**: Intuitive image order management in the left panel
+  - **Enhanced Parameter Persistence**: Settings automatically saved across sessions
+- 🧪 **Testing Infrastructure**:
+  - **Vitest**: Fast unit testing framework
+  - **Playwright**: End-to-end and visual regression testing
+  - Comprehensive test coverage for core functionality
+- 🌍 **Internationalization**:
+  - **i18next + react-i18next**: Industry-standard i18n with React bindings
+  - Maintained 8-language support (en, zh_CN, zh_TW, ja_JP, ko_KR, de_DE, es_ES, ru_RU)
+  - Enhanced translation system with React hooks
+
+#### 🚚 Changed
+- **Architecture**: Complete rewrite from Bootstrap 5 + Vanilla JS to React + TypeScript
+- **Project Structure**: New `Movie Picture Stitching React/` directory with modern React structure
+  - `src/` directory with organized components, hooks, stores, and utilities
+  - Component-based file organization
+  - Separation of concerns (UI, logic, state, API)
+- **Development Workflow**:
+  - Browser-based development with mocked Eagle API (no Eagle required for development)
+  - Hot module replacement for instant feedback
+  - TypeScript strict mode for better type safety
+  - ESLint + Prettier for code quality
+- **UI Components**:
+  - Replaced emoji icons with Lucide React icons for consistency
+  - Enhanced accessibility with Radix UI primitives
+  - Improved dark mode support with Tailwind CSS
+  - Better responsive design with Tailwind utilities
+- **State Management**: Migrated from event-driven CustomEvents to Zustand store
+- **API Access**: Introduced `eagleApi` adapter for safe API access in both browser and Eagle environments
+
+#### 🐛 Fixed
+- 🔧 **Preview Display**: Fixed preview image not displaying initially
+  - Switched from direct canvas DOM manipulation to `<img>` tag rendering
+  - Improved CSS scaling and responsive behavior
+- 🔧 **Lightbox Issues**: Fixed lightbox not showing image on initial open
+  - Proper zoom and offset reset on lightbox open
+  - Correct initial "fit" zoom calculation
+- 🔧 **Auto-Preview**: Fixed auto-preview not updating when images are reordered
+  - Added debounced preview updates on image order changes
+  - Proper tracking of image order changes
+- 🔧 **Keyboard Shortcuts**:
+  - Fixed help shortcut conflict with Eagle's native shortcut (changed from `Cmd/Ctrl + Shift + /` to `Cmd/Ctrl + H`)
+  - Fixed focus crop input shortcuts (`Cmd/Ctrl + 1/2`) not working
+  - Proper ref forwarding through component hierarchy
+- 🔧 **Help Dialog**: Fixed unresponsive help icon in page header
+  - Proper state management for shortcuts dialog
+  - Correct event handling
+
+#### 🗑️ Removed
+- Bootstrap 5 dependency (replaced with Tailwind CSS)
+- Vanilla JavaScript modules (replaced with React components)
+- Direct DOM manipulation patterns (replaced with React state and refs)
+- Custom event system (replaced with Zustand state management)
+
+#### 🧭 Developer Notes / Migration
+- **BREAKING**: Complete architectural change - this is a major rewrite
+- **New Development Setup Required**:
+  - Node.js 18+ and npm/yarn/pnpm required
+  - Run `npm install` in `Movie Picture Stitching React/` directory
+  - Use `npm run dev` for browser-based development
+  - Use `npm run build` to build for production
+- **API Access Pattern**:
+  - Always use `eagleApi` singleton from `@/lib/eagle-api`
+  - Never access `window.eagle` directly
+  - Works identically in browser (mocked) and Eagle (real API)
+- **Component Development**:
+  - Use React hooks for state and side effects
+  - Use Zustand for global state management
+  - Use Tailwind CSS utilities for styling
+  - Follow TypeScript strict mode guidelines
+- **Key Files to Inspect**:
+  - `src/pages/StitchingPage.tsx`: Main application page
+  - `src/components/stitching/*`: Stitching-specific components
+  - `src/stores/slices/*`: Zustand state slices
+  - `src/hooks/*`: Custom React hooks
+  - `src/lib/eagle-api.ts`: Eagle API adapter
+  - `vite.config.ts`: Build configuration
+  - `tailwind.config.js`: Tailwind CSS configuration
+
+#### 📝 Documentation
+- README.md and README.zh-TW.md completely updated for React architecture
+- Added development workflow documentation
+- Added React component examples
+- Updated project structure documentation
+- Added keyboard shortcuts documentation
+
+#### 🔧 Technical Details
+- **New Dependencies**:
+  - `react@^18.3.1`, `react-dom@^18.3.1`
+  - `typescript@^5.6.3`
+  - `vite@^5.4.10`
+  - `tailwindcss@^3.4.14`
+  - `zustand@^5.0.9`
+  - `@radix-ui/*`: Multiple Radix UI components
+  - `lucide-react@^0.460.0`
+  - `i18next@^23.16.4`, `react-i18next@^15.1.1`
+- **Build Output**: Optimized bundle in `dist/` directory
+- **Type Safety**: Full TypeScript coverage with strict mode
+- **Code Quality**: ESLint + Prettier + TypeScript compiler checks
+
+---
+
 ## [2.0.0] - 2025-11-01 🚧 BREAKING
 
 ### Merged: `reconstruct/bootstrap5` → `main`
